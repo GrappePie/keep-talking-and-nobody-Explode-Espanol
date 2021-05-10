@@ -1573,8 +1573,8 @@ morse_frequencies["ratas"] = "3.595 MHz";
 
 // Complicated Wires responses
 cw_restext = new Array();
-cw_restext[0] = "Corta el alambre.";
-cw_restext[1] = "No corte el alambre.";
+cw_restext[0] = "Corta el cable.";
+cw_restext[1] = "No corte el cable.";
 cw_restext[2] = "Corte el cable si el último dígito del número de serie es par.";
 cw_restext[3] = "Corta el cable si la bomba tiene un puerto paralelo.";
 cw_restext[4] = "Corta el cable si la bomba tiene dos o más baterías.";
@@ -2019,9 +2019,9 @@ function updatewires() {
     else if (wires.length == 5) {
       if (wires[4] == 0 && bomb_serial_odd == -1) res += "¿El último dígito del número de serie es par o impar?";
       else if (wires[4] == 0 && bomb_serial_odd == 1) res += "Corta el cuarto cable.";
-      else if (countwires(2) == 1 && countwires(4) >= 2) res += "Corta el primer alambre.";
+      else if (countwires(2) == 1 && countwires(4) >= 2) res += "Corta el primer cable.";
       else if (countwires(0) == 0) res += "Corta el segundo cable.";
-      else res += "Corta el primer alambre.";
+      else res += "Corta el primer cable.";
     }
     else if (wires.length == 6) {
       if (countwires(4) == 0 && bomb_serial_odd == -1) res += "¿El último dígito del número de serie es par o impar?";
