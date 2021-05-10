@@ -2027,7 +2027,7 @@ function updatewires() {
       if (countwires(4) == 0 && bomb_serial_odd == -1) res += "¿El último dígito del número de serie es par o impar?";
       else if (countwires(4) == 0 && bomb_serial_odd == 1) res += "Corta el tercer cable.";
       else if (countwires(4) == 1 && countwires(3) >= 2) res += "Corta el cuarto cable.";
-      else if (countwires(2) == 0) res += "Cut the last wire.";
+      else if (countwires(2) == 0) res += "Corta el último cable.";
       else res += "Corta el cuarto cable.";
     }
     else res += "Retire algunos cables para tener entre 3 y 6.";
@@ -3356,7 +3356,7 @@ for (i in wirecolors) {
 <li>¿No amarillo? ¿Serie impar? Corta el <span class="b">tercer cable</span>.
 <li>¿Solo 1 amarillo, más de 1 blanco? Corta el <span class="b">cuarto cable</span>.
 <li>¿Sin cables rojos? Corta el <span class="b">last wire</span>.
-<li>Cut the <span class="b">fourth wire</span>.
+<li>Corta el <span class="b">cuarto cable</span>.
 </ol>
 </td></tr>
 </table>
