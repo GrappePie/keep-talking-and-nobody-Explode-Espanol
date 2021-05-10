@@ -2012,7 +2012,7 @@ function updatewires() {
         else if (wires[2] == 2) res += "Corta el tercer cable.";
         else if (wires[1] == 2) res += "Corta el segundo cable.";
       }
-      else if ((countwires(2) == 0 && wires[3] == 4) || countwires(1) == 1) res += "Cut the first wire.";
+      else if ((countwires(2) == 0 && wires[3] == 4) || countwires(1) == 1) res += "Corta el primer cable.";
       else if (countwires(4) > 1) res += "Corta el último cable.";
       else res += "Corta el segundo cable.";
     }
@@ -3347,7 +3347,7 @@ for (i in wirecolors) {
 <li>¿Último cable negro? ¿Serie impar? Corta el <span class="b">cuarto cable</span>.
 <li>¿Solo 1 cable rojo, más de 1 amarillo? Corta el <span class="b">primer cable</span>.
 <li>¿Sin cables negros? Corta el <span class="b">segundo cable</span>.
-<li>Corta el <span class="b">first wire</span>.
+<li>Corta el <span class="b">primer cable</span>.
 </ol>
 </td></tr>
 <tr><th>6 Cables</th></tr>
@@ -4050,7 +4050,7 @@ Corta el cable si va a una letra que tiene un indicador encendido arriba.
 <tr><th style="text-align:center;cursor:default;width:25%;">Cable #</th><th class="sequence_wirecount_0" style="text-align:center;cursor:default;width:25%;">Rojo</th><th class="sequence_wirecount_1" style="text-align:center;cursor:default;width:25%;">Azul</th><th class="sequence_wirecount_2" style="text-align:center;cursor:default;width:25%;">Negro</th></tr>
 <script>
 
-t = ["First","Second","Third","Fourth","Fifth","Sixth","Seventh","Eighth","Ninth"];
+t = ["Primero", "Segundo", "Tercero", "Cuarto", "Quinto", "Sexto", "Séptimo", "Octavo", "Noveno"];
 for (i in wire_sequences) {
   temp = ["","",""];
   for (x in wire_sequences[i]) {
