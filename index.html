@@ -1,0 +1,4355 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Keep Talking and Nobody Explodes</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="robots" content="index,follow">
+<link rel="icon" href="http://www.bombmanual.com/favicon.ico" type="image/png">
+<style>
+
+*			{
+				box-sizing:border-box;
+				font:14px Tahoma, Geneva, sans-serif;
+				line-height:1.3;
+				cursor:default;
+				outline:none;
+			}
+
+body			{
+				border:0;
+				margin:5px;
+				padding:0;
+        background:#020;
+        color:#0f0;
+				background: #020 linear-gradient(to bottom, 
+        rgba(0,0,0,0.1), rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.2)
+        );
+        background-size: 100% 3px;
+        box-shadow:inset 0 0 80px rgba(0,0,0,0.45);
+        @media(min-width: 700px) {
+          font-size:16px;
+        }
+				font-size:inherit;
+				-webkit-touch-callout:none;
+				-webkit-user-select:none;
+				-khtml-user-select:none;
+				-moz-user-select:none;
+				-ms-user-select:none;
+				user-select:none;
+			}
+
+label			{
+				cursor:pointer;
+			}
+
+label:hover		{
+				text-shadow:0 0 1px #000000;
+			}
+
+label.red		{
+				color:#CC0000;
+			}
+
+label.blue		{
+				color:#0000FF;
+			}
+
+.intro			{
+				width:calc(100% + 8px);
+				text-align:center;
+				font-weight:bold;
+				font-size:12px;
+				padding:2px;
+				margin:-4px -4px 4px -4px;
+				border:1px solid #999999;
+				border-width:0 0 1px 0;
+				background:linear-gradient(to bottom,rgba(0,0,96,0.15),rgba(0,0,96,0.05));
+			}
+
+a,
+a:hover			{
+				color:#4488AA;
+				font-size:12px;
+				font-weight:bold;
+				cursor:pointer;
+				text-decoration:none;
+			}
+
+a:hover			{
+				color:#226699;
+				text-shadow:0 0 2px #99DDFF;
+			}
+
+#main_center		{
+				width:990px;
+				margin:0 auto 200px auto;
+				display:none;
+			}
+
+#main_footer		{
+				font-size:10px;
+				color:#667788;
+				background:#002026;
+				width:840px;
+				text-align:center;
+				margin:10px auto;
+				padding:4px 8px;
+				border-radius:16px;
+				box-shadow:0 2px 0 2px #00181B;
+			}
+
+.module,
+.module_hide		{
+				display:inline-block;
+				vertical-align:top;
+				color:#000000;
+				background:#FFFFFF;
+				padding:4px;
+				margin:4px 2px;
+				max-height:1100px;
+				max-width:1100px;
+				overflow:hidden;
+				border-radius:13px;
+				transition:all 0.3s ease-in;
+			}
+
+.module_hide		{
+				max-height:32px;
+				max-width:240px;
+				opacity:0.65;
+				transition:all 0.3s cubic-bezier(0,1,0.5,1);
+			}
+
+.module_hide div.reset	{
+				opacity:0;
+				visibility:hidden;
+				transition:all 0.3s;
+			}
+
+.module_hide div.minimize	{
+				transform:rotateX(0deg);
+			}
+
+.module_hide:hover	{
+				opacity:1;
+				transition:all 0.3s;
+			}
+
+.showcontent		{
+				display:block;
+			}
+
+.hidecontent		{
+				display:none;
+			}
+
+.header			{
+				color:#FFFFFF;
+				background:linear-gradient(to bottom,#888888,#333333);
+				font-weight:bold;
+				padding:4px;
+				height:32px;
+				line-height:24px;
+				border:1px solid #000000;
+				border-width:1px 0;
+				margin:-4px -4px 8px -4px;
+				text-align:center;
+				text-shadow:1px 1px 0 #000000;
+			}
+
+.center			{
+				width:100%;
+				text-align:center;
+			}
+
+div.minimize,
+div.reset		{
+				display:inline-block;
+				width:26px;
+				height:26px;
+				margin:-2px;
+				border:1px solid #333333;
+				background-color:#666666;
+				background-size:24px 24px;
+				background-position:center;
+				background-repeat:no-repeat;
+				border-radius:10px;
+				cursor:pointer;
+			}
+
+div.minimize		{
+				float:right;
+				background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAWdEVYdENyZWF0aW9uIFRpbWUAMDMvMTEvMTnKLjrNAAACZklEQVRIid2VO2gUURSGv5kdwWiM+OimEGxUBMGcGxSjxYLbGiSJkG0SNoLskG12lYBlIFam0CKxmbVQiBaL2GjvriLkgI1glUJke0nigzCbsZibEDf7QkjjgYGZyzn/dx733nHiOGY/zd1X9f8C4PXiZIzpAx4CN4EG8AaYVdXv3WKdbkO24gqcsUsx4ABfgGvdIL206DFwNpPJVFU1papeJpOpAueA+W7BvVSwBhxWVbdpPQK+qerpTvE7MzDGjAP3gFNAiqQNDeBQu+QA3xjzA4jsWgP4Csyp6iuwLTLG3AeeAoPASeA4cAw4YX3cYrH4eVvZvqeAA8BBYAA4AhwFLgDPjDF3ARwRuQS89jxvs1KpuL7v+7vTXFhYWFleXh7alSFWnMnJyY+FQuHybv96vV4fHR3diqIoBYy4wA1gIJ1OrzaLA5RKpaFsNrtiP93tqqempvaIA/i+76fT6VVbUdoFNumym4rF4lAQBDWSvjtBENRmZmb2iDeZC6w7InIeeOd53kalUkm1qmLbwjCsAUxPT19t52Nb1IiiqA+46MRxjDHmNvCIZGAO4OTz+VonoWbw0tLSMMkhBPgN3FHV5zvnwBhzHSgBV4B+gCAIPuRyuY6QcrlcW1xcHCbZAGskJ3xeVd8CEMfxnkdEsiKyJiJbYRhW4zYWhmFVRLZEZENEJlpptQRYyJiI/BSRRitIk/itdjptARYyYiF/VWLFG1Z8vJNGL3fRGFAG+vP5/HsAO9BfQE5VX3aK7wqwkAngCcm91ADWgYKqvugW2xPAQgaBBySZz6nqp17iegb8q+37P/kPWSiFRVFAOcEAAAAASUVORK5CYII=');
+				transform:rotateX(180deg);
+			}
+
+div.reset		{
+				float:left;
+				background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAWdEVYdENyZWF0aW9uIFRpbWUAMDMvMTEvMTnKLjrNAAADZElEQVRIiZ2WUWhbVRzGf7leBmWXwUTmaEcLYoticLJ70nawtqMkBan0sS9lLxGkPlQQNWst7q1ELvjWMtEQUOlLKbJapGAQ2ky0jj8TaWR0FWQPt61hbN0WF12be33IvfU2zc2oHxwS7v9/vu+cm+98JxHXdWkEpVQfgIisNGwMQSRMQCl1BsgCvUARuPR/RLQQ8gHgJyDe3Nz8C9ACfHVUcqizA6XUW8AnwPFEIrGSTqcvKqUAXOCe1/YPsAXcAL4QkZ+fKqCUagI+BkY1TXs8OjpaSCaTF7ya3+8GPl3AAXaBZeBdEbldV8Aj/wj4QNf1rUwmU45Gox2Ntm7btj07O/v74uLiqXK53AE8AN4Rkdl6AueA75qamopLS0sthmGcaEReC8uyVubn5886jnMMeE9EPvVr/o9cBiJHIQ0ilUr1ZbPZoqZpTwBLKZU4ICAit4Cr5XK5PR6PPygUCofe5dMQjUY7stlsETgOzCilTgZ3AHAFuLq3t/d8Mpk8tbCwsO8MpVRwVDo7O3cHBwc3t7e3H9WKDAwM5IEXgLehxqZKKQ14k/9smg/YtB4qMzMzf3R1db3oPyiVSg/7+/srjuP8DXQcOGgi4ojI50AcKOZyub6hoaFVPHsmEollEUFE6O7uvgs8MzY2djrIYRjGifb29t+Ak8D5uidZRG4ArwHXNjc3z3oCTjqdvuj3TE9PPwe4juMY+Xz+1+D81tbWPe9rfQFP5E8gCVwAnoT1NUAEeDZUwBPZEZGbwJdAZGJiYtmvjY+P+8EXFscu8Cg0TYNQSrUB3wAveyuLUHVgRNd1e3V1tSXYPzIy8sP6+noMGNQbkJ4GPgPOA8c8QhfYn6Np2k4mk/krOK9UKj3c2Nh4BdgRke/rCnjkPwJt3qP9U67rum0Yxt1YLLYzOTl5zjCMA5k1NTV103GcXuB9gqupwRWgbXh4+HoqleqrqZ3xxiEUCoXbuVyuF9gAqnnkuu6hYZqmbZrmrnsErK2trcdisfumad43TbPb5wrbQYUjhJ+Xpq96aXpJRFb9WphNlwDXsqzQO9i2bduyrJWenp5bc3NzPY7jVIDXReTrYF9dm3q2/BZ4KWQh/o1WoXp9XgMui8hWLVejfxVtwIfAG1RtCtXX5gKPgTvAdap3cmi8/wvlw6R/uUxNAAAAAABJRU5ErkJggg==');
+			}
+
+div.chart_button	{
+				width:26px;
+				height:26px;
+				position:relative;
+				clear:both;
+				float:right;
+				margin:2px -4px -4px 0;
+				background-color:transparent;
+				background-size:24px 24px;
+				background-position:center;
+				background-repeat:no-repeat;
+				background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAwMy8xMS8xOcouOs0AAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzbovLKMAAACC0lEQVRIibWVP2zaQByFv3PD1JGghK1DpUigTDYwdo0y0iHqxFDJA3MlBi8ZkCqPHcvYKWVMunap1IHWqeQMkaIsiKWiA2MhsszrAqlDMAaJPOl0/nfvd+87+2wk8ZTaSbvhOM5r4D3wcgM/AbeAGwTBNwCzLIHjOMeWZX2SlJeEMWajWRtj/kyn07dBEHxB0qNm2/at4zg6OTnR9fW14jhWluI4VhiGqtfrqlQqsm37pyTSCkSO4+jq6irTeFFhGM4LjCX9XwPf95PMDUC5XAag0+lweXm5Eott27iuS6lUml/KwWyRfd8/NsZ8lJRPDrIsCwDXddfmv7Pz8L2xZv0HSflCoUCj0dh4UVcWnPUvAI6Ojtjf33/00CaI0go8AygWi0sHb4JoUVbyZJto5kr9kpPaBqKV2hqip9DWEU0mk+wCxhgkcXNzw8HBwUaIwjCcH95BCqLd3V0k4XkeQRAQRVGm8WQyodfr4Xkesx36V2qC09NTPM9jMBjQbDbXnj3cb553wLvUBNVqlXa7zeHhIblcbl1TptPpWFIPeAX8SCYQYIbDIXt7ewDUajVqtVqmeb/fp9vtIulvq9V6vnh/nuA3wMXFBYPBgDiOM42jKKLf73N+fv6A+aLmCRrGmM+j0Sh/dnaWaZ7UzPye+dIErVbrq6Q3kr5LGkuK12xj4AHzRS396W9T/wCD346DiUu9UAAAAABJRU5ErkJggg==');
+				border-radius:8px;
+				cursor:pointer;
+			}
+
+.optionbox,
+.optionbox_selected	{
+				font-size:12px;
+				text-align:center;
+				line-height:20px;
+				float:left;
+				margin:0 2px;
+				width:22px;
+				height:22px;
+				color:#333399;
+				background:#EEEEFF;
+				border:1px solid #DDDDEE;
+				border-radius:4px;
+				cursor:pointer;
+				transition:all 0.1s;
+			}
+
+.optionbox_selected	{
+				font-weight:bold;
+				line-height:22px;
+				color:#FFFFFF;
+				background:#222288;
+				border:none;
+				text-shadow:1px 1px 0 #000000;
+				box-shadow:0 1px 0 1px rgba(0,0,0,0.25),0 18px 16px -16px #FFFFFF inset;
+			}
+
+.colorbox,
+.colorbox:hover		{
+				display:inline-block;
+				width:32px;
+				height:32px;
+				margin:5px;
+				border-radius:32px;
+				box-shadow:0 2px 6px -1px #000000,0 10px 16px -10px #FFFFFF inset,0 -16px 32px -16px #000000 inset;
+				cursor:pointer;
+			}
+
+.colorbox:hover		{
+				background-image:radial-gradient(at center,rgba(255,255,255,0.25),rgba(255,255,255,0.25));
+			}
+
+.buttonbox,
+.buttonbox:hover	{
+				display:inline-block;
+				width:90px;
+				margin:1px;
+				text-align:center;
+				padding:1px 0;
+				color:#000000;
+				border:1px solid #000000;
+				border-color:#E5D9C9 #71654F #584A3F #FCF4CF;
+				border-radius:8px;
+				background:#E9DAC3 radial-gradient(rgba(255,255,255,0.1) 60%,rgba(0,0,0,0.025) 65%,rgba(0,0,0,0.05) 75%);
+				cursor:pointer;
+				transition:all 0.2s;
+			}
+
+.buttonbox:hover	{
+				font-weight:bold;
+				background-color:#F9EAD3;
+				transition:all 0.2s;
+			}
+
+.buttonres		{
+				position:relative;
+				display:inline-block;
+				width:32px;
+				height:20px;
+				border:1px solid rgba(0,0,0,0.4);
+				vertical-align:middle;
+				margin:2px 6px 2px 2px;
+			}
+
+.buttonres:before	{
+				content:'';
+				display:block;
+				transform:rotate(45deg);
+				transform-origin:0 0;
+				margin:4.5px -10px 0 auto;
+				border:1px solid rgba(0,0,0,0.6);
+				border-width:3px 3px 0 0;
+				width:3px;
+				height:3px;
+			}
+
+#bigbutton,
+.minibutton		{
+				width:96px;
+				height:96px;
+				margin:0;
+				border-radius:96px;
+				text-align:center;
+				font-size:14px;
+				line-height:96px;
+				letter-spacing:1px;
+				color:#FFFFFF;
+				text-shadow:0 0 0.5px #FFFFFF,0 0 3px #000000,0 0 2px #000000,0 0 1px #000000;
+				background:radial-gradient(at 50% 33%,rgba(0,0,0,0.1),rgba(255,255,255,0.05),rgba(255,255,255,0.1));
+				box-shadow:0 0 4px 1px rgba(0,0,0,0.5) inset;
+				cursor:pointer;
+			}
+
+.minibutton		{
+				display:inline-block;
+				vertical-align:middle;
+				width:40px;
+				height:40px;
+				line-height:40px;
+				cursor:default;
+			}
+
+.wireline		{
+				width:calc(100% - 16px);
+				height:8px;
+				box-shadow:0 2px 6px -1px #000000,0 -4px 8px -4px #000000 inset;
+				border-radius:16px;
+				margin:8px auto;
+				cursor:pointer;
+			}
+
+
+table.symbol		{
+				display:inline-block;
+				margin:0 10px;
+				border-collapse:collapse;
+			}
+
+table.symbol td		{
+				width:52px;
+				height:52px;
+				border:1px solid #999999;
+				text-align:center;
+				vertical-align:middle;
+				padding:2px;
+				line-height:0;
+			}
+
+.symbolbox,
+.symbolbox_off		{
+				display:inline-block;
+				width:42px;
+				height:42px;
+				margin:2px;
+				color:#FFFFFF;
+				border:3px solid #000000;
+				border-color:#E5D9C9 #71654F #584A3F #FCF4CF;
+				box-shadow:1px 1px 3px 0 rgba(255,255,255,0.8) inset,-1px -1px 3px 0 rgba(0,0,0,0.6) inset;
+				background-color:#E9DAC3;
+				background-size:32px 32px;
+				background-repeat:no-repeat;
+				background-position:center;
+				cursor:pointer;
+				transition:all 0.1s;
+			}
+
+.symbolbox_off		{
+				opacity:0.15;
+				background-color:transparent;
+				border-color:transparent;
+				box-shadow:none;
+			}
+
+.simonbox_outer		{
+				transform:rotate(45deg);
+				margin:32px auto;
+				padding:2px;
+				line-height:0;
+				width:116px;
+				height:116px;
+				background:#2A2C41;
+				border-radius:4px;
+			}
+
+.simonbox,
+.simonbox_small		{
+				display:inline-block;
+				width:calc(50% - 2px);
+				height:calc(50% - 2px);
+				margin:1px;
+				border:1px solid rgba(0,0,0,0.5);
+				border-radius:4px;
+				background-image:radial-gradient(rgba(0,0,0,0.1) 55%,rgba(0,0,0,0.05) 65%,rgba(0,0,0,0.05) 85%,rgba(0,0,0,0.1) 100%);
+				cursor:pointer;
+			}
+
+.simonbox_small		{
+				width:20px;
+				height:20px;
+				vertical-align:middle;
+				margin:1px 4px;
+			}
+
+table.simon,
+table.simon th		{
+				border-collapse:collapse;
+				border:1px solid #999999;
+				width:100%;
+			}
+
+table.simon th		{
+				width:50%;
+				padding:2px;
+				color:#FFFFFF;
+				background:#000000;
+				font-weight:bold;
+				text-align:center;
+			}
+
+table.simon td,
+td.simon_press		{
+				padding:2px;
+				text-align:center;
+				border:1px solid #999999;
+			}
+
+td.simon_press		{
+				color:#FFFFFF;
+				font-weight:bold;
+				text-shadow:0 0 3px #000000,0 0 2px #000000,0 0 1px #000000;
+				letter-spacing:2px;
+			}
+
+table.who		{
+				margin:0 auto 10px auto;
+				border-collapse:collapse;
+				width:180px;
+			}
+
+table.whores		{
+				margin:10px auto auto auto;
+				border-collapse:collapse;
+				width:100%;
+			}
+
+table.who,
+table.who th,
+table.who td,
+table.whores td		{
+				border:1px solid #999999;
+				text-align:center;
+				padding:2px;
+				font-weight:bold;
+			}
+
+table.whores td		{
+				width:14%;
+				cursor:pointer;
+			}
+
+table.who th		{
+				width:100%;
+				padding:2px;
+				color:#FFFFFF;
+				background:#000000;
+				cursor:pointer;
+			}
+
+table.who td		{
+				width:50%;
+			}
+
+.who_pos,
+.who_pos_small		{
+				width:28px;
+				height:24px;
+				margin:auto;
+				border:3px solid #000000;
+				background:radial-gradient(circle,#000000 20%,#FFFFFF 25%,#FFFFFF 100%);
+				transform:rotate(40deg);
+				margin:-5px auto;
+				border-radius:100px 0 100px 0;
+			}
+
+.who_pos_small		{
+				width:20px;
+				height:16px;
+				border:2px solid #000000;
+				transform:rotate(38deg);
+			}
+
+.who_button,
+.who_button_i		{
+				display:inline-block;
+				width:80px;
+				margin:2px;
+				font-weight:bold;
+				text-align:center;
+				padding:2px;
+				color:#000000;
+				border:2px solid #000000;
+				border-color:#E5D9C9 #71654F #584A3F #FCF4CF;
+				border-radius:8px;
+				background:#E9DAC3 radial-gradient(rgba(255,255,255,0.1) 60%,rgba(0,0,0,0.025) 65%,rgba(0,0,0,0.05) 75%);
+				cursor:pointer;
+			}
+
+.who_button_i		{
+				margin:-1px auto;
+				padding:0;
+				border-width:1px;
+			}
+
+table.memory		{
+				margin:0 auto 10px auto;
+				border-collapse:collapse;
+				width:220px;
+			}
+
+table.memory tr:first-child td:first-child	{
+				padding:4px 12px;
+			}
+
+#memory_inp_display	{
+				color:#FFFFFF;
+				border:6px solid #9A9A9C;
+				border-color:#717171 #323433 #323433 #717171;
+				border-radius:8px;
+				width:160px;
+				height:130px;
+				padding:12px;
+				background:#757A7E;
+				text-align:center;
+				box-shadow:0 0 0 1px #9A9A9C inset;
+			}
+
+#memory_inp_display input	{
+				color:#FFFFFF;
+				font-size:60px;
+				border:1px solid #232728;
+				border-width:6px 12px;
+				width:124px;
+				height:94px;
+				background:#315645;
+				text-align:center;
+				display:block;
+				box-shadow:0 0 0 1px #9A9A9C;
+			}
+
+#memory_inp_numbers	{
+				text-align:center;
+			}
+
+#memory_inp_numbers input,
+.memory_button_selected	{
+				display:inline-block;
+				width:32px;
+				height:50px;
+				margin:2px 3px;
+				font-size:30px;
+				text-align:center;
+				padding:0;
+				color:#000000;
+				border:2px solid #000000;
+				border-color:#E5D9C9 #71654F #584A3F #FCF4CF;
+				border-radius:6px;
+				background:#E9DAC3 radial-gradient(rgba(255,255,255,0.1) 60%,rgba(0,0,0,0.025) 65%,rgba(0,0,0,0.05) 75%);
+			}
+
+.memory_button		{
+				width:40px;
+				height:40px;
+				font-size:16px;
+				text-align:center;
+				letter-spacing:-6px;
+				line-height:36px;
+				border:2px solid #000000;
+				border-color:#E5D9C9 #71654F #584A3F #FCF4CF;
+				border-radius:6px;
+				background:#E9DAC3 radial-gradient(rgba(255,255,255,0.1) 60%,rgba(0,0,0,0.025) 65%,rgba(0,0,0,0.05) 75%);
+				cursor:pointer;
+			}
+
+
+table.memory tr:first-child td:last-child div,
+.memory_lit		{
+				border:1px solid #9A9A9C;
+				width:36px;
+				height:18px;
+				margin:4px 2px;
+				background-color:#221624;
+				cursor:pointer;
+			}
+
+.memory_lit		{
+				background-image:radial-gradient(#E8FF88 30%,#2E4032 90%) !important;
+			}
+
+.memory_button_selected	{
+				box-shadow:0 0 2px 6px #FF3333 !important;
+				border-color:#FFB9A9 #FF452F #FF2A1F #FFD4AF !important;
+				background-color:#FFBAA3 !important;
+			}
+
+.morse_dot		{
+				display:inline-block;
+				width:48px;
+				height:48px;
+				margin:auto 8px;
+				background:#000000;
+				border-radius:48px;
+				cursor:pointer;
+			}
+
+.morse_dash		{
+				display:inline-block;
+				width:80px;
+				height:24px;
+				margin:12px 8px;
+				background:#000000;
+				cursor:pointer;
+			}
+
+.morse_dot_small	{
+				display:inline-block;
+				width:4px;
+				height:4px;
+				margin:auto 1px;
+				background:#000000;
+				border-radius:4px;
+				cursor:pointer;
+			}
+
+.morse_dash_small	{
+				display:inline-block;
+				width:6px;
+				height:2px;
+				margin:1px;
+				background:#000000;
+				cursor:pointer;
+			}
+
+table.morse		{
+				margin:auto;
+				border-collapse:collapse;
+				width:100%;
+			}
+
+table.morse td		{
+				border:1px solid #999999;
+				text-align:center;
+				padding:1px;
+				font-weight:bold;
+				width:16%;
+				cursor:pointer;
+			}
+
+table.morse tr:first-child td	{
+				height:48px;
+			}
+
+table.morse tr:last-child td	{
+				height:24px;
+			}
+
+
+table.morse_c		{
+				margin:10px auto 0 auto;
+				border-collapse:collapse;
+				width:84%;
+			}
+
+table.morse_c td	{
+				border:1px solid #999999;
+				border-width:1px 1px 0 1px;
+				text-align:center;
+				padding:1px;
+				font-weight:bold;
+				width:20%;
+				height:24px;
+				cursor:pointer;
+			}
+
+.morse_startswith	{
+				background:#FFDD66 !important;
+			}
+
+.morse_tinystart	{
+				font-size:8px;
+				font-weight:bold;
+				line-height:1;
+				cursor:pointer;
+			}
+
+#morse_current,
+.morse_current_add	{
+				float:left;
+				display:inline-block;
+				cursor:pointer;
+			}
+
+#morse_current		{
+				width:56px;
+				height:56px;
+				font-size:20px;
+				font-weight:bold;
+				line-height:1;
+				border:1px solid #999999;
+				border-radius:56px;
+			}
+
+.morse_current_wrong	{
+				background-color:#FFDDDD;
+				border-color:#996666;
+				background-image:linear-gradient(45deg,transparent 40%,#FFAAAA 41%,#FFAAAA 45%,transparent 46%),linear-gradient(-45deg,transparent 40%,#FFAAAA 41%,#FFAAAA 45%,transparent 46%);
+				box-shadow:0 0 0 8px #FFDDDD inset,0 15px 0 8px #FFDDDD inset;
+			}
+
+.morse_current_add	{
+				width:75px;
+				height:24px;
+				line-height:20px;
+				font-weight:bold;
+				margin:16px 4px;
+				border:2px solid #000000;
+				border-color:#E5D9C9 #71654F #584A3F #FCF4CF;
+				border-radius:8px;
+				background:#E9DAC3 radial-gradient(rgba(255,255,255,0.1) 60%,rgba(0,0,0,0.025) 65%,rgba(0,0,0,0.05) 75%);
+			}
+
+.morse_freq		{
+				color:#E16C0D;
+				background:#000000;
+				width:120px;
+				font:bold 16px "Courier",monospace;
+				padding:4px;
+				margin:4px auto 2px auto;
+				border:1px solid #3B363A;
+				border-width:2px 4px;
+				box-shadow:2px 0 0 1px #6F7075,-2px 0 0 1px #6F7075;
+			}
+
+.cw_chart_title,
+.cw_chart_title_no,
+.cw_chart_title_u	{
+				clear:both;
+				font-weight:bold;
+				font-size:16px;
+				color:#FFFFFF;
+				text-align:center;
+				text-shadow:1px 1px 0 #000000;
+				background:#000088 linear-gradient(to bottom,#008800,#006600);
+				padding:2px;
+				margin:8px -4px 0 -4px;
+			}
+
+.cw_chart_title_no	{
+				background:#990000 linear-gradient(to bottom,#990000,#770000);
+			}
+
+.cw_chart_title_u	{
+				background:#999900 linear-gradient(to bottom,#999900,#777700);
+				margin:0;
+				font-size:14px;
+				width:calc(100% - 2px);
+				border:1px solid rgba(0,0,0,0.25);
+				border-radius:8px;
+			}
+
+.cw_display		{
+				width:16px;
+				margin:-4px 8px auto auto;
+				float:right;
+				position:relative;
+				line-height:0;
+				display:inline-block;
+			}
+
+.cw_displayc		{
+				width:24px;
+				margin:8px 2px;
+				float:left;
+				position:relative;
+				line-height:0;
+				display:inline-block;
+			}
+
+.cw_led_on,
+.cw_led_off		{
+				display:inline-block;
+				width:16px;
+				height:16px;
+				background:radial-gradient(circle at 42% 42%,#FFF3BA,#666633);
+				box-shadow:0 0 0 1px #CCCC66 inset,0 0 0 2px #FFFF99 inset,0 0 0 1px #666666,0 0 3px 1px rgba(196,196,0,0.5);
+				border-radius:16px;
+				cursor:pointer;
+			}
+
+.cw_led_off		{
+				background:radial-gradient(circle at 42% 42%,#444444,#000000);
+				box-shadow:0 0 0 1px #AAAAAA inset,0 0 0 2px #777777 inset,0 0 0 1px #666666;
+			}
+
+.cw_wire,
+.cw_wirer,
+.cw_wireb,
+.cw_wirerb		{
+				width:6px;
+				height:52px;
+				margin:1px 5px 0 5px;
+				background:#EEEEEE;
+				box-shadow:-8px 0 8px -10px rgba(0,0,0,1) inset,8px 0 8px -10px rgba(0,0,0,1) inset;
+				border-radius:8px;
+				display:inline-block;
+				cursor:pointer;
+			}
+
+.cw_wirer		{
+				background:linear-gradient(-35deg,#FF0000 40%,#FF0000 50%,#EEEEEE 50%,#EEEEEE 60%,#FF0000 60%,#FF0000 70%,#EEEEEE 70%,#EEEEEE 80%,#FF0000 80%,#FF0000 90%,#EEEEEE 90%,#EEEEEE 100%);
+			}
+
+.cw_wireb		{
+				background:linear-gradient(-35deg,#5555FF 40%,#5555FF 50%,#EEEEEE 50%,#EEEEEE 60%,#5555FF 60%,#5555FF 70%,#EEEEEE 70%,#EEEEEE 80%,#5555FF 80%,#5555FF 90%,#EEEEEE 90%,#EEEEEE 100%);
+			}
+
+.cw_wirerb		{
+				background:repeating-linear-gradient(-35deg,#FF0000 25%,#FF0000 35%,#5555FF 35%,#5555FF 45%);
+			}
+
+.cw_star		{
+				width:16px;
+				height:16px;
+				font-size:18px;
+				text-align:center;
+				line-height:13px;
+				background:#C8A379 radial-gradient(circle at center,#C8A379,#A38666);
+				border-radius:4px;
+				display:inline-block;
+				cursor:pointer;
+			}
+
+.cwl			{
+				width:20px;
+				height:20px;
+				font-size:24px;
+				line-height:16px;
+				vertical-align:middle;
+				cursor:default;
+			}
+
+.cwlw			{
+				width:10px;
+				height:84px;
+				margin:2px 5px 0 5px;
+				box-shadow:-12px 0 12px -12px rgba(0,0,0,0.75) inset,12px 0 12px -12px rgba(0,0,0,0.75) inset;
+				vertical-align:middle;
+				cursor:default;
+			}
+
+table.sequence		{
+				margin:8px auto;
+				border-collapse:collapse;
+				width:100%;
+			}
+
+table.sequence td	{
+				border:1px solid #999999;
+				background:#FFFFFF;
+				text-align:center;
+				padding:2px;
+				font-weight:bold;
+				width:33%;
+			}
+
+.sequence_wirecount_0,
+.sequence_wirecount_1,
+.sequence_wirecount_2	{
+				cursor:pointer;
+				font-weight:bold;
+				color:#FFFFFF;
+				text-shadow:1px 1px 0 #000000;
+			}
+
+.sequence_wirecount_0	{
+				background:#CC0000 !important;
+			}
+
+.sequence_wirecount_1	{
+				background:#3333FF !important;
+			}
+
+.sequence_wirecount_2	{
+				background:#333333 !important;
+			}
+
+.sequence_light_on,
+.sequence_light_off	{
+				display:inline-block;
+				width:18px;
+				height:18px;
+				background:radial-gradient(circle at 42% 42%,#00FF00,#000000);
+				box-shadow:0 0 0 1px #669966 inset,0 0 0 2px #99CC99 inset,0 0 0 1px #333333,0 0 3px 1px rgba(0,196,0,0.5);
+				border-radius:18px;
+			}
+
+.sequence_light_off	{
+				background:radial-gradient(circle at 42% 42%,#333333,#000000);
+				box-shadow:0 0 0 1px #444444 inset,0 0 0 2px #777777 inset,0 0 0 1px #111111;
+			}
+
+table.maze		{
+				margin:24px auto;
+				padding:8px;
+				background-color:#050B21;
+				background-image:linear-gradient(to right,rgba(0,0,0,1) 0%,rgba(0,0,0,0) 4%,rgba(0,0,0,0) 96%,rgba(0,0,0,1) 100%), linear-gradient(to bottom,rgba(0,0,0,1) 0%,rgba(0,0,0,0) 4%,rgba(0,0,0,0) 96%,rgba(0,0,0,1) 100%);
+				border-radius:16px;
+				box-shadow:0 0 0 1px #4A4F53,0 0 0 2px #939486,0 0 0 3px #4A4F53,0 0 0 4px #264154,0 0 0 5px #2B5D74,0 0 0 6px #264154,0 0 0 7px #AAA8A9,0 0 0 9px #E5D1C6,0 0 0 10px #AAA8A9,0 0 0 11px #305474;
+			}
+
+table.maze td,
+[class^="mazeborder"]	{
+				width:32px;
+				height:32px;
+				font-size:1px;
+				text-align:center;
+				background:#050B21;
+				border:1px solid transparent;
+				cursor:pointer;
+				transition:all 0.3s;
+			}
+
+table.maze td div	{
+				display:inline-block;
+				margin:auto;
+				width:8px;
+				height:8px;
+				background:#10495C;
+				cursor:pointer;
+			}
+
+.maze_circle		{
+				background-image:radial-gradient(circle at center,transparent 47%,#5ED845 52%,#5ED845 60%,transparent 65%) !important;
+			}
+
+.maze_circle_fade	{
+				background-image:radial-gradient(circle at center,transparent 47%,rgba(94,216,69,0.25) 52%,rgba(94,216,69,0.25) 60%,transparent 65%) !important;
+			}
+
+.maze_player		{
+				width:10px !important;
+				height:10px !important;
+				background:#D5DADE !important;
+			}
+
+.maze_goal		{
+				width:18px !important;
+				height:16px !important;
+				background:transparent !important;
+				position:relative;
+				top:3px;
+				border-style:solid !important;
+				border-color:rgba(222,0,14,1) rgba(0,0,0,0) rgba(0,0,0,0) rgba(0,0,0,0) !important;
+				border-width:16px 9px 0 9px !important;
+				transform-origin:9px 5.5px;
+				transform:rotate(20deg);
+			}
+
+#_mppx,
+#_mppy			{
+				color:#D5DADE;
+				background:#990000 radial-gradient(circle at center,#DD0000 20%,#990000);
+				width:24px;
+				height:24px;
+				font-size:11px;
+				font-weight:bold;
+				line-height:20px;
+				text-align:center;
+				text-shadow:1px 1px 0 #330000;
+				padding:2px;
+				z-index:999;
+				position:absolute;
+			}
+
+#_mppx			{
+				border-radius:12px 12px 2px 2px;
+			}
+
+#_mppy			{
+				border-radius:12px 2px 2px 12px;
+			}
+
+.mazeborder_0000	{ border-color:#A5AAAE #C5CACE #C5CACE #A5AAAE !important; }
+.mazeborder_0001	{ border-color:#A5AAAE #C5CACE #C5CACE #050B21 !important; }
+.mazeborder_0010	{ border-color:#A5AAAE #C5CACE #050B21 #A5AAAE !important; }
+.mazeborder_0011	{ border-color:#A5AAAE #C5CACE #050B21 #050B21 !important; }
+.mazeborder_0100	{ border-color:#A5AAAE #050B21 #C5CACE #A5AAAE !important; }
+.mazeborder_0101	{ border-color:#A5AAAE #050B21 #C5CACE #050B21 !important; }
+.mazeborder_0110	{ border-color:#A5AAAE #050B21 #050B21 #A5AAAE !important; }
+.mazeborder_0111	{ border-color:#A5AAAE #050B21 #050B21 #050B21 !important; }
+.mazeborder_1000	{ border-color:#050B21 #C5CACE #C5CACE #A5AAAE !important; }
+.mazeborder_1001	{ border-color:#050B21 #C5CACE #C5CACE #050B21 !important; }
+.mazeborder_1010	{ border-color:#050B21 #C5CACE #050B21 #A5AAAE !important; }
+.mazeborder_1011	{ border-color:#050B21 #C5CACE #050B21 #050B21 !important; }
+.mazeborder_1100	{ border-color:#050B21 #050B21 #C5CACE #A5AAAE !important; }
+.mazeborder_1101	{ border-color:#050B21 #050B21 #C5CACE #050B21 !important; }
+.mazeborder_1110	{ border-color:#050B21 #050B21 #050B21 #A5AAAE !important; }
+.mazeborder_1111	{ border-color:#050B21 #050B21 #050B21 #050B21 !important; }
+
+table.password		{
+				border-collapse:collapse;
+				width:100%;
+			}
+
+table.password,
+table.password th,
+table.password td	{
+				border:1px solid #999999;
+				text-align:center;
+				vertical-align:top;
+				padding:2px;
+			}
+
+table.password th	{
+				padding:2px;
+				color:#FFFFFF;
+				background:#000000;
+			}
+
+table.password input	{
+				font:16px "Courier New", monospace;
+				letter-spacing:4px;
+				padding:2px 0 2px 4px;
+				margin:4px 2px;
+				width:90px;
+				color:#000000;
+				border:1px solid #1E3F34;
+				border-radius:4px;
+				background:repeating-linear-gradient(to right,#BCFF21 0px,#BCFF21 3.7px,#9AE324 3.7px,#9AE324 13.75px);
+				box-shadow:0 0 0 2px #BCFF21 inset,-6px 0 0 0 #BCFF21 inset,8px 0 0 -4px #24253A,-8px 0 0 -4px #24253A;
+			}
+
+.password_list		{
+				color:#000000;
+				font:16px "Courier New", monospace;
+				letter-spacing:2px;
+			}
+
+.password_rot1,
+.password_rot2		{
+				font:bold 16px "Courier New", monospace;
+				letter-spacing:4px;
+				text-align:center;
+				width:50%;
+				background:#FFF5F5 linear-gradient(to right,#FF0000 6px,transparent 6px) repeat-y;
+				border:1px solid transparent;
+			}
+
+.password_rot2		{
+				background:#F5F5FF linear-gradient(to right,#0000FF 6px,transparent 6px) repeat-y;
+			}
+
+#needy_knob		{
+				width:112px;
+				height:112px;
+				background:#E8E8E8 radial-gradient(circle at center,rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.25) 20%,rgba(0,0,0,0.15) 20%,rgba(0,0,0,0.1) 30%,rgba(0,0,0,0.2) 30%,rgba(0,0,0,0.175) 38%,rgba(0,0,0,0.15) 38%,rgba(0,0,0,0.1) 45%,rgba(0,0,0,0.075) 55%,rgba(0,0,0,0.2) 55%,rgba(0,0,0,0.05) 65%,rgba(0,0,0,1) 75%);
+				border-radius:96px;
+				margin:10px auto;
+			}
+
+.needy_up,
+.needy_right,
+.needy_down,
+.needy_left		{
+				text-align:center;
+				vertical-align:middle;
+				line-height:0;
+				opacity:0.6;
+				padding:8px 2px;
+				margin:0;
+			}
+
+.needy_up		{
+				vertical-align:top;
+				font-weight:bold;
+				opacity:1;
+			}
+
+.needy_right		{
+				text-align:right;
+			}
+
+.needy_down		{
+				vertical-align:bottom;
+			}
+
+.needy_left		{
+				text-align:left;
+			}
+
+.needy_knob_inner	{
+				width:76px;
+				height:76px;
+			}
+
+#needy_knob_inner,
+.needy_knob_inner_off	{
+				width:24px;
+				height:24px;
+				background-color:#E53D10;
+				background-image:radial-gradient(circle at center,transparent 50%,#E53D10 50%),linear-gradient(80deg,rgba(0,0,0,0.2),rgba(255,255,255,0.2));
+				border-radius:48px;
+				margin:0 auto;
+				box-shadow:0 -1px 0 -0.4px #E53D10,0 -2px 0 -0.8px #E53D10,0 -3px 0 -1.2px #E53D10,0 -4px 0 -1.6px #E53D10,0 -5px 0 -2px #E53D10,0 -6px 0 -2.4px #E53D10,0 -7px 0 -2.8px #E53D10,0 -8px 0 -3.2px #E53D10,0 -9px 0 -3.6px #E53D10,0 -10px 0 -4px #E53D10,0 -11px 0 -4.4px #E53D10,0 -12px 0 -4.8px #E53D10,0 -13px 0 -5.2px #E53D10,0 -14px 0 -5.6px #E53D10,0 -15px 0 -6px #E53D10,0 -16px 0 -6.4px #E53D10,0 -17px 0 -6.8px #E53D10,0 -18px 0 -7.2px #E53D10,0 -19px 0 -7.6px #E53D10,0 -20px 0 -8px #E53D10,0 -21px 0 -8.4px #E53D10,0 -22px 0 -8.8px #E53D10,0 -23px 0 -9.2px #E53D10,0 -24px 0 -9.6px #E53D10,0 -25px 0 -10px #E53D10;
+				transition:all 0.2s;
+				cursor:pointer;
+			}
+
+.needy_knob_inner_off	{
+				box-shadow:none !important;
+			}
+
+.needy_led_on,
+.needy_led_off		{
+				display:block;
+				width:20px;
+				height:20px;
+				background:radial-gradient(circle at 42% 42%,#00FF00,#000000);
+				box-shadow:0 0 0 1px #669966 inset,0 0 0 2px #99CC99 inset,0 0 0 1px #333333,0 0 3px 1px rgba(0,196,0,0.5);
+				border-radius:18px;
+				cursor:pointer;
+			}
+
+.needy_led_off		{
+				background:radial-gradient(circle at 42% 42%,#333333,#000000);
+				box-shadow:0 0 0 1px #444444 inset,0 0 0 2px #777777 inset,0 0 0 1px #111111;
+			}
+
+.needy_led_pos0,
+.needy_led_pos1,
+.needy_led_pos2,
+.needy_led_pos3,
+.needy_led_pos4		{
+				position:relative;
+				height:20px;
+			}
+
+.needy_led_pos0		{
+				width:150px;
+				margin:-48px auto 0 auto;
+				z-index:899;
+			}
+
+.needy_led_pos1		{
+				width:200px;
+				margin:-10px auto 0 auto;
+				z-index:898;
+			}
+
+.needy_led_pos2		{
+				width:120px;
+				margin:-5px auto 0 auto;
+				z-index:897;
+			}
+
+.needy_led_pos3		{
+				width:164px;
+				margin:-4px auto 0 auto;
+				z-index:896;
+			}
+
+.needy_led_pos4		{
+				width:104px;
+				margin:2px auto 16px auto;
+				z-index:895;
+			}
+
+table.generic	{
+				border-collapse:collapse;
+				border:1px solid #999999;
+				width:100%;
+			}
+
+table.generic td,
+table.generic th	{
+				padding:2px;
+				text-align:left;
+				border:1px solid #999999;
+			}
+
+table.generic th	{
+				color:#FFFFFF;
+				background:#000000;
+				font-weight:bold;
+			}
+
+.gt_center td		{
+				text-align:center !important;
+				width:20%;
+			}
+
+.gt_who			{
+				width:80px !important;
+				margin:2px !important;
+			}
+
+.gt_who td,
+.gt_who th		{
+				font-size:12px !important;
+				text-align:center !important;
+				width:50% !important;
+				padding:1px !important;
+			}
+
+.b			{
+				font-size:inherit;
+				font-weight:bold;
+			}
+
+.i			{
+				font-size:inherit;
+				font-style:italic;
+			}
+
+.error			{
+				color:#FF3333;
+				font-weight:bold;
+				animation:error 2s infinite;
+			}
+
+@keyframes error	{
+	0%	{
+			color:#FF3333;
+		}
+
+	50%	{
+			color:#440000;
+		}
+
+	100%	{
+			color:#FF3333;
+		}
+}
+
+select			{
+				color:#000000;
+				background:#E9DAC3;
+				font-weight:bold;
+				padding:4px;
+				margin:8px 0;
+				width:200px;
+				border:1px solid #000000;
+				border-color:#E5D9C9 #71654F #584A3F #FCF4CF;
+				border-radius:8px;
+				cursor:pointer;
+			}
+
+input[type=text]	{
+				cursor:text;
+			}
+
+input[type=button]	{
+				font-size:14px;
+				font-weight:bold;
+				padding:4px 16px;
+				display:block;
+				margin:0 auto;
+				color:#FFFFFF;
+				background:linear-gradient(to bottom,#1177AA,#003355);
+				border:1px solid #001133;
+				border-radius:4px;
+				text-shadow:1px 1px 0 #000000;
+				cursor:pointer;
+			}
+
+input[type=checkbox]	{
+				vertical-align:text-bottom;
+				width:16px;
+				height:16px;
+				padding:0;
+				margin:0;
+			}
+
+.check			{
+				display:inline-block;
+				vertical-align:-2px;
+				width:16px;
+				height:16px;
+				position:relative;
+				outline:none;
+			}
+
+.check label		{
+				position:absolute;
+				top:0;
+				left:0;
+				width:16px;
+				height:16px;
+				background:#FFFFFF;
+				box-shadow:0 -18px 26px -18px rgba(0,0,0,0.25) inset,0 0 2px 0 rgba(0,0,0,0.5);
+				border:1px solid #999999;
+				border-radius:4px;
+			}
+
+.check label:after	{
+				content:'';
+				width:8px;
+				height:4px;
+				position:absolute;
+				top:2px;
+				left:1px;
+				border:3px solid #115511;
+				border-top:none;
+				border-right:none;
+				opacity:0;
+				transform:rotate(-55deg);
+				transition:all 0.1s;
+			}
+
+.check input[type=checkbox]	{
+				visibility:hidden;
+			}
+
+.check input[type=checkbox]:checked + label	{
+				background:#E0FFE0;
+				border-color:#224422;
+			}
+
+.check input[type=checkbox]:checked + label:after	{
+				opacity:1;
+				transition:all 0.1s;
+			}
+
+ol			{
+				padding:0;
+				margin:0 0 0 24px;
+			}
+
+ol li			{
+				line-height:1.5;
+			}
+
+.popupinfo		{
+				color:#000000;
+				background:#FFFFFF;
+				padding:4px 8px;
+				border-radius:8px;
+				box-shadow:0 0 0 1px #999999,4px 4px 8px 0 rgba(0,0,0,0.75);
+				z-index:1000;
+				position:absolute;
+				display:inline-block;
+				opacity:0.85;
+			}
+
+</style>
+<script>
+
+isIE = false || !!document.documentMode || !!window.StyleMedia;
+
+chartsizes = new Array();
+chartsizes['wires'] = [0,1];
+chartsizes['button'] = [0,1];
+chartsizes['symbol'] = [1,1];
+chartsizes['simon'] = [0,1];
+chartsizes['who'] = [1,2];
+chartsizes['memory'] = [0,0];
+chartsizes['morse'] = [0,1];
+chartsizes['cw'] = [0,1];
+chartsizes['sequence'] = [0,0];
+chartsizes['maze'] = [0,2];
+chartsizes['password'] = [0,0];
+chartsizes['needy'] = [0,1];
+
+// [Name, Hex]
+wirecolors = new Array();
+wirecolors[0] = ["Negro","#333333"];
+wirecolors[1] = ["Azul","#5555FF"];
+wirecolors[2] = ["Rojo","#FF0000"];
+wirecolors[3] = ["Blano","#EEEEEE"];
+wirecolors[4] = ["Amarillo","#FFFF00"];
+
+// [Name, Hex]
+buttoncolors = new Array();
+buttoncolors[0] = ["Azul",wirecolors[1][1],4];
+buttoncolors[1] = ["Rojo",wirecolors[2][1],1];
+buttoncolors[2] = ["White",wirecolors[3][1],1];
+buttoncolors[3] = ["Amarillo",wirecolors[4][1],5];
+
+buttonlabels = new Array();
+buttonlabels[0] = "ABORTAR";
+buttonlabels[1] = "DETONAR";
+buttonlabels[2] = "MANTENER";
+buttonlabels[3] = "PRESIONAR";
+
+// [Name as defined in the manual, image data]
+symbols = new Array();
+symbols[0] = ["Copyright","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAERUlEQVRoge2ZXWxVRRDHf9MgabEFijZBiB9AlI+aBqE8iDExRfTBxI+EamIwPIigNSrx6w2e8NEYo/igjz6oiAGCj3iJMUgCiqKJLQaFGBUioDaV9pYC48POyT1dz927955Lb0zuJJu53Z2dmf+e2dndqagq/2dqabQDeakJoNHUBNBoagJoNNUdgIj0ish2EflSRC6IiBo/JCKviUhvXQ2qau4GzAaeAj4DioBauwJcNJ70jQMFk5+d23ZOx1uAV4Fhc24C2GXOrQYWAvOABcCdwEZgp4FSm/cyIFMOAOgGvjZH/gC2ANdFzp0DPAectvlHgKVTBgC4Hxg14+8As2rU0wG8aXouAPdddQDAvamY3pAnBFM6H0/tmbXVzBVTEEUichtwFLgWeFhV9wZk5wKLgC7bK8PAL8DPqno5Q/4B4FP7sitU9XiUU1WsUgvwja3UQBmZVuAZ4CClEPPbCeB94DGgxZu/2WS+9cdyhxDwkinfEwitHz1nJ4Dvgc+BQW/sMtCeoWe3jb9SNwDATAuBIjA/Y/wJz7lRYCtwsye3HHcGKHC+DID5ZmcYmFkvAJvM6I6MsdWe878CPQFdD5ncuSwAJrPDZDbXC0Cyat1e/zRgKOX8OLC8gq5uk70YAHC7yRRyAwBW4HL0YMbYo97qvx6hrxX4wjZ6W0BuyOyuDOmLucz1AzOAAxlj61O/J4C3KilT1aKq3q2qd6nqWED0gNntD+mLAdBn/Lt0p4hMx32dhAZV9VSEvlhK7PWFhGIALDH+u9ffZS2hE3F+RdNvxheHhGIAdBgvev1twPTU36NxfkVTYq89JBQDYMR4q9c/jov7hGbE+RVNib2RkFAMgCHjN3j9Z3GHUUK3RLkVT/OMD4aEYgAUjPekO1W1yOSNvUxEfJCZJI4q2U7sFUJCMQB24eI7Kxt8lPrdyuS0mkki0oa7rB0TkVDY9eHOgY+DCnOexG24bJEcZGeBzgq6FpvsGJVP4v2VfIutSnxofMADPwY8m+q6HtgpItMCum4yHspaiZ0PKnoW+QUq3Ua3MflKcRDozZBrB94mcJkDbsRluL+yxqu+C6UUJ++B3WXGB/jvI+YQ7mb5BrCX0iM+9B7YZ+MvRPlVBYD0i+zpMjK3Au/h0mvWayxpJ3H3pmu8+c9TqlJElVryvIkfVNV9ZeQ6gZXAMmCugf8TOAX8ABxX1QlvzjpcxhkB7lDVn6Kciv0CqVVaQ6kqsb7a+WV0Pmn6LgH3VDW3RoNrcTlacaHQUaOeTuBd0/MPsKZqHTlWbSkuVhU4g6u0zYmc2wW8SGmvHAaW1ORHzk8vuNpmUhsdx9U+N+JqoQtwd5qFuLfzJuATCxUF/sZlt9p9yAMgBWQWrqBbMBBJtsmqTheB/QayppJkulWVhWJIRFYBj+DuMj2468YocMwA7lHVr+pmr94Appqa/2JqNDUBNJqaABpN/wIX5te3uY7DmAAAAABJRU5ErkJggg=="];
+symbols[1] = ["Filled Star","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAACU0lEQVRoge2ZPWgUQRiGn09TiElExINAEqOFP1WImCJynVwRC0+j1qKNggG7kNLCxkKws7BUsLcTJKCNhYLggT9FLPxBMCZNQKOIfBY3wua4zWZn5rsxsC8sd3s737zvszM3N3cnqspW1rbUAUJVAaRWBZBaFUBqmQOIyIhl/6YAIjIAzFt6WI/ABDBrOQrWAKcAAaatDKwBmu7xnJWBWG3mRGQceOVOfwD7VHUlto/lCMxknu/EaBpZApzpOD9vYWIyhUTkEPCO9hv4n1aBUVVdjellNQJN1ocH2AU0YhtZAczkvB59NYo+hUSkBnwB+rpcXlbVWky/biadgerAJWAPsFbQ/A9wYIN+94rII2AJ2F7Q1wDwHrijqou5rVR1w8OpAXwDtIfHW+BoYb6iBhmQQeBBj8Lfwk3vaAAZkKvAb6PgK8DZUnnKAjiISeBN5PBPgf2ls/gAOIh+4F6k8DfB82b6AmRALgO/PIMvAc0g/1AABzEOfCwZ/iUwEuod5ZNYVVseZd9V9XOodxQAEZkGRkuW1UXkcKh3rL2Qzx5HgNOhxsEAItIHnPQsz9v0bVoxRuA4MJxz7TVwDfiac31SRMaC3COsQLfpvsrcBwZdm2HgcU672WTLKO15vNgRaA24ktP+eheAhZQAxzrCtICJgpoG8ClT8xMYSgVwIxPkLrBjk3U14GGm9mIqgA+0f/O54Fk/5wCe9BwAmAKeAUcCb0IdeA6M+dR7fycWkRNAS1WXvTpY39dBYLeqvihd6wvwv6j6hya1KoDUqgBSa8sD/AXegK/pS7RrewAAAABJRU5ErkJggg=="];
+symbols[2] = ["Hollow Star","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAC8UlEQVRoge3ZTahVVRQH8N/uoRQ8y4KC6kkRvMhqYFS8wAqSBAkisAYaZog2ShoUGAaNwkGTIogmTWoQRQ0kHARCXwTFq0EhfViYYA8/gkKlyD6o1WDv6HZ7r3fvPWd3FO6CC/fsu9b6r/9e66y9zrkpIpzJclbXATSVMYGuZUygaxkT6FqqE0gpTdX0X5VASmkSj9bEqJ2BVXiwZhZqE7gTCetqAaRas1BKCT7DudgfEWtr4NTMwPWYwlbcnFK6sAZITQKb8EVE7MVxrK8BUpPAPXi5fN+N+6qgRETrH6xE4NJyPYPfcF7bWLUysFEun8Pl+kOckLtSq1KLwAZ/l4/IadiDza0jVSifi+XyubJv/Vb80jbmoudASmk1tuACnJL7+tIF1H/HdAlyus/PBL7FHI5iYgEfP+NHTOJrPBcRBxaMbwACcDtew3LswpEC8C/1QuK9iJidx9dtuLHo9QMHfsA12I6vsCEiPv7PAIcojWV4BZ/j2krday0O4em/NndRmxFAdpRdfqLFwJfiRfke2TiU7YiAMziGD5Re3yD4G/AN9uGKoe0bAE/idfmmu3tEHztK7T87TDm3QqAniIdKEM9gckCbFXijlMz6RvhNCZSAVhUSTw2o/5bcSlc0xW7lJI6IT+Te/f6AJm/iZETMtQHeRgbuwq84Z4gSClx9WmQA9+PtiDjV/0NK6ZJ5Nm1OPk/ubYzcwu4vwU/Y1Lc+geflnX5sHrudONAYvwUCa0qQ5/esrcSXOIyH5Va7t0/ncvxhhN7fNoEXMNtzva0Q2o1lZW0Ks/get/To7sfOzgjIQ9mJUstL8GoJfvsC+k/2lhQewaddEpiRR+w7cFAela9bxGadPHXukSfP4xqMI00J7JIHu8BLOHtAu4vwrvx8cBIPdEXgUMnAlhHtHy/k3/nfCeAm+eS9quEmrJYf+i8bxX7kV4sppTXYFxHfjeTgn76msTwiPhradlQCp4uM/6HpWsYEupYxga7ljCfwJymTlaqZDmSkAAAAAElFTkSuQmCC"];
+symbols[3] = ["Smiley Face","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAACzUlEQVRoge2YO2gVQRSGvyMx8eb6QKMxqIUPovioUiiIjYhaCQqxEMFCLMQmIiI2ARFBtNDKIqCNIFpqevGBiI8oYhFQISLeIEbxCTEheI/FjNy56927d7MTR2F/GOZ15pzzz545O7uiqvzPmBbagazICYRGTiA0cgKhkRMIjZxAaHglICKXROStiJREZK8dO2L7JRE55dMeQJNnfQuBJbY9y9ZzgcW23ebZnncCs532DFu3OmPFRpSISDNQBhRQVS3HyfomcBV4btsDtr4FtNj2vQb17ADOYQiUReSyqp6oKamqdQuwGbhtHbkPdCetyVqAVdb532UgVjZBEcAdR9E4sOAvEJgDfHPsfoqTTcpCW4Eup39NVT80GAZZMA8oOP2ZcYJJBHZSffAeZnAqDbZQfT6H4wSTCHQC4vTfZXAqDQ5H+jfiBJMIRL/4W2pKeYSI9AJrnaFh4HycfBKBJ1ST2D951+pDRAoicgY4GZnqU9U3sQsTskEnJmzclHYBmO4x4ywHjgFDETuK2cDmuusbMHC2huJB4ADQltLZVmANsAcTFo+AiRr6FXgKtCfpFCffxz3aIvAAWFdj+ivw2BobAj4CY5jQLGLS4SJgGbACWIq5LyXhItCjqqOJkg3u3HzgJrV3ylf5CfQDm1I91ZQhcBB45dHpL8Bd4DiwcjJnKDGEohCRJmA7sAvYiAmLQr01FmXr7EvMhe8ZMKiqn1M5EPUnLYE/FIh0YOK8HUOo15keo3KtLgP7VPVKJoNR+EqHdiP6MKExARwCOoBtwHs7XgJavNr06DxUcvn1yFwPlbhf7ZOAz29iofJmH4/M/XDafn8keA6hfswujwLdmMPdBby24yNA4Z8MIUtgA9VpciTSP+rTnncClsRuzGF1Hf8OnPZta0oIWBLrMTlfgReY9DkltjK/B0Ij/7UYGjmB0MgJhEZOIDRyAqHxCzWishpGb9thAAAAAElFTkSuQmCC"];
+symbols[4] = ["Double K","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAEIUlEQVRoge2ZTWhdRRTHf/+mjWkwaheKJmnBj5haUBeiIAoF3UitGCgtabtwYahIjRQVBD9QQepCcCEFXSkiKg1UpBpUpAqi1YIurIpQ+qGp1WrFRpRUmzTjYub5JvNm7ntvbtO8SA8c5t45H3P+c8+bOTNPxhjmMy2Y6wDK0lkAc03/bwCSHpD0g6RpSZ9KWleg2ympR1J3He6RdH6Bn7VurGlJhyU9WIjAGFPDwCLgWeAEYDz+A3gBaI/YbACOAGPAIeBAwAed7EfgmYj9QmAbMB6MeQJ4DjgnGmsCwMOBk5B3RmzWAr8AEwV2/wC/AU9F7HfUGfOJZgDcD0xHnBz1njdH7NqBJcBQxPZ54CKgI2K3ydP7OQHgoWYALAJGneEUsBNYDXS5Z+NmuzNhvzQSwJ0J3Q7gJ6czCpwLrALeAiZd/7tNpZBzfDHwKLA86O8F/naO1yds+yMABhO6a7z0Whbx8whwSTLOlKCIge1u0JGEfHkEQArsa06+IyeW3H1gu2tvkrQw0weS2oCbA59NUS6AT7CfvBu4OtMHwApgGTbXP85xkAXAGPMr8JV7vT3Hh6NVrt1rjDma46BMKfGBazeU8LHRte/nOigD4A3XXiVpsFljSWuopt/r2VHk/PK9FeQdqhtcV6OrENCJLSkM8HapGEoC6Ke62Yx4/b0RAAOe/BWqm2T/nAFwwWz2gtwFDALrIwAeBwao7uQGGC49flkHDsQwxUVcyBPAltMxdvYmBCDpAhf8SkCe6HdsUef3jQPnYReOBcBqSV3ANmPM8ewgSsz6Zdga35/ZPcD12NUlrGY3AlcCI0H/IaDvjKcQsDsI5BiwxMmuoDZt1nm2nwWyL3LjyNoHJG0Cbgy6h71UiKVmm/c8BJzy3q+TNJwTS87MXwgcZ+YMjgY6datRYGsg/xPonvUUolr+VvgvoDcDQDuwP9B5c1YBALdGArsvotfQeSDh745ZAYDN633BYLsTus0caF4N9MaAxbPxI34M6PPep4C7m7BP0RbsvlGhpcDTDVs3OPt9wElmztSTBfoNn4md/l2B7jRw7WlLIWyN4w/wLdBWoN8TARC9lfBsPgr09zQSW7SUkHQ5sBhbDqwEbvHEk8CQMeZUYNMFXIq9+xmIuL1H0knsdcxhY8yxUA58ib1WAbhB0lbgPeyyPWGMOVDjNTEbRYXYroTNvXXsfH4p4SNcomdww18Ae8A2FYzecxvwYcJmDHvYn/L0QxJ2Nfs6If8cW0v1JeS1Dh3yliFJALcBL2Mv1/4jY4xq9FsNQIUkXYOtbjsqfTEALfsHhzFmL/BiPb2W/QIAklYA3+AORvPqCzj6Dvi+SKGlARibHvuKdFoagKMjRcL5AKDwwF/qVuIM0Tj2z8XJmLClV6FGaD6kUCGdBTDX9C/hetF1tm0sEwAAAABJRU5ErkJggg=="];
+symbols[5] = ["Omega","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAADHklEQVRoge2YS0hUYRTHfydHdKUIWROBiD0Rygp6LSI3adCmB4XkLkoICdpkVPugVlHbWrRKobA2LVpG5SKyB0TpwggyKHxmpgnTaXHvwPWbGefMnTtehPnDXXyP/znn/93vcb5PVJWVjFVxB1AsygLiRllA3CgLiBtlAWmISEJE2kXkjogMiYg632e/rU1EKiLzW+xJLCI7gQ6gDdgBpIBB4AMwCgiwHtgO7MIbtLfAM+CBqr4vKgBVDfUBzcATQAPfPWBrHs59h9O/FCdvHCGDPwvMBYL4CRwqgH8EmAjw/wBnlkUA0OOM4A9gSwg724Bxx9alkgoAjjkOU8D+IqbhQceeAkdLIgCoBcYcZzfDBh+we8uxOQbUlkLAZcfRBFATgYA6YNqx3WPlm84BEakGOp3qXlX9ZeEvBVWdBHqd6k7fZ15YD7ITwCan7pGRa8FDp7wZOG4hWgWcBIIjMgu8M3ItGMTbStOoBk5ZiFYBe53yqKqOG7kWjOOd2kHssRCtAtY65RkjzwR/MbvrKWnhWgX8dcqRJWMBuLHMhyHlwienvDrSjFIkAdQ71R8tXKuAx8C/QHkd0GjkWtDo20wjRebOlBVWAXeBb4FyBdBu5FrQzuJp+RUvs80LkwBV/Q70OdXdptBscG31qeqYiVnAkV+Pt1MEj/zuCFKJC47NGWBN5LmQ76zDcTYP7C4i+H14O1zQ5umCbIRwesVxOAkcCGGnlcwk7lrBdkKO3DkW38hSvrBKA7cSuIq3q6X5c0BXqFiK+P3NePfZ4AiO+HM6maV/0m8bcTj9QHPoOIzBVgFNOdpagOvAa39NKPAyS78XgXXzBrgBtOSw2QRURSmgARgAEnn61QDPgeEsbUN+25K3LSABvAIaLLFZD7Lf/qicX6qTehecqRzNAkyp6nQeX13ABt9nXiQsnfAW3CxwW0Q2Ak/JTPDSSAILWeoXgKSItObgVQGHgYvAFxanLrlhnEJ1wDCZLwi5voEsNgYK4A8DdVFOIfCmwHLB7KtUr9PZAijJAKz45/WiX6fjxor/A2UBcaMsIG6UBcSN/x6pg2U5mgAaAAAAAElFTkSuQmCC"];
+symbols[6] = ["Squid Knife","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAADYUlEQVRoge2ZTYhOURjHf898xDAGUYp8JBaUSIlsTLFQNlYWYmJnQVLDRCF2o8RCLBULFPJVkg2FGHZELMj4iEbjozRizGNxzzTnfebc9z3vfe94qfdfZ3Ge83+ec/7nPPecc+8VVeV/Rl21B1ApagKqjZqAaqMmoNpoCBlF5DqwxFUbgauqusFwxgJPgBZgJA+TscB+VT0UagwKAMYDk7z6uADnO3AeaK9oeKXRB1xKa8ycQu4E3we8zxojEp2q+iKtMW0FoqCqfSLSAZw2TX3AV5L0i0U/MMXY3gLB1PEHMawA90jyerBcDvE8fpfhfwSmAc0k6VeqjAL2mBgKrC/Wr6rmJmB5oPPOUp17/i1Aj/F/EOWbhwDnc874/ALmRgo4HpiAZX9bwAyS3Pf9rkX4zQd+G78zsauX20Gmqt3AYWNeIyKrSrgepXA3/AHsLKfjXFbA+Y0h2VZ938eApPBXMzx1DsTOfq4p5Pm2BQa1JcCrA54Z3lugaSQEXCorKDw0/j3AeMPZFhC6oZx+yhFwoUwBi1wu+zGOeO0TgV7T3lXu4FU1+iRuFZG7gETyfzL8grdVRE5oci046ET42B4ZuxCRK5BXOQvMJrk2FNizzH45KZRX+Qm8MrYvwLisAmJT6BNuO6R4GvUD34CFbqYtGoFZxtYAHBORk6p6K3I8Q8j7IQZ2AB/ItkIXgekjkUIlt1GSl6CbRQbnXxcGivB6gNZYAbFXiaK7j4i0ALcBe234DHSS3FbfmbY2YAvJa6mPycBNEVkZNbLIFSh1nQ7N/BVgmsd5bdqXOnsdsDvg/w2Yk1cKpQoAOgKdnzKcRqDbcFoNZ10gzv20Sc5FAMlbl71CP7CdxghwvF0BEZvyeAbS0A6M9ur9wGY3mLKhyaeTR8a8V0Tq03wyC3DfhTYa81lVfZo1psNeU58NrEgjV7ICrRR+OwI4UUG8QdwAXhrb2jRyJQLslvkG99BVAk3y77oxLxOR4FgrEbDY1LtUdaCCeD7umPpMYEGImEmAe6hmGfPjLLFS8NzUWxj6VluArCswwRUf3RljhfCR5OY6iEZgXoiYVUAz0GRsvRljhfDdlUHUA1NDxKwC6l3x8StjrBB+k5wpPkaHiJL10PlX8N//oakJqDZqAqqNmoBq4w98/RFpMScSNwAAAABJRU5ErkJggg=="];
+symbols[7] = ["Pumpkin","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAEP0lEQVRoge3aW4hVVRgH8N9yMjNLylt5RTOCQaEkpDA1u1gGIRWmEBHkg0jQQ0QRhQURFUQv9RaR1GtavgT2VFEoUZlZYiGmUpmUU46lkWOuHvaaM3v2OTNz9rnMSeiDBWev/V3+/3X51mWfEGN0LsuYTgNoVv4n0Gk5r12OQwhXYR2W43IcwYfYHGM82rJAMcaWFizCaziE04i58jf2YWPL4rUI9Fjchi0FwMOV51oROzSTRkMI4/Ei7sQVhdfH8D524ldcgttxT07n6hjjnoYB0FwPYJrqlj2Ix3DpEDYbcrqvdHQI4TL8gx68g3txQR12XyUC3zfbiM1moV4sxb4Y4/H+yhDCcjyfQELABzHGTen5CdyI4+ld4+O4FROpRguvVT203mtHrHYtZLX8/tWOQO1ayL7EM7L5cQdu0MwwGUbaQiDG+B2ehRDCPBmB48MaNSht3QuFECZjdXrc1ZYYQy1kIYRrMTdXNQEfxxgPjug0hFm4Cw+hG6cwL8b4Sx2287AMJ3PVh2KMX9Q0GCKLzE5B81lkN6bWmYUezNmdxpoSGWxqipWPfQqz617IsLXg4CgmlQCxUrbzfAkLGkjDk1LMPIatdRHAYtU5vO4WbOFasqYGjsX1ENhWMNox2uBzWHYUsGwbloBsR3mmYLSqgwRWFbCckSWDik4xjT6ArtzzPmyvOftHR7bj29xzlwxjRSoEQghke5i8bE4t0RFJsTcXqtcmrANKSXGBwd3Vh7mdGj45XHMTljy27lpD6KYC089ijIda0pRNSMLweaH65v4feQJLC0qdHPtFKWKpYB0DIYQJWFhQ+qjNoMpIEcvCEMKFDPTAdZiRUziJvaMArF75xuC90UwZ5gqBZbg4p3A4xnhsdLCNLAnL4VzVRbILswqBxQafDX4cHWilJI9prAxzhUB3Qfm30UBUUn4vPHczQGB64WVf2+GUlyKm6QwQGFd4Ob7tcMpLEdM4Bsb9KdnE6JeZjUYJIXRhPubIrhMDTuAH7I8xNtq7RUxZVkrL9V6Dl+peTCy55M/By9iveh+fv3Z8FfNL+p6YMOV9fV3ZTuMNnC0orC8RYL1sktV7M/0HNpT0n7c/i9fzBO7GnwWlI5g1guMZeLsE8GLZghkjxJiFn2s0wOo8gXGqD9JRtnjcJztoB9l+fAqWyK7Ve5oA3196kq8lyXdXijU1xT5cw2YXzq8QSCSeHibICRyQfXUpjsVi2YnHsQJXyib0cjyKT0aw7U0xDqSYQ+k9VcGdIzAtdU2jLfkpbqljPK9QfdYtU3oxpYpAcn5/Aw77sEm6JKtzUsKTqr+h1VPWDfJVw/kjJZztwKImTlvXlOyNh6t8DOF4iex6pUd1eu3DHq380sjG5LN4dDybMLyL62vajuB4Jd4ykAl+kn15mdwq8LlYk/FCihFTzDdx63B2TX2l/C/IOf9Xg3OewL+yXItkCs2mJgAAAABJRU5ErkJggg=="];
+symbols[8] = ["Hook 'N'","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAADYElEQVRoge2ZTUhVQRTHf0ctTSrC0AJD6ZNahEJkboIibGMUbZI+Fi0KCoIoCmrRImgREVSLFhWRBLUQw2WQIQVtkoggqTSkemVFX5CEH6WeFvMejNd7n96513cR3h8G7p2Zc87/vJkz58x9oqrMZBQkTSAq8g4kjbwDSSPvQNIochUUkRpgG1ABvAI6VPWto65GoBG4rKo9oYRVNVQDBDgDfAb+AqPAIPABuA3UhNBVClwEfgJjwNPQfBwcmAX0AhrQRoDdU9CzFOjyyufCgSLguWX0j48TY8DqLDqqgU8+cs25cKAQSAGdQB0mBtYDNz1k7gTIFwMvfcj3AhW5cGAxcAUo8Rlrswj9AOb4zLkasPX2heXi6kBxlrHtHlJrPOO1AeTbXMiravg8oKrDWYZ7Pe8LPe/nfGS6gL1heWQQdyIbxPyiEyAi1Ziz3sZ7YKuqDrgajNuBUkyeyKAPQERWA7c8c98Bm1T1SySLrntvCjHwFigDzgPDjN/z3UBlHDadS4kAbLSei4BnmITlxXFV7YvDoKR/uVggIt3AqkmmfQWqVPVfHDZjiwERacCffEu6ZfAoLvIQkwMiUgfc9XR3ATtVtQmwT5nOOGxmEDkGRKQeaAfmWt33gCZVHU2/L7LGPka1aSPSCojIWuAB48kDnLXIAwxZzyNRbHrh7ICIlAP3gXmeoYeq+tLT98N6Lne16YcoK9ACVPr0n/TpS1nP9X7KRKRMRJaFZuGYsPbjX5RdCJjfYM3pB2o949VAB7AuF9XoAuC1D/nHpPOKXwWLuYJm5g4A14EDwGngO+ZKWpgLB05h7sE2+U5g/iRyuwJWLdPaXXaDSwxsYHzstGKKsv5sQqraAhwFgpJYKqA/OxxWYAemynwD7HeQXwNcAl5gjtfMCpxwikcnIXN0FrjIevT0WA5scdERazEXBiKyHFNWF2IuQktU9VdYPUl+WjyIIQ/mg1Zo8pCQAyKyEjhidd121jWdW0hEjmFOnTZMHigCNgM3gKr0tG/AUnW9F0cNxEmCtBkToIOYK2aKied/6JPMbnFfKb3IbNESYIXP+DVVbY7DwHShFXMvtrfHEObT4mFVPRTVwLQfoyIyG9iDKegEeIL5bvo7Fv1J5YG4MOP/Yso7kDTyDiSNGe/Af8ZIPYa6x6KlAAAAAElFTkSuQmCC"];
+symbols[9] = ["Six","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAADbklEQVRoge3Zy2tdRRwH8M8vtYmxabGx6kJTURqx1IXiq24EFXyiK1EEW3ArqAsRtP+BD8SFoCBaRdCFWARFpNpNNbiwuIiosYJRomhRI41vm3ZcnFM9OTlXM+cm3hbuF4bLb5j5zvc7M2deN1JKjmcM9FpAt+gb6DX6BnqNvoHlQkSIiFsj4p6ceieskJgRbMB6jJTtDJS/g1iDtTgZo9iIcZyLF3PaWhYDETGAa3EDLsXZOLUl3eGcwl0biIg7sAObu+UqcWJO4a4MRMSzuLMLiiP4Cd/jU+zBazkErQ1ExMOaxX+BdzCJaczhT6RS8DwO4Tf8ojAw2/pMllLKTthSCqqmr3AbBttwtk1tR2BHLT6Ay1NKMy352qNF74/iVwt7f3uHssM4pUzDx8oIXFkKO4rv8BJExGpcjRsVy+kY1pXl5iJiBu9hV0ppb4u2F6PFCDxhYe+/UOZvw36Lv41OaS+2djsCbQy8WxFxBHfhkQzh9XR3NwaiFLUkRMQYJhRTg39Wn7FKsR9Kk5P4FqtwJi7CFVjdQH1fSumxJQupIrP3b1Ks2009+QcexOi/1N+E5zvUv2rFp5Bi+TzU0PhBGfMZ9zdwTGuxh+Qa2Nmh965v8S0918CzbaUN7Glo9OVWQ1/sJ3M1rt25PLkXmtMa8h7N5AAppVm8Usu+ICLOz+HJNbCuFn+NfZkcVbxei0dxcw5BroGhWvxxSinrAlLDVC1eha05BLkG6pvGgcz6dcwqVrUqzsohyDVwsBbXG8/FYcX9oIrBHIJcA9O1eG1m/TqGLZ6WP+YQ5BrYZ+Gl+5zM+nWcUdOQ8FEOQa6Bt/FzJd4cEW1fH+CyWvy7Yq9ZMnINTODzSjyMWzI5qri9Fs/gjRyCLAMppXm8Wct+ICLq8/g/ERHX4JJa9lsppbksohZHgHGLjxM7MznW48sGni0rehaqCHiqofEnMbSEupvwQUP9Z1ppaWngJHzYIGI/7sV5Kpd4xXJ7MR7SfJ/4BGv+NwOlqNPxfoOYo+mbUtiU4uLfqdxn2NhaR9uKpYkhPK7YTdvch3dhQzcasu7EnRAR49iueKEeV5xam1a4+XI0JvB0Sml3120vh4G/ySJC8S50HS5UfLAjinfQKcVTyqsppclla3M5DfQCx8xfTG3RN9Br9A30Gse9gb8AkkoS4DUoqWgAAAAASUVORK5CYII="];
+symbols[10] = ["Squiggly 'N'","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAACzElEQVRoge3ZPYhcVRQH8N9ZgwuiQkqD0UgQTRNBdK2MWkSsVAQLQVArEbTwq7BVk1YwQQQRLCyUoIloIxrFxi6CEUJQJBqzTUQFRRLjx7GYgX17nd2dd99jngvzh8vMmXs+/od77udEZtrMWBiaQFfMExga8wSGxjyBobGlxigiPsNOLOM4PsKRzLzQI7fpkJmt25h0jts/+A3H8GiNvy6tjxIKXIob8WpE7O/B5/TBa44SEXEKO9ZRuS4zv64l1Qa1I/AIlnAX3p/Qf281o7boow7xlpU5kXhtM80BeLGQL+7J74boK4Gthbzck98N0VcC9xTyJ20dRMSDEfFc68g9zYETVur/V1w2pR08gC/Gtne2jt0D+R34q5HA0SlstuBhqzfED2viVx0lCuzBRQ3547UUI2IRD+FJXF90T1qON0YPI/Cm1Uvo0gSdS/AEvi10m8eRa6ridyS/gO8bRM5isdF/OZ4udCa1Y7UcupbQLlzVkD/NzD8iYisew+O4YoLdMrYZnaPg3VoCXZfROxrfE8cj4lmcxD7/JX8Ut+FQ8Xt1Al1L6D2r6/i8ySXyAW5v2J1u9H3ViUMH8otGNb9ebb+tmNS4tdB5fqgEblqD9AW8gd1r2L1c6N8wVAJPFUR+x0Fcu47NAr5r2JzsQj6z2yq0d/z5C17Hgcw8vYHNEq5uyEc6xEf9pX4XtuMFHMzMs1Oa3l/I79TEX8VlPLTtjCKuxLnM/KmFTeAbo9cMOIWdWUOggaoRyMwzFWY3WyEPh7qSZ7YPW3cXct3hrcAsE9hWyOf7cDrLBErC+8fzohP6uA9MixOFvBefR8Qr+BlnMvPL1l67biQtNr7t+Nvax459NX5nVkKZ+QOeWUflXI3fmT6vZ+ZLuM/o2vkj/uzqc5ZzAGTmYRyOiFuM7hO7jVaomr2lbif+P2HT/0MzT2BozBMYGvMEhsa/0iF1outND8oAAAAASUVORK5CYII="];
+symbols[11] = ["A-T","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAC6klEQVRoge2ZTUhVQRTHfyeVMIhIywojEOMVpBDYJoIg3AgtQiLoA1oERUQQBdbCKIigICgXLQwkKlrUzq20iBZFCymQKKHCoI1BQWhimb5pce+j8bx5z3vvm+tVeAdmcWfOx/9/zpw3c+8TYwzLWVZkDaBSqRLIWqoEspYqgawlFQIicllEJkTkezgmRORiKrF8H2QiUg+MAFvV0iiw0xjzx2e8NCpwlmLwANuB076Dea2AiKwGxoDGEirfgFZjzJSvmL4rcIHS4AE2EFTIm3irgIisJcj+Gmv6EVAPHLLmfgAtxphJL4GNMV4GcAMw1pgDmoGcmjfAVW9xPYFvAiYVyMfW+qBa+wk0LCUCfQrgX4JmLay3Oapwc0kQCLfJtAI34NB7onR+AU1LgcA9Bew3sMWhlwv7wtbty5QA0ALMKFB3y+g/VLrTQHOWBDSgKWBTTML9mRAAtgGzCsytCHb9ymaG4FxYdAJPFZAJYF0EO1fTP1hUAkA7kFcgemLYX1O2s0AuCZZaksl1QKznaWBMRDoj2o8SnBV14XNNSOpwbCQJsr+L4kNJVyPK0DZ5oC31LQQMJQAbdQymSgDYkyL4wuiIgynWdVpEXgB7ralxoIfghC30RB7YCNy25gzBu8I4/99BDEEP3AEaLJ9DxpiuyKBiZL+T4mydKaHbyPxrwxzQWEL3ksPvbu9bCHitgnwB6krotjK/SfNYt1OluyqsjO37uVcCwH5Hlk6U0Y9MINQ/5/C/zyeBt8r5R6DGI4GVwFcV45UXAsBBR3aOLmATi0Boc8oRp6siAgS/Iu+V03cLNX9CArXAZxVruFICxxxZ6Y5QtdgEQrvjjngHEhEguJ98Us7eROyZpAQE+KBijpSreLkPW0dCILb0ltGvWEzA4oqabge6yxm5MrGZYK/bmXgWJfuVVMCyf6liDwPr41TgPLBDzQ1EyaInua+eO4CTLkXvn9cXW6r/0GQtVQJZS5VA1rLsCfwD2J+KX8GAzFsAAAAASUVORK5CYII="];
+symbols[12] = ["A-E","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAC6ElEQVRoge2YzUsWURjFf0fDKEiMkKKiIOnDRVCUbYIEkSwLN7UIClwEYgupv6GgNhkU0iYs2rVoIZHSoo9NUSQURaSEEbYzLSuJPsSeFnNfnIZ53+aO2hjNgQtz75znvefMM+997h2ZGf8yyrIWMFPkBrJGbiBr5AayRm4ga+QGssb/bUBSlaR2SX2SRiWZpHFJNyU1x/CrJZ2SNOS4I5K6JW1MLcLMvBuwFDgJDABWpH0EuoEKF9MODMbwfgLDwIk0WuS7nZa0DegBVruhfuABMA4sB5qAmlDIdWAUOOb694D7QCVwEFgV4naZWYeXoBRP/h3TT+9FDKcC6CU+Kx0RbhXwOMJp8tLkaaAtMtmzIrxaYCrC7SnBnQzx7vho8v0T10T6lUV4Qy5TYXTFEc1sAHgaGqqT1JBU0IKkRIcrwAoC4QLeFBE1KWnCcQG+Ac9L/O5LoM5dLwEOA3eTCPIyYGaDQGtC+lToesTMohkJYzTSr0+qyTcDJSGpDNgCNPD76rJYUnuJ0O2R/prEc870q4SkagLBLQRL6DJ3ywhes1Qws0SxqTMgaT9wFNgLLHTD/cBp4BZBrVjvxt8DZ9POVRIpqvAO4CHTy94P4BxQG+G9CnEG01TZJM0rA5J2A31AuRt6BBwxs9dx9NB1ecz9WUFiA5LWEextCmKGgUYz+zIXwpLCp5CdYXr/A9DtIX7Ovl/6GNgX6ce9NmH8lY+uPgYWRfor/8APG1grqS3pRD5bCZ/VJ7zyGPCkBPd4hFtoXUBVibhq4Foga5Z3o0Az8DUi6CpB1ZSbvJVgz2MEZ4TbMSZGgE6gEdgAbAL2AOeBDwXerBtwJi7ECPoOvI2Y6yxkF7hUJBvFWi+wa64MlAMXgYmYiceAy8DmmLh6gso8RnCEjMZ+dtk64FvIUlU/4BDTJ6kxgvqwNUHcTpeRYRf7CbgBtKTRYZbiTDzf8H9/F5oPyA1kjdxA1sgNZI3cQNbIDWSNXzDo7s1UcXK0AAAAAElFTkSuQmCC"];
+symbols[13] = ["Melted '3'","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAACvUlEQVRoge2Yz4uNURjHP9+ZKebKmMaMmIyQUshOkZRfJQs7JlslC2Rn6w+wIMXGQpMFCwslSljIj4WYMmpsUBpMIcqUaRjXY/G+97q9d37c95wz99xb863T2znv8+N83+ec5zzvkZnRzGiJPQFfzBOIjXkCkjZIOi3ptqT3kiYkFSWNSroh6WCIiU4LM8vdgC7gKHAL+AhMAjZNGwMeA0dcfM3WlDeNSroO7AF6Mq+eAS/SCa8BtgN9GZmnQL+ZjeZyOhMcvn72Cw8CW6eQawdOAhMZ+TdAZ6gI+BIYBAqzyO+ieokNNAqB4zXqnM3oFYG+EAR8s9DbGuUup5MuoQXY5um7bMgH72qUGwG+ZcayScAJbQ4639PnV5IUWguKwJ/M2GcH31VwIbA2fRbN7FeNOj3A0or+b+CRg+8q5CZgZj8c/BwAFlT0L5rZFwc7Vch9kOV2IHUDr4AV6dATYLeZTYawP6fFnKTNwEP+T/4msC/U5MFtD0wJSV1AL1AA1gP7gX6gFRgCzpnZ1VD+ygh2IsIJqsuMn8AFYGUoP6EPskoUgXGSNFva6AXgFDAs6YGkQwH9JQgYgSXAMmAR0AlsBI6RVKiVUbkLdEerhRzJncmQGAY6moZASuJShsSVEHbn/BwoQVIH8AHoSIcMWG1mIz526/ZTb2ZjwMuKIQE7fO3W+1YiW5Eu9zUY+1rF23+9CSjTb/U1GDsC7b4GYhPo9TUQm8BOXwPBqlFHrJN0DxgAPgHjZvY8j4G6HWQAku4De2eSMbPsRp8R9Y7AHeAvsIkA6x/qHIGyU6kdOEzyr7C48l3eCEQhUHYubSG5nVhYGstLIGoWSjfseR8bUSMAIGkVyQ1fGzRZBADScvq1q350AimGXRUbhUCtd6xVaBQCLteVQPxSooQh4JqLYvQs5ItGWULOmCcQG/8AeBlW1Qb7nDgAAAAASUVORK5CYII="];
+symbols[14] = ["Euro","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAADHUlEQVRoge3Zz4uWVRQH8M9JbbIISwxDgmAU+iGhlYFgEUVRFAURRQQlFPUvBC3at4p2LYKoTZkikhKRMVSLNikRWVYUqVBDWWoNRmjOaXHfkdend4Z5fjgPwhy4i3s553vO97n3nnvufSIzXchyUd8BtJVFAn3LIgGIiKcj4q+I2DGHzqsRcTIiXuzC51nJzFYNN+EoEv/ipRE6z+Gfgc4U7mnr9yx2BwReGQQ20yZH6Byo6LzdFYEultDBSv+7eeh83YHfIh3MwFK8gRPYj+tG6FyDT/EnduKyrmYgujqJI2JlZh5rq1Pb72Ip0bMs7RIsIpYMMKcz83SX2LP6bLqEIuIG3IKNuB5rsAqX4IyyYSeVFPoJJjLzeAcxnysNss42JQ1mzfY7XjMiSy1oFoqIqsEx7MHH+F758mNK6tyEB3HzkP4pvGxwYreWBjMw/FU/wKp52NyPLyq2E1jR+hxqSeDuGnbL8GbFfr+Wh1obAmcw3sD+3QqJ3X0ROIGxBvbLcbhC4tmFJHAA32hRUeLxCoHfcOmCEOiiIfBjhcQzTbB6KSWysNhWGX6yCVaftdBHlf7GiNhQF6RPAt9iuF66Eo/WBemNQGb+gl8rsdxVF6fravQhjNcwGav0b6ztc5AVOpGI2IdbW0BMZ+aSOgadzgC249A8dRP34fKhsVN1HfZ6pYyIQ7h2aOhgZtZaRr1t4oi4Cqsrw5/VxekzjY4rt7cZOYlddUH6JHB7pf8DPqwL0ieBRyr9PZl5/jdxRDyvEP85M3fXdTjAWI+vlKKOkpHWZuZPtcEaVJIz1eMUljWsRnc5txJ9vXFl24JAYn0D+8f8/y6wsimBtntgUx3liNii3IuH5Yls8V7alsDm+SpGxFPYq1wpZ2RrZk60iqDlEjqMdXPoLscDyvPLsN0feLjpshluXTxsncY+5SfGJKZxBdYqz45rKvrv4IXMPFLL8WzxNCBwL27Dncqb6NW4eA6Tv5X77168lZlfNgt1lnjaFHMRMY4tuAMbsA4rlJ99R/A53sd7mTnVOtpRMfRZjXYhF/wPjkUCfct/cyS9ieFwaYcAAAAASUVORK5CYII="];
+symbols[15] = ["'N' With Hat","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAADpElEQVRogdWZTYhWVRjHf//GwUSdcvLbRhqhlQsxkBaBMCmCgp8gLTRKaBOIlQjmonBVtBBMFyaiiO7UhSgoqIi4KgmKxFUOU6DGlDkKlSTzzuPinPF9vXNn5tz7PtdX/3DgPvec5+s+9zkfz5GZ8SLjJS9BkhZK6pV0T9KanP61sa9X0kIvvZhZ0w1oAy4DFls/0N3QvwD4s6H/MtDmodsrAjOAnga6HehsoDsy43siT/NwisAk4C7h634HTM8Z0wkcjGP+ACY+NxEws4fA/kjeN7O7OWPuAQOR/MbM/vfQ7RKBhpnsGOEL/wbsJPwqPcAO4Gbs2+el08z8HGhwZDNwnXrCDrefgPXe+tTw9VwhaQHwRiT7zKyvEj1VOfCs4LaQtQoTUgdKOgy8GsnRwibCorbbzH7O8HcQptiXqedFHj+EP2NDkmEFkrPGyMQcra3O4Z9ZgN9S7UqOAPAW8AowB9gFLGroqwFfAd8DD4Bfcvj/BpYA0whbi6/j8zD6o9w+4N9kq0pOlZ/y9Be7VULG2YyME2VsKZvE7Rm6JqmorGkZWrmjxkFZB7LKhhg9sUcyS1uBd8aRmQSvaTTZAUlLqe+bmoabAykLoqS5wCknnYBvBMaEpDbgNOEcMETYfjeNZ+YAcIgwjQJsBy56KPZyoDZWp6RPgC2RPGNm3zLylFYKlUdAUg+wN5I3gU3xucgiOioqdUBSF3Aykg+BdWb2j5NOoEIHJE0gJO1r8dWHZnbDSd8TVBmBI4T9E4Qz8AknXU+hEgckbQfej+QFM/vcSc8IuDsgaTmwJ5K/A+856ciFqwOS5lNP2keEpL3vpCMXXg78J0mEpB0+tX2UPZVVAS8HBoEDwOJI7zWz406yx4TLYgK8S/2McMXMPnOSOy68IjBs/G1go5PMJHiWVWrABsupi1YJz83cx2Z2zUleMso6kD299JvZoSZllCoRlnXgUYYeLCEjy1NGRmkH3szQHZLmpTJLagfmZl53xbWkEJKLu5KOAvMJFba8S7q/CPcCA8DOnNLiVEJpsQt4HejOkfErcAd4YGZrkwwrUIhKLgsSthBZ/llFZFRRWlwBTEwc+0POuwFgJfmL5xDwNvBlpK8mW+V1U9JsAy4Rvv6PwORkvlYbHo3/gPrvs6wIb8tvaCRNJhz2ZwPnzWxVEf7n4YbmC4Lxg8C2wtwt/nW6CYuiAXtKyWih8W3AuWh8LzCljByv80AZdBKm5QvASStZL3oMOsPxqYJwEr8AAAAASUVORK5CYII="];
+symbols[16] = ["Dragon","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAADZklEQVRoge2aW4iNURTHf39jjFvuJVMYykyNQY1SJHJJSSEelObBrbwoDQ88UZ4oD0p58uBSJF4nEbkkb+6MkLtcp1xqDMNYHvbmfE5npjnf3uY7yqpd+3bW+v/3t/bae33fkZnxL0uvrAGEyn8CWUs0ApKqJW2StF5SV/OmSGqSdFNSQ7BhM4tSgDHAJ+AzMKeTOZOAh4D5ciDYbiwCHuBxD6ypk/EbfvwqsBqYW2oEZnmAHUBV3thSP/Y1f6xkCHigdz3QnXn9V33//qj2/gKBjR7oG6DC981L+H11qRMYBrR6sCt933nfPhndXmyFHvA+D/g0MNnXfwDTY9uKfpBJqgSu++ZM4ISvPwYexLYXa8UbcCH0HtBGzt+T5TvwEbgArAPKSsaFgOZOQHdVrgDjS8WFWvPaP4APwAvgNdBe4Df1wFlJA0MMy69gegXu3tMElAPncCv7CGjBuVMZMByYBqwFFuapaDSzPakBRHAfgL5FzN/Cn650KsR+8BNII5LuAxN885qZ1afVlVU+8DFRL7Q/ui09TkBSLVCX6LoWpDBGGO2m71cAy4Dn5Py/A6gJ0ds7iH0BkTQE2OqbvYBBuGSnDhidmPoWWGNm94IM/oWVHkvXB9gDYAPQO4a9LDbxYNwdaX4MZdHDqHehHbgD7JfyUcBEoCZv+iFglYWA6KlN7DHOwUWdpEvtDtLZkwQ8iQHA7QSBNmD+P7MHzKwV2Jbo6gtsTqsvq5M4P7EZXXBWNyQrAlV57YdpFWVFoDFRbwcOptbUwxu4BjjKn1HodIjOKOeApAW4PHccIHLx//cUoL8nkHzqX4F6M2tObTzCqi6m+HzYgJfArGD7geD7AbeKBP4E2AWMiOGWobfRJUC1r3fgNudlXGwfgHObPrhrxWfgKdBsZkFJTFJCCczGAQS4aGZ7A/UVLaFhdGSifidQVyoJJdCSqI8I1JVKQgkcwfk2wCJJUwtNklQmqVJSraQxksoD7eZ0h54Dkg7j3o0CfAGO4V5ufcNlZ3VALVCJ29ztwCvgErDNzB4FAYhwDgwl9+2r2NKQdRjFzN5LmgFsB5bjsq9ycm+k23BfL38Vw30EqcI9pSCJmlJKGgvMxV0p2nGvUJ7hbpvvzKzNzxsIrACemtmZIJsxCWQh//9qkLX8BB5kJFNSwbJqAAAAAElFTkSuQmCC"];
+symbols[17] = ["Question Mark","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAACAElEQVRoge2YP0hWURjGf08KQoGBWKKIUw1BQ0JDi0O0OYoEDuESTS7hEBEuNbU2OUg0hw4NNdQguEWIZls4CP1RcHDQooR6Hbrw3Q73U+G+5x6F88CB75z7ct7nxznf+Scz4zTrTGoDdZUBUisDpFYGSK0McJQkjUr6Ium7pFH3BGYWrQDDwBZgRdkChj1zxB6BB0Bfqd4HPPJMEBtgv6Ltr2uGyFPoKrBDawrt4jyFFPs0KmkImAA6gJdmtu7afz5OJ1YT+8CApNmiDLn338B/4BqwUlRvmNl7z/6bmEJ/2vx2URMAUYe4CYCfMTuPCiBpDHhRaup0TxJpB74NrNLagQ14Awy453I23gu8Coy/A65HO644mr8EbATmH8cy7goAdFeYfxrbvCfAbGB+rQnzZg4XGkkjwJ2g+Undfo8rj2X0IXC2VP8FLDr0eyzVPgtJ2gPOlZo2gUEz8715tZHHCHQF9Y6iNCIPgOWg3gNcbBcs6YqkRUkLkm7Wzu6wAo3x7/JeXoXuHRL/vBS3D4yfhGV0PgD4BlyoiOsB9oLYtycBoJ//H7AM+AzcCuLuBzEG3E0OUJi7DHysMLgKzAEzwNfg27Paeb0ACohOYAr4APyogDHgN/AJmHLJ6QkQgEwCr4FtWo9aS8A0cN4rV34XSq0MkFoZILUyQGqdeoADKW996LEdQZ0AAAAASUVORK5CYII="];
+symbols[18] = ["Paragraph","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAABg0lEQVRoge2YQStFQRiGn+GGHQuSuhErWbCxtFNKNvwIP0CWslX+g/+glCxY+gc3K7KRhbKgG+7C9VrcUVJc5vuO6dY8NXWbzpnvfc6ZO2fOCZLoZfpyB7BSBHJTBHJTBHJT8x4whDAJbADLwAIwDgx2Oa0haT6lnptACGEK2AbWgDow8MtTW8BNcmFJ5gasAI+AvmmnwExsK7HvHlgCJoBaam3zHQghTANH/DxNmpKu4/Effc+Szq31Pf7Eu3Sf4/2ffg851rYNEuf9qkeQVKxXYR0Y9QiSilVgkQqW4r9gFRhzSWHAKvDqksKAVeCSzpqeDavACfDiESQVq8AZ0PAIkopJQNIbsO+UJQnz01DSIXDgkCUJl8e5pE1gB3iqsk6lA0vaA2aBLeAYuAIe6Cy1ba86XwlVfdiKu84RYBhoSbqL/XPABXArqW6tU9k2IF6Yh9gqo+ffiYtAbopAbopAbopAbopAbopAbnIItIEmTrvUyt4H/osyhXJTBHJTBHLzDgs1sq2As5QaAAAAAElFTkSuQmCC"];
+symbols[19] = ["Right 'C'","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAC00lEQVRoge2ZPWtUQRSGnxOFRFwx6ib4VamIhR8gGDWSTsgmAbEwgqBgo3/Axj+gNhZpLGKrVjbaxGBKUZCE4BdoFYhRREUTC5NAMMdiNnoz2UvuuTPZZWFfmGKGOXPed+7MmZlzRVWpZzTVmkAoGgJqjYaAWqMhoNZYvxaDikgzUCqX48BeoADMA5PAODACDKnq9yBfMQ8yETkMXARO40hvAiSl+xzwEXgOPFTV4VxOVTW4ALuA+4AGlHGg1+o7+AuISDdwD2hL6TIDfAV+l+utwE6gJaX/mKoey0wgcOb7qTybU8ANoBNo9WyagB1AH3AXmPbtTRwCyHcCixXI3wQKhnHagVvAQtUE4CLKlEd8EegPmJCjwIdqCbhdYeavhizH8rhFYMBiY97EItKGC3/JTTisqj2mgSIhz0l8gZUR5HoELrmQR8AZr/5SVV/HIJMHJgEicgA46DU/ikfHDusX6AO2eW0vInHJBauALpZfABeAiXh07LDeRg959Wng52pGInIZ2J9omlTVQaPvyjDG6VmWx/6JLGPgllnS7m3ombFUrEvID59/Mp4jv7z6jNFvKqwC5r36OpG06351YBXwxatvBDZksPP7ZLHJBOsmfgfsSdS3AFuBz6vYvcGJXcIro990GDfxNRLX3nLpirUhq7GJh1gZNjtDJzEEJgGq+h63jJI4G4+OHXkuc4+9+gkRORKDTB7keQ+0494DzYnm+nkPqOo34I7XXBKRK6FkRKQoIgNWQnmefgXgEyvfxOcCnpPVexOXHZ6iXrMSCefnKwhI5oVOUjkvtB3oBQZxYTl3XihGZq6Ey8wVU7r4mbnNuMxc2nViVFU7MhOIcRoCu4EHhOVGR4GS1fdaZKcv8T87XSA9Oz2LC8fPcNnpkVw+Ywr4N6hIC9AN9AAdwD6cmDnc/4Ex4CnwRFV/BPlaCwHVRN3/YmoIqDUaAmqNuhfwFzjOZLuRDH7hAAAAAElFTkSuQmCC"];
+symbols[20] = ["Left 'C'","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAACtUlEQVRoge2Zv2sUQRTHPy9GiPGKSH6oCElhY6EIQRFOUkZOBbFJYWEZ/Rv8A9TCJo2FVoKxlxTGQCqLgAmoGIsgahPQIhojRjxR8yxmj2zGXW7fzpEh5L4wxczt+775zuzMe/tOVJWdjI7YEwhFW0BstAXERltAbHSGEohIP3ABGAWGgSGgC1gH3gPPgWlgRlV/hfr7z3/ZQCYiNWAMOAsMAvtyHlXgO07MLDCpqq9LOc1kVzU13Gq/SCZWtk0CR6y+s5ppB0RkATiV83Md+AisJf39wEGgJ+f5FeCqqs4UnkAWjKvvr+RX4D5wETgMdHjP9wBV4CawnGGvwFjIDpQV8Bu4DQwYbCuJjS9gA6hup4AlYLi0Q3fwNzwRy0BlOwRMAH0hW57wXMvYiTtluEpfo6EQkWmglhqqA4OqumLhiRmJb3j9LuCKlSSaAFV9hYvSaVyy8sTOhR57/eMicsxCEFvAnNfvxUX6wogt4AMupjTQCYxYCIKz0QZE5DouE23grao+aGK2iovmA6mxEybHoXd66m5fZOu9PlfARnC7kLb7YfHbyldozet/a2agTsVfbzgvLc9E1DMgIgB7vOG6haOVAvyVK7KS3bi0O41PFqctO8TAS9w73ECRr64DSUtj0eK0ZQJUdbyE2VFgb6r/B3hmIYgdB6pe/wvwxEIQW8Blr/9GVZcsBNEEiMhJ4Iw3PGXm2VXfAyIyISJ9FpscnnG2Th7grnXywO77Jk5XJW4B/QbbSmITvSqRbqvAPVwOf4gIdSFrZW4eOJ3z809cZa6RxDWrzH3GVeaeFp5AFkq8wzVggbDa6CNi1EbTEJFR3IEcwVWnu/PWiM1S+yzwUFtYnQ6OAyLSC5wHzuEKv0O4THQdeAfMs/n/gClVLuQ/VEBsxM6FgtEWEBttAbGx4wX8A8mY7stpxbfoAAAAAElFTkSuQmCC"];
+symbols[21] = ["Pitchfork","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAC1klEQVRoge2YzW8NYRTGf6e3H6JfpAkqdCNiJ0EESYn4WCBI7KVd0YhY2PhD1IIFNhJiJxZWRHwkNKy6YIFdXfXZIKStHouZG++8nTtzZu69JmSe5E3uO3Oe55xn5s77nhlRVf5ltBVdQKMoDRSN0kDRKA0UjdJA0ahrQEQ6rCIiMigimmG8zVJkUi3tCbxjIrIO2AH8AF4Ct1R1Iib2I3AQ6Af2A6MsvjhfgPPAc+BzQrFbgSPABmAp8Bh4BdyIJahq3QFUQjF1xkgSJ+Sd8DgLwB4Db8TjHQYqiZw00VB43BGdAXpT4lcAsw5nCmhL4fSF2jXOuKU260N8z/ndB+xMif8VGqhhWlUXUjjDoXYNdy2FWQ1UvfnGlPjaVaxh3pDD1/RzxsJq4Kc3X23giFG7nqafMxZWA/5bT19s1B/4xVvMpGnGwmrAL8C8R2SAr2m6g3l34lbs4Lk08xbSmZOXhK48JKuBOW/enydZCpal5IyF1cAM0aVwlZGXBa7mPEHrkQqrgSmi6/KQiCw3clMhIgPAkHOoGuZMhcmAqs4Bj5xDvcAWa4EGbAe6nflDVbVsfpke4gvefCwDNw2nvfm4mWlpmJyG6zLRbvFonbgB4JsT9yxB87ineSlTTRkNVICbTrJZ4BTQ4cUtAb46cRMxWt3AOa/4a6R0rQ0ZcJKPAW+cxO+AK8BJYB+wG/junJ8ENhG89JwBrhNtnV8Ao3lqkbCgzBCRLuBQWNQuYH1GiUngAXAbuGNot+PryGtgkVCwFK4Mx1rgIsFfCeA1cBb4BEwDVVWdaUreZhmIiIpUCDainvDQU1Xd1vREtO6zit9qVFqU5z/+LtQg2ole9X/uDvQQbY+b1jf5aJWBA572GhHZ3IpETVmFRKQT2EvwJW2YYHf2X3reA1eBJ8AHVb3fcGKaZ2AQY/sboqqqgw0npkX7wN9EuYwWjdJA0SgNFI3SQNH4DQ4LelL07q4WAAAAAElFTkSuQmCC"];
+symbols[22] = ["Cursive","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAADnklEQVRoge2ZW4hNURjHfx9jxp1xK9K4TITcYhTl9kLKJYUH5VIiJTx44cWDIkl4cEkoLy5RckkRHuTWhNzy4DruYtAYxv2yPOx9tGfNt9bZ+8ycDnX+tR/Of/3OWt9/nb3XXnsfMcbwP6tRrguor/IBcq18gFwrHyDXygdISURKRGSZiJwUkfcicqmh+vapoL4diMgYYC4wFugRaeotIsXGmKr6juFTxgFEpC+wEZgQsSuBvcApoAL4FOELgNHAMKB52H7eGFORaQ0AGGMSH8CssDgTObYA7Rz8XOCexRvgO7Af6JZJHcaY5AGAJUoh8zz8Dos9BuwCqiLeO2Bk1gMA05XiF3r4ra6gBNfLs0hbDdAnawGAEuW02efhp1nsQYWZbDHXAclWgCPWYB+Ajg62EHhq8UMdrH1tzGnwAMAg5dTZ4OFnW+wD14IBbLLYm0kCxL2Rzbc+G2Cnh19gfS4Pi9V00fo8UEQGx6wrfQARaQ2Ms+zbxpg7Dr4zMNyyb3iGuKt449PVlVKcX2Aq0M3yLnj4MqCJ5T3y8K+BL0ofsRQnwBSgqeX5ZrSf4r3x8DVAteXZE+ZUnADDFO+Zh++qeB89/NfwiKpYRNLVBcQL0EXx3nv4tor33QUbY34Dvyy7GTF3ynEgbSp8L5MKY/YRNAQzbbf/TjPGX8UJ8FzxWnl4bbbbefjmQEvLqzGedTeqOAEuK552nqf0VvH6ePhOQHvLe5GuqJTiBDhC3WVugIe/r3hjPHx/oLHl+Va5WooT4Ch11/FRHv6q4o0TEXspTkm7aZ2JUVegmHuhddTer/wEeno2ci+pu3eaqbBNqL2lNsAroGlDb+a6Eyx10YHWevjNSoAbCjdH4Zz91nc7bT+cVAMdHGwvJbABZkWYIuCx1f4Rxxa9IQK0Ap5YAx7w8NuVAJVAcdi+TWlflKT4RAHCQcsIbvvRQZc72NbUfagxwGFgseIfSlp84gBhYROAb9bgqxzsEOCzUqx9nAWKIt9rAUzMSoBwgBHAQ6WI0Qo7iGA36ir+gMX3B8rDthnpapHwS4klIm2ANcBCar8guwVcIbhAC4BSgof3No6urgGnCW6WZcCk0N8NrDDGVHoLyeQXsGasF7Ca4I1CDe6Z/haGOkFwY/zh4CqApVm7BjxBioAZwB6Ch/gfBEvpC+A4sAwoDdlSYCVwjuBVzS+CLch6oCTJuBmfQv+K8v8P5Fr5ALlWPkCulQ+Qa/0BFIJgqtQJdWQAAAAASUVORK5CYII="];
+symbols[23] = ["Tracks","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAACvklEQVRoge2ZT4hNURzHP7/pTTNjMzINehSJlFKyMAkpE7GZGmVhQTYW0qCxEUmysmGhbIgNK2Fhw8a/lY3IAvEko0hTmJ7xJzP9LM5Vt/fuve/ec86bQ91v/Tb3/s75fb/n/n7n3xVV5X9GR2gCrigFhEYpIDRKAaERRICIjIjITh99VXx0UgQi0g2MAH0isgw4q6p16w5V1ZsB24FTQGeGzwlAYzYG7LaO6ZF8BXgbkXoODCX4VIHJBgF/7RYgIQWMJpC6CSyP+VxJIa/ASZuM8EW+D5hIIfYTOAoMZpB/A1SCpFCEixnk8thwsBoAeoGPDuQfusR3XgdUdQJYBZy3aP4d2OUS38tCpqqfVHU/MADcK9B0GtjkGty7YUb1HfnT6BGwMUgNZIjoAh4XEKHAJaD6rwhYSvrUmmVfgIN5hdiSOwBsa+Fzx4J83JpWci8CgCWtPjmwNYPYGDDegvy5tqUQcKMh2GfMNqIjet8BvMggtwaYB1xNeT8JzG2LAMw0mUbsKbAe2Jfhc72hv80JhX68EKcC5Gdh5vhWuTuV8vwXsDihXzDng3qUWl3tEpA1snnsdI7aWls4pQsI6MSsmk8syL/CYq+fx3JvJVT1t6reBVYDhzDFmxffgBUF/PPDVjkwn2Lb6GngDDDb5xdw7wDWRSOcV8h7YM+Mp1AG+oHuAv4Lgcsi8kBENoiIEweJRtGusUgPUMMc1m0wDixS1R+2HFy/wBHSyX/I0f6YC3nAqYgXYE5USXn+FZgDDAGvU3yeucR3LmKyr0hGY349mCuTRrGDwWYhYEsG+RoJVySY88G1yOe2r1nI9m60H3NY6U14d1hVpxofqmoN2CEiw8BLy7jNcEihKs0L2X1fI9v2GogJGcCcvurAypkW4LQOxCEie1X1gpfOisT1JSAUyl9MoVEKCI1SQGj8AX3NBIZ9x8hhAAAAAElFTkSuQmCC"];
+symbols[24] = ["Balloon","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAADLklEQVRoge2Zz0sVURTHP9efpVG66IcW2s7yRUjYrlaiQdkPiDYWRVDgSty0aNGf0bJoFYGVJVGLoqDSJCht0aKipB+UaJmLTC30tJiRxvvu8515M+PjgV+4izvvfc8533PP3Dl3xogIhYyifAcQFSsC8o2SOI0ZY+qBQ0Ar0ATU4CVpHBgGHgK3ReRNbE5FJPIAWoArwHtgBpAMYxb4BFwD2mPxHTHwFHB/iYCzjX6gOS8CgA5gaolMvwMGgWfA2yVW5i9wdlkFAGcyBDMAnALqgKLA/w2wBTgOPM7A7V4WAUBbhix2hrBxGph22DmcqACgGhhzlEtLDonY4yjBn8D6JAVcdGTtRM71C0cd9i4lIgCoBf5YzvpyDT5gt8dRjnVJCDhnOZoHUjEIaADmLNvntfwwrUS7Ne8Xkdch+E6I91R+Yl3er+WrBBhjmoBG63Kv1okCt6z5NmPMLg1RuwIHgCrr2oCSq8GgNa9GuQpaAXtZ3PjNACNKrgYjvs0FFONts1mhFWCXzwQwqeRqMOnbDGK7hqgVsNGa/xaRWSU3K3xb01l8OqEVUGrN55W8MLBtlmlIWgFTtnFjTGynOd+WnaRfGq42iM/WfC1QqeRqUOnbDOKLhqgVMGzNq1DWqBIbSN+mbZ9OaAU8wus6g7yUkqtByopl1veZFVoBd/Ha6CDalFwNWq35GHBPxQzRdN1gccP1FSiLoZkrwav3oO3eJJq5HmteA5wMwc+EDmCzde26mh0iU6uBURZnahRYFyH7FXg7XNDmGFAR+3nAd9hpORPgTgQB9mFGgK5QNnJw+tTh9Coh7ge8zeOyw85zwCQtoBb45nA+DOxT8Fv8QG3+d2Br2HiMbzQUjDGNwAO8G9nGkP/bK/7fM5uAnX7wzQ7OBNAqIi9DBxOhfutxl1PY8QJoyDmOXImBlesmfSfRjHHgAlAaJYacSsiGMWYNcAQ4COzG29ftdngOr6SGgD7gpoj8iOw8ivoMq1IM7CD9rdsxoDxuf7F/oRGROeAD6QeUjxLjKW4BSX1iWoX3RjqI8iQcFfw3shUB+caKgHyj4AXE8iTOJwp+BQpewD8Hw8OmYRTw5AAAAABJRU5ErkJggg=="];
+symbols[25] = ["Upside Down 'Y'","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAC1UlEQVRoge2ZPWgUQRTHf88kGg0IUQKCEPwsgig2EeIXGPErkYgKfmAhBEQbK20sDCrBwkasxM7OLoUoxGChQVIYIkFUUBAhaqHE+EUMYsyz2An3Mrkzt3e37kjuDwu7b97M/n8zezM7e6Kq/M+ak7aBYlUGSFtlgLRVBkhbsxNARFpE5J6IfBURFZHnItKeI3ediDQVZ/MvUtVYB9AOfALUO74DV7zcVcBTYGfc++TtJ6b5Dc6ob94enS53owFtDgXgumf2tTO6HRhysXHgPDDmrj8AK0IB6PEA9pmy9cCoV/4CWJmU+UIADgE/nbmBLOWDxnwPUJuk+dgAzuRx4DPQamLVwG2v988kbb4gAGd4kTlfAvQb45PP/hugIkgAY36tMzpp/ihw2ly3BAsALAQ+OqM/gDYTH3HxOyED1JlpstHEFxuAX0B9kgDFvAstAAaAJlXtN/EOoNadVxKt3IlJXK/FryhSA0yo6piJLSVa3OaZ1CGitWC8GKO5VPAIqOqoNe/UwVTzAPXAnkLvM5MKHoFpDYksA14BVS40BMwlmma7VTURiFLuBy6QMQ9wCrjhznc4wNKrJFMZrAZ+k5n/X7p4g4ldCmoa9QBuMfU14rApe+Rib4HK4ACANcCEMf/MjixwzJS1hQjQ5fX+Aa98PpkVuzsoAKI9gDU/mCPvKpnNzvKQAO56AHtz5DWYx6wzCACi/bE13z9D/kOX9w6oypFT/S8B7nsAu2bIP2Jy92cpb3Yz1cHEAYAtnvm+POpUmx/ztHwzQmPZAEsN0OsBbMuz3mVTx34Q8DvkQWIAwFbvZr0x6taR+XIxArQCjcATr82bSQL4z/7mmPVPevX9YxTYlAgAcA4YBr64G3UV+AieJfvnyWHgRJy2Yr1Oi8huom1iBVADPFbV93k3MLWtNuAi0WL4DegDrqlqd6x24gCEqNn5/0BIKgOkrTJA2ioDpK0/zenoROHC7O8AAAAASUVORK5CYII="];
+symbols[26] = ["B-T","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAC8klEQVRoge2Yv2tUQRDHP2NOE5Igigpyij/SBLGL2JjWP8BKLCzsrLQSgqithYKVoFiKIBEsFCVtGpNgCkEQI4I/0BCUUxRCEs2PsdiNOd97+3Zv3x3vhPvCkLzdmZ353v6Y2RVV5X/GprIDKIoOgbLRIVA2OgTKRhQBERkTEY2Qi21BAKhE2nVF2jkRG0gNmAd68f8Iy8CSlR+R/pyQmFJCRLqBrUA/cBS4C3Qn1L4Dp4A3wKKVBVVdKxJwKpZm1EIiMgtUE80TqjpceHAPgpaQiEhO9xayl1HFY6dN+fFCBhGRD8mmxP9V0hv0F/Al0Vbv7Kqq3gkL043QTbw/YuxuYF9O//aIMVOIOYXmgdPArP3eDDwGdib0XgFn6r6HgFtsLLfVCN9pqKpXMFO/LmMZ/bMJHcVs4qTeTF3/hRDfPolJZNP1HyLi2sRZSetFhL9cxBB4XsBfPfmmZOXQPTBk/wpmbYcglbBU9YaIPLF+5wLHyUUQAVWNmfoeETkM7MJk7AqmnPhqZSlizBQKZ2K7Bz4CuxNdyr/5IokapswYBx6p6nSOrhtFTwFMJp4jfQo1KuPA8Ub9t3IGFoB3mAr0E+bc3wYMAIdwz85NVT0XHEALZ2Ayx2YQuIYptbNm40Gw/xYSmAqwPWZnKIvE+VYlslDkbWAAVHUCOOvoHhGRAd8YpV/qVXUUeJvRVQUu+exLJ2Ax6Wg/4TNsFwLfHO3ekrtdCPQ52ms+w3Yh4Lr4eEuY0gnYRHgko+s3MOqzbwaB9XM7FpcxBV8SM8B9n3Hsw9ZfqOqyiGQRyL0y2relEeCKQ+W6qi76/DdMwL6U9GA2Xi/mYWtHhmqfiAxiXidWMHfnfuAAMAycBA463NxW1XtBAUWUDnuBz8BPzDr1VZkrlsRqgG6NwBJiXWKWUAXY04B+F9nXR2XjgvMSeAo8VFXv0ZkMJgYrEbZrmBK7himzXwNTwDNVfR8ZR3PeRstE6XmgKDoEykaHQNnoECgbfwCShbqBoU2HpQAAAABJRU5ErkJggg=="];
+
+// List of each column's contents.
+symbol_columns = new Array();
+symbol_columns[0] = [24,11,25,10,6,8,20];
+symbol_columns[1] = [14,24,20,22,2,8,17];
+symbol_columns[2] = [0,7,22,4,13,25,2];
+symbol_columns[3] = [9,18,26,6,4,17,3];
+symbol_columns[4] = [21,3,26,19,18,16,1];
+symbol_columns[5] = [9,14,23,12,21,15,5];
+
+// [Name, Hex]
+simoncolors = new Array();
+simoncolors[0] = ["Azul",wirecolors[1][1]];
+simoncolors[1] = ["Amarillo",wirecolors[4][1]];
+simoncolors[2] = ["Rojo",wirecolors[2][1]];
+simoncolors[3] = ["Verde","#00BB00"];
+
+// ["bomb_serial_vowel + bomb_strikes"] = [Color ID, as, listed, above]
+simonsequences = new Array();
+// Vowel
+simonsequences["10"] = [2,3,0,1];
+simonsequences["11"] = [3,2,1,0];
+simonsequences["12"] = [2,0,3,1];
+// No Vowel
+simonsequences["00"] = [1,2,0,3];
+simonsequences["01"] = [0,3,2,1];
+simonsequences["02"] = [3,2,1,0];
+
+// [Label, position starting from top-left in reading order]
+wholabels = new Array();
+wholabels[0] = ["PRÓXIMA",2];
+wholabels[1] = ["VOY",1];
+wholabels[2] = ["PRIMERO",5];
+wholabels[3] = ["HAYA",1];
+wholabels[4] = ["VAYA",5];
+wholabels[5] = ["VA",2];
+wholabels[6] = ["ESPERA",4];
+wholabels[7] = ["RÁPIDO",3];
+wholabels[8] = ["MONITOR",5];
+wholabels[9] = ["ÚLTIMA",2];
+wholabels[10] = ["SÍ",5];
+wholabels[11] = ["DALE",3];
+wholabels[12] = ["HAY",3];
+wholabels[13] = ["OTRA",4];
+wholabels[14] = ["BIEN",4];
+wholabels[15] = ["PALABRA",5];
+wholabels[16] = ["NADA",3];
+wholabels[17] = ["BAYA",5];
+wholabels[18] = ["LISTO",3];
+wholabels[19] = ["OKAY",3];
+wholabels[20] = ["BUENO",0];
+wholabels[21] = ["NO",5];
+wholabels[22] = ["ALLÁ",4];
+wholabels[23] = ["EXPLOTÓ",3];
+wholabels[24] = ["AHÍ",2];
+wholabels[25] = ["HALLA",5];
+wholabels[26] = ["VALLA",1];
+wholabels[27] = ["OTRO",5];
+
+// List of positions
+whopositions = new Array();
+whopositions[0] = "top left";
+whopositions[1] = "top right";
+whopositions[2] = "middle left";
+whopositions[3] = "middle right";
+whopositions[4] = "bottom left";
+whopositions[5] = "bottom right";
+
+// [Word, List of words]
+whowords = new Array();
+whowords[0] = ["ESPERA", "LISTO, VA, ¿ÉSTA?, VALE, NO ESTÁ, ¿ESA?, OKAY, OTRO, ESPERA, NO, ¿QUÉ?, ESTA, ¿CÓMO?, NO ES"];
+whowords[1] = ["¿QUÉ?", "NO ESTÁ, VA, LISTO, VALE, NO, OKAY, ¿CÓMO?, ESTA, NO ES, ESPERA, OTRO, ¿ÉSTA?, ¿ESA?, ¿QUÉ?"];
+whowords[2] = ["NO", "OTRO, ESTA, NO ES, ¿QUÉ?, ¿ÉSTA?, ESPERA, OKAY, LISTO, ¿CÓMO?, NO ESTÁ, ¿ESA?, VA, NO, VALE"];
+whowords[3] = ["OTRO", "NO ES, OKAY, VA, VALE, OTRO, ¿ESA?, ESPERA, ¿CÓMO?, NO, ¿ÉSTA?, NO ESTÁ, ESTA, LISTO, ¿QUÉ?"];
+whowords[4] = ["¿CÓMO?", "ESTA, OKAY, VA, VALE, LISTO, OTRO, NO, ¿ESA?, NO ESTÁ, ¿ÉSTA?, NO ES, ¿QUÉ?, ¿CÓMO?, ESPERA"];
+whowords[5] = ["LISTO", "VA, OKAY, ESTA, VALE, ¿QUÉ?, ¿ÉSTA?, ¿ESA?, ESPERA, ¿CÓMO?, LISTO, NO ESTÁ, OTRO, NO, NO ES"];
+whowords[6] = ["¿ÉSTA?", "ESTA, ¿ÉSTA?, NO ESTÁ, ¿CÓMO?, ESPERA, OTRO, VALE, NO, VA, ¿QUÉ?, NO ES, LISTO, ¿ESA?, OKAY"];
+whowords[7] = ["ESTA", "ESPERA, ¿CÓMO?, NO ESTÁ, ¿ÉSTA?, VA, LISTO, OKAY, NO, ¿ESA?, OTRO, ESTA, VALE, NO ES, ¿QUÉ?"];
+whowords[8] = ["NO ESTÁ", "OKAY, NO ESTÁ, ¿QUÉ?, NO, VALE, LISTO, OTRO, ¿ÉSTA?, ESTA, NO ES, ¿ESA?, ESPERA, VA, ¿CÓMO?"];
+whowords[9] = ["OKAY", "LISTO, ¿CÓMO?, ESPERA, ¿ESA?, NO, NO ES, ¿ÉSTA?, OKAY, VALE, NO ESTÁ, ESTA, OTRO, VA, ¿QUÉ?"];
+whowords[10] = ["VALE", "OTRO, ESPERA, VA, ¿ÉSTA?, ¿CÓMO?, ¿ESA?, NO, NO ES, NO ESTÁ, VALE, OKAY, ¿QUÉ?, ESTA, LISTO"];
+whowords[11] = ["VA", "VALE, NO, ¿QUÉ?, LISTO, ESTA, ¿CÓMO?, NO ES, VA, NO ESTÁ, ESPERA, OTRO, ¿ESA?, ¿ÉSTA?, OKAY"];
+whowords[12] = ["NO ES", "ESTA, NO, OTRO, VA, LISTO, NO ESTÁ, ¿QUÉ?, ¿ESA?, ¿ÉSTA?, NO ES, ¿CÓMO?, ESPERA, OKAY, VALE"];
+whowords[13] = ["¿ESA?", "OKAY, VALE, LISTO, ESPERA, ¿ESA?, VA, ¿CÓMO?, ESTA, OTRO, NO ESTÁ, ¿QUÉ?, ¿ÉSTA?, NO, NO ES"];
+whowords[14] = ["OK", "DALE, ¿DÓNDE?, BUENO, ÉSTA, BIEN, RÁPIDO, ESTÁ, YA ESTÁ, SÍ, OK, ¿CUÁL?, ¿SEGURO?, OTRA, NO SÉ"];
+whowords[15] = ["¿DÓNDE?", "BUENO, BIEN, ¿SEGURO?, RÁPIDO, SÍ, OTRA, ¿CUÁL?, YA ESTÁ, OK, NO SÉ, ÉSTA, DALE, ESTÁ, ¿DÓNDE?"];
+whowords[16] = ["BUENO", "¿CUÁL?, ¿DÓNDE?, RÁPIDO, BUENO, BIEN, ESTÁ, DALE, NO SÉ, ÉSTA, OK, SÍ, YA ESTÁ, ¿SEGURO?, OTRA"];
+whowords[17] = ["ÉSTA", "OK, ÉSTA, ESTÁ, BIEN, ¿CUÁL?, ¿DÓNDE?, NO SÉ, BUENO, SÍ, RÁPIDO, DALE, OTRA, ¿SEGURO?, YA ESTÁ"];
+whowords[18] = ["ESTÁ", "OTRA, NO SÉ, ESTÁ, RÁPIDO, SÍ, DALE, BUENO, YA ESTÁ, ÉSTA, ¿SEGURO?, BIEN, ¿CUÁL?, ¿DÓNDE?, OK"];
+whowords[19] = ["NO SÉ", "RÁPIDO, DALE, BIEN, SÍ, ÉSTA, ESTÁ, ¿CUÁL?, OTRA, NO SÉ, OK, ¿SEGURO?, YA ESTÁ, ¿DÓNDE?, BUENO"];
+whowords[20] = ["RÁPIDO", "RÁPIDO, BUENO, ¿DÓNDE?, OK, OTRA, YA ESTÁ, ¿CUÁL?, BIEN, DALE, ¿SEGURO?, ÉSTA, ESTÁ, NO SÉ, SÍ"];
+whowords[21] = ["¿CUÁL?", "ESTÁ, NO SÉ, ¿DÓNDE?, ÉSTA, BIEN, ¿CUÁL?, OTRA, OK, RÁPIDO, ¿SEGURO?, BUENO, DALE, YA ESTÁ, SÍ"];
+whowords[22] = ["SÍ", "OK, YA ESTÁ, ÉSTA, BUENO, NO SÉ, OTRA, ¿CUÁL?, ¿SEGURO?, ¿DÓNDE?, RÁPIDO, ESTÁ, BIEN, SÍ, DALE"];
+whowords[23] = ["OTRA", "DALE, RÁPIDO, BIEN, SÍ, BUENO, ESTÁ, ÉSTA, YA ESTÁ, ¿SEGURO?, OK, NO SÉ, ¿DÓNDE?, ¿CUÁL?, OTRA"];
+whowords[24] = ["BIEN", "SÍ, RÁPIDO, ¿CUÁL?, BUENO, YA ESTÁ, DALE, BIEN, ¿SEGURO?, OTRA, ¿DÓNDE?, ESTÁ, ÉSTA, NO SÉ, OK"];
+whowords[25] = ["YA ESTÁ", "¿DÓNDE?, NO SÉ, OTRA, ¿CUÁL?, OK, ESTÁ, DALE, SÍ, ÉSTA, BIEN, YA ESTÁ, RÁPIDO, BUENO, ¿SEGURO?"];
+whowords[26] = ["DALE", "¿DÓNDE?, OTRA, ¿SEGURO?, ÉSTA, OK, YA ESTÁ, RÁPIDO, ESTÁ, DALE, NO SÉ, SÍ, BIEN, BUENO, ¿CUÁL?"];
+whowords[27] = ["¿SEGURO?", "ÉSTA, BIEN, NO SÉ, ESTÁ, YA ESTÁ, OTRA, ¿CUÁL?, SÍ, RÁPIDO, OK, ¿SEGURO?, DALE, ¿DÓNDE?, BUENO"];
+
+// [From Which Stage, "p"osition or "l"abel, The number] (-1 if not used)
+memory_press = new Array();
+memory_press[0] = new Array([-1,"p",1],[-1,"p",1],[-1,"p",2],[-1,"p",3]);
+memory_press[1] = new Array([-1,"l",3],[0,"p",-1],[-1,"p",0],[0,"p",-1]);
+memory_press[2] = new Array([1,"l",-1],[0,"l",-1],[-1,"p",2],[-1,"l",3]);
+memory_press[3] = new Array([0,"p",-1],[-1,"p",0],[1,"p",-1],[1,"p",-1]);
+memory_press[4] = new Array([0,"l",-1],[1,"l",-1],[3,"l",-1],[2,"l",-1]);
+
+// [Code (0=dot, 1=dash)] = Letter
+morse_code = new Array();
+morse_code["01"] = "a";
+morse_code["1000"] = "b";
+morse_code["1010"] = "c";
+morse_code["100"] = "d";
+morse_code["0"] = "e";
+morse_code["0010"] = "f";
+morse_code["110"] = "g";
+morse_code["0000"] = "h";
+morse_code["00"] = "i";
+morse_code["0111"] = "j";
+morse_code["101"] = "k";
+morse_code["0100"] = "l";
+morse_code["11"] = "m";
+morse_code["10"] = "n";
+morse_code["111"] = "o";
+morse_code["0110"] = "p";
+morse_code["1101"] = "q";
+morse_code["010"] = "r";
+morse_code["000"] = "s";
+morse_code["1"] = "t";
+morse_code["001"] = "u";
+morse_code["0001"] = "v";
+morse_code["011"] = "w";
+morse_code["1001"] = "x";
+morse_code["1011"] = "y";
+morse_code["1100"] = "z";
+
+// [Word] = Frequency
+morse_frequencies = new Array();
+morse_frequencies["trenes"] = "3.600 MHz";
+morse_frequencies["vuelta"] = "3.552 MHz";
+morse_frequencies["tabla"] = "3.565 MHz";
+morse_frequencies["resta"] = "3.535 MHz";
+morse_frequencies["tronco"] = "3.572 MHz";
+morse_frequencies["bomba"] = "3.575 MHz";
+morse_frequencies["llaves"] = "3.555 MHz";
+morse_frequencies["hongos"] = "3.515 MHz";
+morse_frequencies["trato"] = "3.542 MHz";
+morse_frequencies["freno"] = "3.505 MHz";
+morse_frequencies["lentes"] = "3.522 MHz";
+morse_frequencies["santos"] = "3.582 MHz";
+morse_frequencies["senso"] = "3.592 MHz";
+morse_frequencies["volar"] = "3.545 MHz";
+morse_frequencies["biela"] = "3.532 MHz";
+morse_frequencies["ratas"] = "3.595 MHz";
+
+// Complicated Wires responses
+cw_restext = new Array();
+cw_restext[0] = "Corta el alambre.";
+cw_restext[1] = "No corte el alambre.";
+cw_restext[2] = "Corte el cable si el último dígito del número de serie es par.";
+cw_restext[3] = "Corta el cable si la bomba tiene un puerto paralelo.";
+cw_restext[4] = "Corta el cable si la bomba tiene dos o más baterías.";
+
+// [Matrix of possible outcomes] = Outcome as listed above
+cw_res = new Array();
+cw_res["0000"] = 0;	// Nothing
+cw_res["0001"] = 1;	// LED
+cw_res["0010"] = 0;	// Star
+cw_res["0011"] = 4;	// Star, LED
+cw_res["0100"] = 2;	// Azul
+cw_res["0101"] = 3;	// Azul, LED
+cw_res["0110"] = 1;	// Azul, Star
+cw_res["0111"] = 3;	// Azul, Star, LED
+cw_res["1000"] = 2;	// Rojo
+cw_res["1001"] = 4;	// Rojo, LED
+cw_res["1010"] = 0;	// Rojo, Star
+cw_res["1011"] = 4;	// Rojo, Star, LED
+cw_res["1100"] = 2;	// Rojo, Azul
+cw_res["1101"] = 2;	// Rojo, Azul, LED
+cw_res["1110"] = 3;	// Rojo, Azul, Star
+cw_res["1111"] = 1;	// Rojo, Azul, Star, LED
+
+// [Rojo, Azul, Black] - 1 cut, 0 don't cut.
+wire_sequences = new Array();
+wire_sequences[0] = new Array([0,0,1],[0,1,0],[1,1,1]);
+wire_sequences[1] = new Array([0,1,0],[1,0,1],[1,0,1]);
+wire_sequences[2] = new Array([1,0,0],[0,1,0],[0,1,0]);
+wire_sequences[3] = new Array([1,0,1],[1,0,0],[1,0,1]);
+wire_sequences[4] = new Array([0,1,0],[0,1,0],[0,1,0]);
+wire_sequences[5] = new Array([1,0,1],[0,1,1],[0,1,1]);
+wire_sequences[6] = new Array([1,1,1],[0,0,1],[1,1,0]);
+wire_sequences[7] = new Array([1,1,0],[1,0,1],[0,0,1]);
+wire_sequences[8] = new Array([0,1,0],[1,0,0],[0,0,1]);
+
+// [First, Circle] [Second, Circle] (x,y)
+// ["Maze Matrix"] - Up, right, down, left, 0 = impassable, 1 = passable.
+mazes = new Array();
+mazes[0] = new Array([0,1],[5,2],[["0110","0101","0011","0110","0101","0001"],["1010","0110","1001","1100","0101","0011"],["1010","1100","0011","0110","0101","1011"],["1010","0100","1101","1001","0100","1011"],["1110","0101","0011","0110","0001","1010"],["1100","0001","1100","1001","0100","1001"]]);
+mazes[1] = new Array([1,3],[4,1],[["0100","0111","0001","0110","0111","0001"],["0110","1001","0110","1001","1100","0011"],["1010","0110","1001","0110","0101","1011"],["1110","1001","0110","1001","0010","1010"],["1010","0010","1010","0110","1001","1010"],["1000","1100","1001","1100","0101","1001"]]);
+mazes[2] = new Array([3,3],[5,3],[["0110","0101","0011","0010","0110","0011"],["1000","0010","1010","1100","1001","1010"],["0110","1011","1010","0110","0011","1010"],["1010","1010","1010","1010","1010","1010"],["1010","1100","1001","1010","1010","1010"],["1100","0101","0101","1001","1100","1001"]]);
+mazes[3] = new Array([0,0],[0,3],[["0110","0011","0100","0101","0101","0011"],["1010","1010","0110","0101","0101","1011"],["1010","1100","1001","0110","0001","1010"],["1010","0100","0101","1101","0101","1011"],["1110","0101","0101","0101","0011","1010"],["1100","0101","0001","0100","1001","1000"]]);
+mazes[4] = new Array([4,2],[3,5],[["0100","0101","0101","0101","0111","0011"],["0110","0101","0101","0111","1001","1000"],["1110","0011","0100","1001","0110","0011"],["1010","1100","0101","0011","1000","1010"],["1010","0110","0101","1101","0001","1010"],["1000","1100","0101","0101","0101","1001"]]);
+mazes[5] = new Array([4,0],[2,4],[["0010","0110","0011","0100","0111","0011"],["1010","1010","1010","0110","1001","1010"],["1110","1001","1000","1010","0110","1001"],["1100","0011","0110","1011","1010","0010"],["0110","1001","1000","1010","1100","1011"],["1100","0101","0101","1001","0100","1001"]]);
+mazes[6] = new Array([1,0],[1,5],[["0110","0101","0101","0011","0110","0011"],["1010","0110","0001","1100","1001","1010"],["1100","1001","0110","0001","0110","1001"],["0110","0011","1110","0101","1001","0010"],["1010","1000","1100","0101","0011","1010"],["1100","0101","0101","0101","1101","1001"]]);
+mazes[7] = new Array([3,0],[2,3],[["0010","0110","0101","0011","0110","0011"],["1110","1101","0001","1100","1001","1010"],["1010","0110","0101","0101","0011","1010"],["1010","1100","0011","0100","1101","1001"],["1010","0010","1100","0101","0101","0001"],["1100","1101","0101","0101","0101","0001"]]);
+mazes[8] = new Array([2,1],[0,4],[["0010","0110","0101","0101","0111","0011"],["1010","1010","0110","0001","1010","1010"],["1110","1101","1001","0110","1001","1010"],["1010","0010","0110","1001","0100","1011"],["1010","1010","1010","0110","0011","1000"],["1100","1001","1100","1001","1100","0001"]]);
+
+// Maze path outline codes. Creates dots between squares. 0=path moves up, 1=right, 2=down, 3=left
+maze_bs = new Array();
+maze_bs[0] = "0 -9px 0 -3px #7799BB,0 -16px 0 -3px #7799BB,0 -23px 0 -3px #7799BB";
+maze_bs[1] = "9px 0 0 -3px #7799BB,16px 0 0 -3px #7799BB,23px 0 0 -3px #7799BB";
+maze_bs[2] = "0 9px 0 -3px #7799BB,0 16px 0 -3px #7799BB,0 23px 0 -3px #7799BB";
+maze_bs[3] = "-9px 0 0 -3px #7799BB,-16px 0 0 -3px #7799BB,-23px 0 0 -3px #7799BB";
+
+passwords = [
+"abajo","altar","bajar","bomba","bueno","cable","cerca",
+"corto","delta","donde","estar","falta","gomas","grasa",
+"hogar","hueso","listo","lugar","magia","miedo","mundo",
+"nunca","otros","pasar","pasos","perca","plata","punto",
+"queso","ronda","salto","suena","tasar","traba","valor"];
+
+// 0=off, 1=on
+knob_config = new Array();
+knob_config[0] = ["001011111101","101010011011"];	// Up
+knob_config[1] = ["101111111010","101100111010"];	// Right
+knob_config[2] = ["011001111101","101010010001"];	// Down
+knob_config[3] = ["000010100111","000010000110"];	// Left
+
+// [Match Mode] = [List of knob LEDs to check]
+knob_modes = new Array();
+knob_modes[0] = [0,1,10,11];			// Minimal
+knob_modes[1] = [0,1,2,6,7,8];			// Left Side
+knob_modes[2] = [3,4,5,9,10,11];		// Right Side
+
+bomb_batteries = -1;
+bomb_parallel = -1;
+bomb_strikes = 0;
+bomb_serial_odd = -1;
+bomb_serial_vowel = -1;
+bomb_lit_frk = -1;
+bomb_lit_car = -1;
+
+wires = new Array();
+button_selected = new Array(0,0);
+symbols_selected = new Array(-1,-1,-1,-1);
+simon_selected = new Array();
+who_selected = new Array(-1,-1);
+who_mode = 0;
+
+memory_pressed = new Array();
+memory_pressed[0] = new Array(-1,-1);
+memory_pressed[1] = new Array(-1,-1);
+memory_pressed[2] = new Array(-1,-1);
+memory_pressed[3] = new Array(-1,-1);
+memory_pressed[4] = new Array(-1,-1);
+memory_stage = new Array();
+memory_stage[0] = new Array(-1,-1,-1,-1,-1);
+memory_stage[1] = new Array(-1,-1,-1,-1,-1);
+memory_stage[2] = new Array(-1,-1,-1,-1,-1);
+memory_stage[3] = new Array(-1,-1,-1,-1,-1);
+memory_stage[4] = new Array(-1,-1,-1,-1,-1);
+memory_step = 0;
+
+morse_selected = "";
+morse_pulsed = "";
+morse_startswith = -1;
+morse_consecutive = new Array(0,0,0,0,0);
+
+sequence_selected = new Array(-1,-1,-1);
+
+maze_startloc = new Array(-1,-1);
+maze_endloc = new Array(-1,-1);
+maze_selected = -1;
+maze_displaymode = 0;
+
+knob_matchmode = 0;
+knob_selected = "000000000000";
+
+
+
+
+
+
+
+
+
+
+function showpopup(txt,onoff) {
+  if (typeof(txt) == "undefined" || typeof(onoff) == "undefined") {
+    txt = "";
+    onoff = false;
+  }
+  var bdy = document.getElementsByTagName('body').item(0);
+  var v = document.getElementById('_ppd');
+  if (v) bdy.removeChild(v);
+  var i = document.createElement('div');
+  i.id = "_ppd";
+  i.className = "popupinfo";
+  i.style.left = (document.mx+16)+"px";
+  i.style.top = (document.my)+"px";
+  i.innerHTML = txt;
+  if (onoff) void(bdy.appendChild(i));
+}
+
+function closepopups() {
+  showpopup();
+  maze_popup();
+}
+
+function smoothscroll(a,b) {
+  if (typeof(document.sst) == "undefined") document.sst = "";
+  clearTimeout(document.sst);
+  var chk = document.documentElement.scrollTop,temp = Math.abs((document.documentElement.scrollTop-a)*0.1);
+  if (temp < 2) temp = 2;
+  if (a > document.documentElement.scrollTop) {
+    if ((a-document.documentElement.scrollTop) < temp) temp = (a-document.documentElement.scrollTop);
+    document.documentElement.scrollTop += temp;
+  }
+  else {
+    if ((document.documentElement.scrollTop-a) < temp) temp = (document.documentElement.scrollTop-a);
+    document.documentElement.scrollTop -= temp;
+  }
+  if (a != document.documentElement.scrollTop && document.documentElement.scrollTop != chk) document.sst = setTimeout("smoothscroll("+a+","+b+");",10);
+}
+
+function showhide_module(_id) {
+  _id = document.getElementById(_id);
+  if (_id) {
+    if (_id.className == "module") hide_module(_id.id);
+    else show_module(_id.id);
+  }
+}
+
+function show_module(_id,skipScroll) {
+  if (typeof(skipScroll) == "undefined") skipScroll = false;
+  _id = document.getElementById(_id);
+  if (_id) {
+    _id.className = "module";
+    if (!skipScroll) {
+      smoothscroll((_id.offsetTop-16));
+    }
+  }
+  saveoptions();
+}
+
+function hide_module(_id) {
+  _id = document.getElementById(_id);
+  if (_id) {
+    _id.className = "module_hide";
+  }
+  saveoptions();
+}
+
+function show_all(a) {
+  if (typeof(a) == "undefined") a = 0;
+  var i,v = document.getElementsByTagName('div');
+  for (i in v) {
+    if (String(v[i].id).substr(0,7) == "module_") {
+      if (a) hide_module(v[i].id);
+      else show_module(v[i].id,true);
+    }
+  }
+}
+
+function chart_toggle(a) {
+  if (document.getElementById("module_"+a) && document.getElementById("chart_"+a) && document.getElementById(a+"_main")) {
+    if (document.getElementById("chart_"+a).className == "showcontent") chart_close(a);
+    else chart_open(a);
+  }
+}
+
+function chart_open(a) {
+  if (document.getElementById("module_"+a) && document.getElementById("chart_"+a) && document.getElementById(a+"_main") && document.getElementById("chart_"+a).className == "hidecontent") {
+    document.getElementById("module_"+a).style.width = (240+(240*chartsizes[a][1])+(8*chartsizes[a][1]))+"px";
+    document.getElementById("chart_"+a).className = "showcontent";
+    document.getElementById(a+"_main").className = "hidecontent";
+  }
+  saveoptions();
+}
+
+function chart_close(a) {
+  if (document.getElementById("module_"+a) && document.getElementById("chart_"+a) && document.getElementById(a+"_main") && document.getElementById("chart_"+a).className == "showcontent") {
+    document.getElementById("module_"+a).style.width = (240+(240*chartsizes[a][0])+(8*chartsizes[a][0]))+"px";
+    document.getElementById("chart_"+a).className = "hidecontent";
+    document.getElementById(a+"_main").className = "showcontent";
+  }
+  saveoptions();
+}
+
+function show_all_charts(a) {
+  if (typeof(a) == "undefined") a = 0;
+  var i;
+  for (i in chartsizes) {
+    if (a) chart_close(i);
+    else if (document.getElementById('module_'+i).className == "module") chart_open(i);
+  }
+}
+
+function setup() {
+  loadoptions();
+  resetoptions();
+  wires_reset();
+  button_reset();
+  symbol_reset();
+  simon_reset();
+  who_reset();
+  memory_reset();
+  morse_reset();
+  cw_reset();
+  sequence_reset();
+  maze_reset();
+  password_reset();
+  needy_reset();
+  document.getElementById('main_center').style.display = 'block';
+}
+
+function resetoptions() {
+  bomb_batteries = -1;
+  bomb_parallel = -1;
+  bomb_strikes = 0;
+  bomb_serial_odd = -1;
+  bomb_serial_vowel = -1;
+  bomb_lit_frk = -1;
+  bomb_lit_car = -1;
+  updateoptions();
+}
+
+function updateoptions(a,b) {
+  var i,v,temp;
+  if (typeof(a) != "undefined" && typeof(b) != "undefined" && !isNaN(b)) {
+    b = Math.floor(b);
+    if (b < -1) b = -1;
+    if (a == "batteries") {
+      if (b > 3) b = 3;
+      bomb_batteries = b;
+    }
+    if (a == "strikes") {
+      if (b < 0) b = 0;
+      if (b > 2) b = 2;
+      bomb_strikes = b;
+    }
+    if (b > 1) b = 1;
+    if (a == "parallel") bomb_parallel = b;
+    if (a == "odd") bomb_serial_odd = b;
+    if (a == "vowel") bomb_serial_vowel = b;
+    if (a == "litfrk") bomb_lit_frk = b;
+    if (a == "litcar") bomb_lit_car = b;
+  }
+
+  v = document.getElementsByTagName('div');
+  for (i in v) {
+    if (String(v[i].id).substr(0,3) == "op_") v[i].className = "optionbox";
+  }
+
+  temp = (bomb_batteries == -1) ? "u": bomb_batteries;
+  document.getElementById('op_bat_'+temp).className = "optionbox_selected";
+  document.getElementById('op_batb_'+temp).className = "optionbox_selected";
+  document.getElementById('op_batcw_'+temp).className = "optionbox_selected";
+  document.getElementById('op_batcwc_'+temp).className = "optionbox_selected";
+  temp = (bomb_parallel == -1) ? "u": bomb_parallel;
+  document.getElementById('op_par_'+temp).className = "optionbox_selected";
+  document.getElementById('op_parcw_'+temp).className = "optionbox_selected";
+  document.getElementById('op_parcwc_'+temp).className = "optionbox_selected";
+  temp = (bomb_serial_odd == -1) ? "u": bomb_serial_odd;
+  document.getElementById('op_odd_'+temp).className = "optionbox_selected";
+  document.getElementById('op_oddw_'+temp).className = "optionbox_selected";
+  document.getElementById('op_oddcw_'+temp).className = "optionbox_selected";
+  document.getElementById('op_oddcwc_'+temp).className = "optionbox_selected";
+  temp = (bomb_serial_vowel == -1) ? "u": bomb_serial_vowel;
+  document.getElementById('op_vowel_'+temp).className = "optionbox_selected";
+  document.getElementById('op_vowelss_'+temp).className = "optionbox_selected";
+  temp = (bomb_lit_frk == -1) ? "u": bomb_lit_frk;
+  document.getElementById('op_litfrk_'+temp).className = "optionbox_selected";
+  document.getElementById('op_litfrkb_'+temp).className = "optionbox_selected";
+  temp = (bomb_lit_car == -1) ? "u": bomb_lit_car;
+  document.getElementById('op_litcar_'+temp).className = "optionbox_selected";
+  document.getElementById('op_litcarb_'+temp).className = "optionbox_selected";
+  document.getElementById('op_strike_'+bomb_strikes).className = "optionbox_selected";
+  document.getElementById('op_strikess_'+bomb_strikes).className = "optionbox_selected";
+
+  document.getElementById('op_knobmatch_'+knob_matchmode).className = "optionbox_selected";
+  document.getElementById('who_changemode').checked = (who_mode) ? true: false;
+  document.getElementById('maze_changexy').checked = (maze_displaymode) ? true: false;
+
+  updatewires();
+  button_update();
+  simon_update();
+  cw_update();
+}
+
+function loadoptions() {
+  if (document.cookie != "" || (!isIE && typeof(localStorage) !== "undefined" && localStorage.getItem("ktaec"))) {
+    var temp,i,x;
+    c = (document.cookie == "") ? ["ktaec="+localStorage.getItem("ktaec")]: String(document.cookie).split("; ");
+    for (i in c) {
+      if (c[i].substr(0,6) == "ktaec=") {
+        c = String(c[i]).split("=");
+        c = decodeURIComponent(c[1]);
+        if (c.indexOf("@") != -1) {
+          c = c.split("@");
+          temp = c[0].split(":");
+          if (typeof(temp[0]) != "undefined" && !isNaN(temp[0]) && Number(temp[0]) >= 0 && Number(temp[0]) <= 1) who_mode = Math.floor(temp[0]);
+          if (typeof(temp[1]) != "undefined" && !isNaN(temp[1]) && Number(temp[1]) >= 0 && Number(temp[1]) <= 1) maze_displaymode = Math.floor(temp[1]);
+          if (typeof(temp[2]) != "undefined" && !isNaN(temp[2]) && Number(temp[2]) >= 0 && Number(temp[2]) <= 2) knob_matchmode = Math.floor(temp[2]);
+          temp = c[1].split(":");
+          for (i in temp) {
+            if (x = document.getElementById("module_"+temp[i])) x.className = "module";
+          }
+          if (c.length >= 3) {
+            temp = c[2].split(":");
+            for (i in temp) {
+              if (typeof(chartsizes[temp[i]]) != "undefined") chart_open(temp[i]);
+            }
+          }
+        }
+        break;
+      }
+    }
+  }
+}
+
+function saveoptions() {
+  var cstore,temp = "",temp2 = "",temp3,x,i = document.getElementsByTagName('div');
+  for (x in i) {
+    if (String(i[x].id).substr(0,7) == "module_" && i[x].className == "module") {
+      temp += (temp != "") ? ":": "";
+      temp += String(i[x].id).substr(7);
+    }
+    else if (String(i[x].id).substr(0,6) == "chart_" && i[x].className == "showcontent") {
+      temp2 += (temp2 != "") ? ":": "";
+      temp2 += String(i[x].id).substr(6);
+    }
+  }
+  temp3 = new Date();
+  temp3.setTime(temp3.getTime()+31536000000);
+  cstore = encodeURIComponent(who_mode+":"+maze_displaymode+":"+knob_matchmode+"@"+temp+"@"+temp2);
+  document.cookie = "ktaec="+cstore+";expires="+temp3.toUTCString()+";path=/";
+  if (!isIE && typeof(localStorage) != "undefined") localStorage.setItem("ktaec",cstore);
+}
+
+
+
+
+
+
+
+
+
+
+function wires_reset() {
+  wires = new Array();
+  updatewires();
+}
+
+function addwire(a) {
+  if (typeof(a) != "undefined" && typeof(wirecolors[a]) != "undefined") {
+    if (wires.length < 6) {
+      wires[wires.length] = a;
+    }
+  }
+  updatewires();
+}
+
+function removewire(a) {
+  if (typeof(a) != "undefined" && typeof(wires[a]) != "undefined") {
+    wires.splice(a,1);
+  }
+  updatewires();
+}
+
+function updatewires() {
+  var i,res = wires.length;
+  for (i in wires) {
+    res += '<div class="wireline" style="background:'+wirecolors[wires[i]][1]+';" title="Haga clic para quitar el cable #'+(Number(i)+1)+' ('+wirecolors[wires[i]][0]+')" onclick="removewire('+i+');"></div>';
+  }
+  document.getElementById('wire_results').innerHTML = res;
+
+  res = "";
+  if (wires.length >= 3) {
+    res = '<span class="b">Acción:</span> ';
+    if (wires.length == 3) {
+      if (countwires(2) == 0) res += "Corta el segundo cable.";
+      else if (wires[2] == 3) res += "Corta el último cable.";
+      else if (countwires(1) == 2) {
+        if (wires[2] == 1) res += "Corta el último cable.";
+        else res += "Corta el segundo cable.";
+      }
+      else res += "Corta el último cable.";
+    }
+    else if (wires.length == 4) {
+      if (countwires(2) >= 2 && bomb_serial_odd == -1) res += "¿El último dígito del número de serie es par o impar?";
+      else if (countwires(2) >= 2 && bomb_serial_odd == 1) {
+        if (wires[3] == 2) res += "Corta el último cable.";
+        else if (wires[2] == 2) res += "Corta el tercer cable.";
+        else if (wires[1] == 2) res += "Corta el segundo cable.";
+      }
+      else if ((countwires(2) == 0 && wires[3] == 4) || countwires(1) == 1) res += "Cut the first wire.";
+      else if (countwires(4) > 1) res += "Corta el último cable.";
+      else res += "Corta el segundo cable.";
+    }
+    else if (wires.length == 5) {
+      if (wires[4] == 0 && bomb_serial_odd == -1) res += "¿El último dígito del número de serie es par o impar?";
+      else if (wires[4] == 0 && bomb_serial_odd == 1) res += "Corta el cuarto cable.";
+      else if (countwires(2) == 1 && countwires(4) >= 2) res += "Corta el primer alambre.";
+      else if (countwires(0) == 0) res += "Corta el segundo cable.";
+      else res += "Corta el primer alambre.";
+    }
+    else if (wires.length == 6) {
+      if (countwires(4) == 0 && bomb_serial_odd == -1) res += "¿El último dígito del número de serie es par o impar?";
+      else if (countwires(4) == 0 && bomb_serial_odd == 1) res += "Corta el tercer cable.";
+      else if (countwires(4) == 1 && countwires(3) >= 2) res += "Corta el cuarto cable.";
+      else if (countwires(2) == 0) res += "Cut the last wire.";
+      else res += "Corta el cuarto cable.";
+    }
+    else res += "Retire algunos cables para tener entre 3 y 6.";
+  }
+  document.getElementById('wire_action').innerHTML = res;
+}
+
+function countwires(a) {
+  var i,cnt = 0;
+  for (i in wires) {
+    if (wires[i] == a) cnt++;
+  }
+  return cnt;
+}
+
+
+
+
+
+
+
+
+
+
+function button_reset() {
+  button_selected = new Array(0,0);
+  button_update();
+}
+
+function button_set(a,b) {
+  if (a == "color" && typeof(b) != "undefined" && typeof(buttoncolors[b]) != "undefined") button_selected[0] = b;
+  else if (a == "label" && typeof(b) != "undefined" && typeof(buttonlabels[b]) != "undefined") button_selected[1] = b;
+  button_update();
+}
+
+function button_update() {
+  var pres,res="",i,v = document.getElementById('bigbutton');
+  if (typeof(buttoncolors[button_selected[0]]) != "undefined" && typeof(buttonlabels[button_selected[1]]) != "undefined") {
+    v.style.backgroundColor = buttoncolors[button_selected[0]][1];
+    v.innerHTML = buttonlabels[button_selected[1]];
+  }
+  else {
+    v.style.backgroundColor = "#FF00FF";
+    v.innerHTML = "Unknown";
+  }
+
+  pres = 'presione y mantenga.<br>';
+  for (i in buttoncolors) {
+    pres += '<div class="buttonres" style="background:'+buttoncolors[i][1]+';" title="'+buttoncolors[i][0]+'"></div> Suelte en '+buttoncolors[i][2]+'.<br>';
+  }
+
+  res = '<span class="b">Acciones:</span> ';
+  if (button_selected[0] == 0 && button_selected[1] == 0) res += pres;
+  else if (button_selected[1] == 1 && bomb_batteries == -1) res += "¿Cuántas baterías tiene la bomba?";
+  else if (button_selected[1] == 1 && bomb_batteries > 1) res += "Press and immediately release.";
+  else if (button_selected[0] == 2 && bomb_lit_car == -1) res += "¿Hay un indicador encendido en la bomba con la etiqueta 'CAR'?";
+  else if (button_selected[0] == 2 && bomb_lit_car == 1) res += pres;
+  else if (bomb_batteries == -1) res += "¿Cuántas baterías tiene la bomba?";
+  else if (bomb_batteries > 2 && bomb_lit_frk == -1) res += "¿Hay un indicador encendido en la bomba con la etiqueta 'FRK'?";
+  else if (bomb_batteries > 2 && bomb_lit_frk == 1) res += "Presione y suelte inmediatamente.";
+  else if (button_selected[0] == 3) res += pres;
+  else if (button_selected[0] == 1 && button_selected[1] == 2) res +=  "Presione y suelte inmediatamente.";
+  else res += pres;
+
+  document.getElementById('button_results').innerHTML = res;
+}
+
+
+
+
+
+
+
+
+
+
+function symbol_reset() {
+  symbols_selected = new Array(-1,-1,-1,-1);
+  symbol_update();
+}
+
+function symbol_remove(a) {
+  if (typeof(a) != "undefined" && typeof(symbols_selected[a]) != "undefined" && symbols_selected[a] != -1) {
+    symbols_selected.splice(a,1);
+    symbols_selected.push(-1);
+  }
+  symbol_update();
+}
+
+function symbol_add(a) {
+  var i;
+  if (typeof(a) != "undefined" && typeof(symbols[a]) != "undefined") {
+    if (symbols_selected.indexOf(a) != -1) {
+      symbol_remove(symbols_selected.indexOf(a));
+      return;
+    }
+    if (symbols_selected[3] != -1) return;
+    for (i in symbols_selected) {
+      if (symbols_selected[i] == -1) {
+        symbols_selected[i] = a;
+        break;
+      }
+    }
+  }
+  symbol_update();
+}
+
+function symbol_update() {
+  var res,temp,i,x,v = document.getElementsByTagName('div');
+  for (i in v) {
+    if (String(v[i].id).substr(0,11) == "symbol_sel_") v[i].className = "symbolbox_off";
+  }
+  var res = new Array();
+  for (i in symbol_columns) {
+    temp = true;
+    for (x in symbols_selected) {
+      if (symbols_selected[x] == -1) break;
+      if (symbol_columns[i].indexOf(symbols_selected[x]) == -1) {
+        temp = false;
+        break;
+      }
+    }
+    if (temp) res[res.length] = i;
+  }
+  for (i in res) {
+    for (x in symbol_columns[res[i]]) document.getElementById('symbol_sel_'+symbol_columns[res[i]][x]).className = "symbolbox";
+  }
+
+  if (res.length == 0) temp = '<span class="error">Los símbolos que seleccionó no coinciden con ninguna columna.</span>';
+  else if (res.length == 1) {
+    temp = new Array();
+    for (i in symbol_columns[res[0]]) {
+      if (symbols_selected.indexOf(symbol_columns[res[0]][i]) != -1) temp.push(symbol_columns[res[0]][i]);
+    }
+    while (temp.push(-1) < 4);
+    symbols_selected = temp.slice();
+    temp = "Presione los símbolos en este orden:";
+  }
+  else if (res.length >= 2) temp = "&nbsp;";
+  document.getElementById('symbol_results').innerHTML = temp;
+
+  for (i in symbols_selected) {
+    res = "none";
+    temp = "";
+    if (symbols_selected[i] != -1 && typeof(symbols[symbols_selected[i]]) != "undefined") {
+      res = "url('"+symbols[symbols_selected[i]][1]+"')";
+      temp = "Haga clic para eliminar el "+symbols[symbols_selected[i]][0]+" símbolo";
+    }
+    document.getElementById('symbol_pos_'+i).style.backgroundImage = res;
+    document.getElementById('symbol_pos_'+i).title = temp;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+function simon_reset() {
+  simon_selected = new Array();
+  simon_update();
+}
+
+function simon_remove(a) {
+  if (typeof(a) != "undefined" && typeof(simon_selected[a]) != "undefined") {
+    simon_selected.splice(a,1);
+  }
+  simon_update();
+}
+
+function simon_add(a) {
+  if (typeof(a) != "undefined" && typeof(simoncolors[a]) != "undefined" && simon_selected.length < 6 && bomb_serial_vowel != -1) {
+    simon_selected.push(a);
+  }
+  simon_update();
+}
+
+function simon_update() {
+  var res,i,temp;
+  res = '<table class="simon"><tr><th>Secuencia</th><th>Orden</th></tr>';
+  if (bomb_serial_vowel == -1) res += '<tr><td colspan=2>¿El número de serie tiene una vocal?</td></tr>';
+  else {
+    for (i in simon_selected) {
+      res += '<tr><td style="text-align:left;"><div class="simonbox_small" style="background-color:'+simoncolors[simon_selected[i]][1]+';" title="Click to remove" onclick="simon_remove('+i+');"></div>'+simoncolors[simon_selected[i]][0]+'</td><td class="simon_press" style="background-color:'+simoncolors[simonsequences[String(bomb_serial_vowel)+String(bomb_strikes)][simon_selected[i]]][1]+';">'+simoncolors[simonsequences[String(bomb_serial_vowel)+String(bomb_strikes)][simon_selected[i]]][0]+'</td></tr>';
+    }
+    if (simon_selected.length == 0) {
+      res += '<tr><td colspan=2><span class="i">Ninguna seleccionada</span></td></tr>';
+    }
+  }
+  res += '</table>';
+  document.getElementById('simon_results').innerHTML = res;
+}
+
+
+
+
+
+
+
+
+
+
+function who_reset() {
+  who_selected = new Array(-1,-1);
+  who_update();
+}
+
+function who_select(a,b) {
+  if (typeof(a) != "undefined" && typeof(b) != "undefined" && (a == "label" || a == "word")) {
+    if (a == "label") {
+      if (typeof(wholabels[b]) != "undefined") {
+        who_selected[0] = b;
+      }
+    }
+    else {
+      if (typeof(whowords[b]) != "undefined") {
+        who_selected[1] = b;
+      }
+    }
+  }
+  who_update();
+}
+
+function who_update() {
+  var i,res,temp,temp2;
+  chartsizes['who'][0] = (who_mode) ? 0: 1;
+  if (document.getElementById('chart_who').className == "hidecontent") document.getElementById('module_who').style.width = (240+(240*chartsizes['who'][0])+(8*chartsizes['who'][0]))+"px";
+  document.getElementById('who_label_span').style.display = 'none';
+  document.getElementById('who_word_span').style.display = 'none';
+  document.getElementById('who_label_span_v').style.display = 'none';
+  document.getElementById('who_word_span_v').style.display = 'none';
+  document.getElementById('who_results').innerHTML = '';
+  document.getElementById('who_label').innerHTML = '[Select Label]';
+  for (i in whopositions) document.getElementById('who_which_'+i).innerHTML = '&nbsp;';
+
+  if (who_selected[0] == -1) {
+    if (who_mode) document.getElementById('who_label_span_v').style.display = 'block';
+    else document.getElementById('who_label_span').style.display = 'block';
+  }
+  else {
+    document.getElementById('who_label').innerHTML = wholabels[who_selected[0]][0];
+    document.getElementById('who_which_'+wholabels[who_selected[0]][1]).innerHTML = '<div class="who_pos"></div>';
+    document.getElementById('who_word_position').innerHTML = whopositions[wholabels[who_selected[0]][1]];
+    document.getElementById('who_word_position_v').innerHTML = whopositions[wholabels[who_selected[0]][1]];
+    if (who_selected[1] == -1) {
+      if (who_mode) document.getElementById('who_word_span_v').style.display = 'block';
+      else document.getElementById('who_word_span').style.display = 'block';
+    }
+    else {
+      document.getElementById('who_which_'+wholabels[who_selected[0]][1]).innerHTML = '<div class="who_button_i" onclick="who_selected[1] = -1;who_update();" title="Click to go back to word selection">'+whowords[who_selected[1]][0]+'</div>';
+      temp = whowords[who_selected[1]][1];
+      if (temp.indexOf(whowords[who_selected[1]][0]+",") != -1) temp = temp.substr(0,(temp.indexOf(whowords[who_selected[1]][0]+",")+whowords[who_selected[1]][0].length));
+      temp2 = temp.split(", ");
+      res = '<span class="b">Acción:</span> Presione el primer botón que coincida con una palabra de esta lista:<br><table class="whores"><tr>';
+      for (i in temp2) {
+        if (who_mode == 0 && i != 0 && (i%7) == 0) res += '</tr><tr>';
+        else if (who_mode == 1 && i != 0) res += '</tr><tr>';
+        res += '<td onclick="if (!this.cL) { this.style.color=\'#CCCCCC\';this.cL=true; } else { this.style.color=\'#000000\';this.cL=false; }">'+temp2[i]+'</td>';
+      }
+      res += '</tr></table>';
+      if (temp2.length == 1) res = '<span class="b">Acción:</span> Presione el botón etiquetado <span class="b">'+whowords[who_selected[1]][0]+'</span>.';
+      document.getElementById('who_results').innerHTML = res;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+function memory_checknum(a) {
+  var v,i,temp;
+  if (typeof(a) != "undefined") {
+    if (event.type == "keyup" && event.which == 13) {
+      memory_next();
+      return;
+    }
+    if (isNaN(a.value) || a.value === "") a.value = "";
+    else if (a.value < 1) a.value = 1;
+    else if (a.value > 4) a.value = 4;
+    if (a.id == 'memory_inp_stage') memory_stage[memory_step][0] = (Number(a.value)-1);
+    else if (!isNaN(String(a.id).substr(-1))) {
+      v = (Number(String(a.id).substr(-1))+1);
+      if (v >= 1 && v <= 4) {
+        if (a.value !== "") {
+          for (i=1;i<=4;i++) {
+            if (i != v && memory_stage[memory_step][i] == (Number(a.value)-1)) {
+              memory_stage[memory_step][i] = memory_stage[memory_step][v];
+              break;
+            }
+          }
+        }
+        memory_stage[memory_step][v] = (Number(a.value)-1);
+      }
+    }
+    if (event.type == "keyup" && (event.which == 8 || event.which == 37 || event.which == 46)) {
+      if (a.id == 'memory_inp_number_0') document.getElementById('memory_inp_stage').focus();
+      else if (!isNaN(String(a.id).substr(-1)) && String(a.id).substr(-1) != 0) document.getElementById('memory_inp_number_'+(Number(String(a.id).substr(-1))-1)).focus();
+    }
+    else if (event.type == "keyup" && (a.value != "" || event.which == 39) && event.which != 9 && event.which != 13) {
+      if (a.id == 'memory_inp_stage') document.getElementById('memory_inp_number_0').focus();
+      else if (!isNaN(String(a.id).substr(-1)) && String(a.id).substr(-1) != 3) document.getElementById('memory_inp_number_'+(Number(String(a.id).substr(-1))+1)).focus();
+    }
+    temp = memory_which(memory_step);
+    if (!temp) temp = new Array(-1,-1);
+    memory_pressed[memory_step] = temp.slice();
+  }
+  memory_update();
+}
+
+function memory_quick(a,b) {
+  a = (typeof(a) == "undefined" || isNaN(a)) ? 1: Math.floor(a);
+  if (a < 1) a = 1;
+  if (a > 4) a = 4;
+  b = (typeof(b) == "undefined") ? false: b;
+  var i,v;
+  if (b) {
+    for (i=3;i>=0;i--) {
+      v = document.getElementById('memory_inp_number_'+i);
+      if (v.value != "") {
+        v.value = "";
+        memory_checknum(v);
+        return;
+      }
+    }
+    v = document.getElementById('memory_inp_stage');
+    if (v.value != "") {
+      v.value = "";
+      memory_checknum(v);
+      return;
+    }
+    memory_goback();
+  }
+  else {
+    v = document.getElementById('memory_inp_stage');
+    if (v.value == "") {
+      v.value = a;
+      memory_checknum(v);
+      return;
+    }
+    for (i=0;i<=3;i++) {
+      v = document.getElementById('memory_inp_number_'+i);
+      if (v.value == "") {
+        v.value = a;
+        memory_checknum(v);
+        return;
+      }
+    }
+    memory_next();
+  }
+}
+
+function memory_reset() {
+  var i;
+  for (i in memory_stage) {
+    memory_stage[i] = new Array(-1,-1,-1,-1,-1);
+  }
+  for (i in memory_pressed) {
+    memory_pressed[i] = new Array(-1,-1);
+  }
+  memory_step = 0;
+  memory_update();
+}
+
+function memory_goback() {
+  if (memory_step > 0) {
+    memory_pressed[memory_step] = new Array(-1,-1);
+    memory_stage[memory_step] = new Array(-1,-1,-1,-1,-1);
+    memory_step--;
+  }
+  memory_update();
+}
+
+function memory_next() {
+  if (memory_which() && typeof(memory_press[memory_step+1]) != "undefined") {
+    memory_step++;
+    document.getElementById('memory_inp_stage').focus();
+  }
+  memory_update();
+}
+
+function memory_update() {
+  var i,v,temp,res='',t_s,t_a,t_n;
+  for (i in memory_stage[memory_step]) {
+    temp = (memory_stage[memory_step][i] != -1) ? (memory_stage[memory_step][i]+1): "";
+    if (i == 0) document.getElementById('memory_inp_stage').value = temp;
+    else document.getElementById('memory_inp_number_'+(i-1)).value = temp;
+  }
+  for (i in memory_stage) {
+    temp = "";
+    if (i <= memory_step) temp = "memory_lit";
+    v = document.getElementById('memory_inp_stage_'+i);
+    if (v) v.className = temp;
+  }
+  for (i in memory_press[0]) {
+    document.getElementById('memory_inp_number_'+i).className = "";
+  }
+  res = '<span class="b">Stage '+(memory_step+1)+' Acción:</span><br>&nbsp; � ';
+  if (temp = memory_which()) {
+    res += 'Presione el botón etiquetado <span class="b">'+(temp[1]+1)+'</span>.';
+    document.getElementById('memory_inp_number_'+temp[0]).className = "memory_button_selected";
+  }
+  else res = "Ingrese el # de pantalla y la etiqueta de cada botón arriba.";
+
+  document.getElementById('memory_results').innerHTML = res;
+}
+
+function memory_which(a) {
+  if (typeof(a) == "undefined") a = memory_step;
+  if (typeof(memory_stage[a]) == "undefined" || typeof(memory_press[a][memory_stage[a][0]]) == "undefined" || memory_stage[a][0] == -1) return false;
+  var r,temp = memory_press[a][memory_stage[a][0]];
+  r = new Array(-1,-1);
+  if (temp[0] != -1) {
+    if (temp[1] == "p") r = new Array(memory_pressed[temp[0]][0],memory_stage[a][(memory_pressed[temp[0]][0]+1)]);
+    else r = new Array((memory_stage[a].lastIndexOf(memory_pressed[temp[0]][1])-1),memory_pressed[temp[0]][1]);
+  }
+  else {
+    if (temp[1] == "p") r = new Array(temp[2],memory_stage[a][(temp[2]+1)]);
+    else r = new Array((memory_stage[a].lastIndexOf(temp[2])-1),temp[2]);
+  }
+  if (r[0] <= -1 || r[1] <= -1) return false;
+  return r;
+}
+
+
+
+
+
+
+
+
+
+
+function morse_reset() {
+  morse_selected = "";
+  morse_pulsed = "";
+  morse_startswith = -1;
+  morse_consecutive = new Array(0,0,0,0,0);
+  morse_update();
+}
+
+function morse_remove(a) {
+  var i;
+  if (morse_selected.charAt(a)) {
+    if (morse_startswith == a) morse_startswith = -1;
+    else if (morse_startswith > a) morse_startswith--;
+    morse_selected = morse_selected.substring(0,a)+morse_selected.substr((a+1));
+    for (i=(morse_consecutive.length-1);i>=0;i--) {
+      if (!morse_selected.charAt(i+1)) morse_consecutive[i] = 0;
+    }
+  }
+  morse_update();
+}
+
+function morse_clear() {
+  morse_pulsed = "";
+  morse_update();
+}
+
+function morse_add() {
+  if (typeof(morse_code[morse_pulsed]) != "undefined" && morse_selected.length < 6) {
+    morse_selected += morse_code[morse_pulsed];
+    morse_pulsed = "";
+  }
+  morse_update();
+}
+
+function morse_addstart(a) {
+  if (morse_selected.charAt(a)) {
+    if (morse_startswith == a) morse_startswith = -1;
+    else morse_startswith = a;
+  }
+  morse_update();
+}
+
+function morse_addconsecutive(a) {
+  if (typeof(a) != "undefined" && typeof(morse_consecutive[a]) != "undefined" && morse_selected.charAt((a+1))) {
+    morse_consecutive[a] = (morse_consecutive[a] == 1) ? 0: 1;
+  }
+  morse_update();
+}
+
+function morse_pulse(a) {
+  if (morse_pulsed.length < 4 && morse_selected.length < 6) morse_pulsed += a;
+  morse_update();
+}
+
+function morse_unpulse() {
+  if (morse_pulsed.length > 0 && morse_selected.length < 6) morse_pulsed = morse_pulsed.substr(0,(morse_pulsed.length-1));
+  morse_update();
+}
+
+function morse_fromchar(a) {
+  var i,a = a.toLowerCase();
+  for (i in morse_code) if (morse_code[i] == a) return i;
+  return "";
+}
+
+function morse_update() {
+  var i,v,x,temp='',temp2='',temp3;
+  for (i=0;i<morse_pulsed.length;i++) {
+    temp += (morse_pulsed.charAt(i) == "0") ? '<div class="morse_dot_small"></div>': '<div class="morse_dash_small"></div>';
+  }
+  temp += "<br>";
+  if (typeof(morse_code[morse_pulsed]) != "undefined") temp += morse_code[morse_pulsed];
+  else {
+    temp += "&nbsp;";
+    if (morse_pulsed.length != 0) temp2 = 'morse_current_wrong';
+  }
+  document.getElementById('morse_current').innerHTML = temp;
+  document.getElementById('morse_current').className = temp2;
+
+  for (i=0;i<6;i++) {
+    temp = '';
+    temp2 = '';
+    temp3 = '';
+    temp4 = '&nbsp;';
+    v = '';
+    if (morse_selected.charAt(i)) {
+      temp = morse_selected.charAt(i);
+      v = morse_fromchar(temp);
+      temp = "<br>"+temp;
+      for (x=(v.length-1);x>=0;x--) {
+        temp = (v.charAt(x) == "0") ? '<div class="morse_dot_small"></div>'+temp: '<div class="morse_dash_small"></div>'+temp;
+      }
+      temp3 = "&#9650;";
+    }
+    if (morse_startswith == i) {
+      temp2 = "morse_startswith";
+      temp3 = '<div class="morse_tinystart">COMIENZA CON</div>';
+    }
+    if (morse_consecutive[i] == 1) temp4 = "&#8734;";
+
+    document.getElementById('morse_current_'+i).innerHTML = temp;
+    document.getElementById('morse_current_'+i).className = temp2;
+    document.getElementById('morse_currents_'+i).innerHTML = temp3;
+    document.getElementById('morse_currents_'+i).className = temp2;
+    if (i < morse_consecutive.length) document.getElementById('morse_cons_'+i).innerHTML = temp4;
+  }
+
+  temp = "";
+  temp3 = new Array();
+  if (morse_selected != "") {
+    for (i in morse_frequencies) {
+      temp2 = i;
+      for (x=0;x<morse_selected.length;x++) {
+        if (temp2.indexOf(morse_selected.charAt(x)) != -1) {
+          temp2 = temp2.replace(morse_selected.charAt(x),"");
+        }
+      }
+      if (i.length == (temp2.length+morse_selected.length)) temp3.push(i);
+    }
+    if (morse_startswith != -1) {
+      x = new Array();
+      for (i in temp3) {
+        if (temp3[i].charAt(0) == morse_selected.charAt(morse_startswith)) x.push(temp3[i]);
+      }
+      temp3 = x.slice();
+    }
+    x = new Array();
+    for (i in temp3) {
+      for (v in morse_consecutive) {
+        if (morse_consecutive[v] == 1) {
+          temp2 = morse_selected.substr(v,2);
+          if (temp3[i].indexOf(temp2) == -1) {
+            if (morse_startswith == v || morse_selected.charAt(morse_startswith-1) != temp3[i].substr(-1) || morse_selected.charAt(morse_startswith) != temp3[i].charAt(0)) {
+              x.push(i);
+            }
+          }
+        }
+      }
+    }
+    v = new Array();
+    for (i in temp3) {
+      if (x.indexOf(i) == -1) v.push(temp3[i]);
+    }
+    temp3 = v.slice();
+  }
+
+  if (morse_selected == "") temp = 'Agregue letras a la búsqueda haciendo clic en el <span class="b">punto negro</span> y el <span class="b">guión</span>.';
+  else if (temp3.length == 0) temp = '<span class="error">Ninguna palabra contiene estas letras.</span>';
+  else if (temp3.length == 1) temp = '<div class="who_button" style="margin-bottom:8px;" onclick="morse_selected=\''+temp3[0]+'\';morse_startswith=0;morse_consecutive=[0,0,0,0,0];morse_update();">'+String(temp3[0].charAt(0)).toUpperCase()+temp3[0].substr(1)+'</div><br><span class="b">Action:</span> Set the frequency to<br><div class="morse_freq">'+morse_frequencies[temp3[0]]+'</div>';
+  else if (temp3.length <= 4) {
+    temp = 'Hay <span class="b">'+temp3.length+' frecuencias potenciales.</span><br><table style="width:100%;" cellpadding=0 cellspacing=0>';
+    for (i in temp3) {
+      temp += '<tr><td><div class="who_button" onclick="morse_selected=\''+temp3[i]+'\';morse_startswith=0;morse_consecutive=[0,0,0,0,0];morse_update();">'+String(temp3[i].charAt(0)).toUpperCase()+temp3[i].substr(1)+'</div></td><td><div class="morse_freq">'+morse_frequencies[temp3[i]]+'</div></td></tr>';
+    }
+    temp += '</table>';
+  }
+  else temp = '<span class="b">'+temp3.length+' palabras</span> coinciden con estas letras.<br>Agregue más letras o especifique con qué letra comienza la palabra para reducir la búsqueda.';
+
+  document.getElementById('morse_results').innerHTML = temp;
+}
+
+
+
+
+
+
+
+
+
+
+function cw_reset() {
+  document.getElementById("cw_red").checked = false;
+  document.getElementById("cw_blue").checked = false;
+  document.getElementById("cw_star").checked = false;
+  document.getElementById("cw_led").checked = false;
+  cw_update();
+}
+
+function cw_cycle() {
+  var vr = document.getElementById("cw_red");
+  var vb = document.getElementById("cw_blue");
+  if (!vr.checked && !vb.checked) vr.checked = true;
+  else if (vr.checked && !vb.checked) {
+    vr.checked = false;
+    vb.checked = true;
+  }
+  else if (!vr.checked && vb.checked) vr.checked = true;
+  else {
+    vr.checked = false;
+    vb.checked = false;
+  }
+  cw_update();
+}
+
+function cw_wiregraphic(a,b) {
+  if (typeof(cw_res[a]) == "undefined") return '';
+  b = (typeof(b) == "undefined") ? false: b;
+  var res = '';
+  res += '<div class="cw_displayc">';
+  res += (a.charAt(3) == "1") ? '<div class="cw_led_on cwl"></div>': '<div class="cw_led_off cwl"></div>';
+  if (a.charAt(0) == "1" && a.charAt(1) == "1") res += '<div class="cw_wirerb cwlw"></div>';
+  else if (a.charAt(0) == "1") {
+    res += (b && a.charAt(1) == "0") ? '<div class="cw_wire cwlw" style="background:'+wirecolors[2][1]+';"></div>': '<div class="cw_wirer cwlw"></div>';
+  }
+  else if (a.charAt(1) == "1") {
+    res += (b && a.charAt(0) == "0") ? '<div class="cw_wire cwlw" style="background:'+wirecolors[1][1]+';"></div>': '<div class="cw_wireb cwlw"></div>';
+  }
+  else res += '<div class="cw_wire cwlw"></div>';
+  res += (a.charAt(2) == "1") ? '<div class="cw_star cwl">&#9733;</div>': '<div class="cw_star cwl"></div>';
+  res += '</div>';
+  return res;
+}
+
+function cw_update() {
+  var i,x,res = "",rcheck,temp;
+  var vl = document.getElementById("cw_led").checked;
+  var vr = document.getElementById("cw_red").checked;
+  var vb = document.getElementById("cw_blue").checked;
+  var vs = document.getElementById("cw_star").checked;
+
+  res = "";
+  i = (vl) ? "on": "off";
+  res += '<div class="cw_led_'+i+'" onclick="document.getElementById(\'cw_led\').checked = !document.getElementById(\'cw_led\').checked;cw_update();"></div>';
+  i = "";
+  if (vr) i += "r";
+  if (vb) i += "b";
+  res += '<div class="cw_wire'+i+'" onclick="cw_cycle();"></div>';
+  i = (vs) ? "&#9733;": "";
+  res += '<div class="cw_star" onclick="document.getElementById(\'cw_star\').checked = !document.getElementById(\'cw_star\').checked;cw_update();">'+i+'</div>';
+
+  document.getElementById("cw_display").innerHTML = res;
+
+  res = "";
+  res += (vr) ? "1": "0";
+  res += (vb) ? "1": "0";
+  res += (vs) ? "1": "0";
+  res += (vl) ? "1": "0";
+
+  var rcheck = cw_res[res];
+  if (rcheck == 2 && bomb_serial_odd != -1) rcheck = bomb_serial_odd;
+  if (rcheck == 3 && bomb_parallel != -1) rcheck = (1-bomb_parallel);
+  if (rcheck == 4 && bomb_batteries >= 2) rcheck = 0;
+  if (rcheck == 4 && bomb_batteries != -1) rcheck = 1;
+
+  document.getElementById("cw_results").innerHTML = ' &nbsp; &#149; '+cw_restext[rcheck];
+
+  res = "";
+  temp = new Array();
+  for (i in cw_restext) temp.push([]);
+
+  for (i in cw_res) {
+    rcheck = cw_res[i];
+    if (rcheck == 2 && bomb_serial_odd != -1) rcheck = bomb_serial_odd;
+    if (rcheck == 3 && bomb_parallel != -1) rcheck = (1-bomb_parallel);
+    if (rcheck == 4 && bomb_batteries >= 2) rcheck = 0;
+    if (rcheck == 4 && bomb_batteries != -1) rcheck = 1;
+    temp[rcheck].push(i);
+  }
+
+  rcheck = new Array();
+  rcheck[0] = ["cw_chart_title","Cortar"];
+  rcheck[1] = ["cw_chart_title_no","No cortar"];
+  rcheck[2] = ["cw_chart_title_u","Cortar si la serie es par"];
+  rcheck[3] = ["cw_chart_title_u","Cortar si hay puertos paralelos"];
+  rcheck[4] = ["cw_chart_title_u","Cortar si hay 2+ baterías"];
+
+  for (i in temp) {
+    temp[i].sort();
+    if (i == 2) res += '<br style="clear:both;">';
+    if (temp[i].length > 0) {
+      if (i >= 2) {
+        res += '<div class="center" style="display:inline-block;width:33.33%;">';
+      }
+      res += '<div class="'+rcheck[i][0]+'">'+rcheck[i][1]+'</div>';
+      for (x in temp[i]) {
+        res += cw_wiregraphic(temp[i][x]);
+      }
+      if (i >= 2) res += '</div>';
+    }
+  }
+  document.getElementById('cw_chart_results').innerHTML = res;
+}
+
+
+
+
+
+
+
+
+
+
+function sequence_reset() {
+  sequence_selected = new Array(-1,-1,-1);
+  sequence_update();
+}
+
+function sequence_goback(a) {
+  if (typeof(sequence_selected[a]) != "undefined" && sequence_selected[a] >= 0) sequence_selected[a]--;
+  sequence_update();
+}
+
+function sequence_add(a) {
+  if (typeof(sequence_selected[a]) != "undefined" && sequence_selected[a] < 8) sequence_selected[a]++;
+  sequence_update();
+}
+
+function sequence_update() {
+  var i,x,temp;
+  for (i in sequence_selected) {
+    document.getElementById('sequence_wirecount_'+i).innerHTML = (sequence_selected[i] < 0) ? "&nbsp;": "Wire #"+(sequence_selected[i]+1);
+    temp = '<table style="width:100%;padding:0;margin:0;border-collapse:collapse;"><tr>';
+    for (x=0;x<=2;x++) {
+      temp += (sequence_selected[i] >= 0 && wire_sequences[sequence_selected[i]][i][x] == 1) ? '<td><div class="sequence_light_on"></div></td>': '<td><div class="sequence_light_off"></div></td>';
+    }
+    temp += '</tr><tr>';
+    for (x=65;x<=67;x++) {
+      temp += '<td><span class="b" style="font-size:16px;">'+String.fromCharCode(x)+'</span></td>';
+    }
+    temp += '</tr></table>';
+    document.getElementById('sequence_wireres_'+i).innerHTML = temp;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+function maze_reset() {
+  maze_startloc = new Array(-1,-1);
+  maze_endloc = new Array(-1,-1);
+  maze_selected = -1;
+  maze_update();
+}
+
+function maze_popup(x,y,onoff) {
+  if (typeof(x) == "undefined" || typeof(y) == "undefined" || typeof(onoff) == "undefined") {
+    x = 0;
+    y = 0;
+    onoff = false;
+  }
+  var i,v,temp = document.getElementById('maze_table'),bdy = document.getElementsByTagName('body').item(0);
+
+  v = document.getElementById('_mppx');
+  if (v) bdy.removeChild(v);
+  i = document.createElement('div');
+  i.id = "_mppx";
+  i.style.left = (temp.offsetLeft+12+(x*32))+"px";
+  i.style.top = (maze_displaymode) ? (temp.offsetTop-2+temp.offsetHeight)+"px": (temp.offsetTop-22)+"px";
+  if (maze_displaymode) i.style.borderRadius = "2px 2px 12px 12px";
+  i.innerHTML = 'x '+(x+1);
+  if (onoff) void(bdy.appendChild(i));
+
+  v = document.getElementById('_mppy');
+  if (v) bdy.removeChild(v);
+  i = document.createElement('div');
+  i.id = "_mppy";
+  i.style.left = (temp.offsetLeft-22)+"px";
+  i.style.top = (temp.offsetTop+12+(y*32))+"px";
+  i.innerHTML = (maze_displaymode) ? 'y '+(6-y): 'y '+(y+1);
+  if (onoff) void(bdy.appendChild(i));
+
+}
+
+function maze_goback() {
+  if (maze_selected > -1) {
+    if (maze_endloc[0] != -1) {
+      maze_endloc = new Array(-1,-1);
+    }
+    else if (maze_startloc[0] != -1) {
+      maze_startloc = new Array(-1,-1);
+    }
+    else maze_selected = -1;
+  }
+  maze_update();
+}
+
+function maze_iscircle(x,y) {
+  var i;
+  for (i in mazes) {
+    if ((mazes[i][0][0] == x && mazes[i][0][1] == y) || (mazes[i][1][0] == x && mazes[i][1][1] == y)) return i;
+  }
+  return -1;
+}
+
+function maze_solve(sx,sy,fx,fy,mz) {
+  var i,x,calcmaze = new Array(),usemaze,mazepath = new Array();
+  if (sx < 0 || sx > 5 || sy < 0 || sy > 5 || fx < 0 || fx > 5 || fy < 0 || fy > 5 || typeof(mazes[mz]) == "undefined") return false;
+  usemaze = mazes[mz][2];
+
+  function maze_cycle(cx,cy) {
+    var curval = calcmaze[cy][cx];
+    if (usemaze[cy][cx].charAt(0) == 1 && (calcmaze[(cy-1)][cx] == -1 || calcmaze[(cy-1)][cx] > curval)) {
+      calcmaze[(cy-1)][cx] = (curval+1);
+      maze_cycle(cx,(cy-1));
+    }
+    if (usemaze[cy][cx].charAt(1) == 1 && (calcmaze[cy][(cx+1)] == -1 || calcmaze[cy][(cx+1)] > curval)) {
+      calcmaze[cy][(cx+1)] = (curval+1);
+      maze_cycle((cx+1),cy);
+    }
+    if (usemaze[cy][cx].charAt(2) == 1 && (calcmaze[(cy+1)][cx] == -1 || calcmaze[(cy+1)][cx] > curval)) {
+      calcmaze[(cy+1)][cx] = (curval+1);
+      maze_cycle(cx,(cy+1));
+    }
+    if (usemaze[cy][cx].charAt(3) == 1 && (calcmaze[cy][(cx-1)] == -1 || calcmaze[cy][(cx-1)] > curval)) {
+      calcmaze[cy][(cx-1)] = (curval+1);
+      maze_cycle((cx-1),cy);
+    }
+  }
+
+  function maze_path(cx,cy) {
+    var curval = calcmaze[cy][cx];
+    if (usemaze[cy][cx].charAt(0) == 1 && calcmaze[(cy-1)][cx] < curval) {
+      mazepath.unshift(2);
+      maze_path(cx,(cy-1));
+    }
+    else if (usemaze[cy][cx].charAt(1) == 1 && calcmaze[cy][(cx+1)] < curval) {
+      mazepath.unshift(3);
+      maze_path((cx+1),cy);
+    }
+    else if (usemaze[cy][cx].charAt(2) == 1 && calcmaze[(cy+1)][cx] < curval) {
+      mazepath.unshift(0);
+      maze_path(cx,(cy+1));
+    }
+    else if (usemaze[cy][cx].charAt(3) == 1 && calcmaze[cy][(cx-1)] < curval) {
+      mazepath.unshift(1);
+      maze_path((cx-1),cy);
+    }
+  }
+
+  for (i in usemaze) {
+    calcmaze[i] = new Array();
+    for (x in usemaze[i]) {
+      calcmaze[i][x] = -1;
+    }
+  }
+  calcmaze[sy][sx] = 0;
+  maze_cycle(sx,sy);
+  maze_path(fx,fy);
+  return mazepath;
+}
+
+function maze_drawtable() {
+  var i,x,res = '<table class="maze" id="maze_table" cellpadding=0 cellspacing=0 oncontextmenu="maze_goback();return false;">';
+  for (i in mazes[0][2]) {
+    res += '<tr>';
+    for (x in mazes[0][2][i]) {
+      res += '<td id="maze_pos_'+x+'_'+i+'" onclick="maze_manageclick('+x+','+i+');" onmouseover="maze_managehover('+x+','+i+',1);" onmouseout="maze_managehover('+x+','+i+',0);"><div id="maze_pos_'+x+'_'+i+'_in"></div></td>';
+    }
+    res += '</tr>';
+  }
+  res += '</table>';
+  return res;
+}
+
+function maze_manageclick(x,y) {
+  var i,temp;
+  if (maze_selected == -1 && (temp = maze_iscircle(x,y)) != -1) {
+    maze_selected = temp;
+  }
+  else if (maze_selected > -1) {
+    if (maze_startloc[0] == -1) {
+      maze_startloc = new Array(x,y);
+    }
+    else if (maze_startloc[0] == x && maze_startloc[1] == y) {
+      maze_startloc = new Array(-1,-1);
+      maze_endloc = new Array(-1,-1);
+    }
+    else if (maze_endloc[0] == x && maze_endloc[1] == y) {
+      maze_endloc = new Array(-1,-1);
+    }
+    else if (maze_endloc[0] == -1) {
+      maze_endloc = new Array(x,y);
+    }
+  }
+  maze_update();
+}
+
+function maze_managehover(x,y,onoff) {
+  var v,i,temp;
+  if (onoff) maze_popup(x,y,true);
+  else maze_popup();
+
+  if (maze_selected == -1) {
+    temp = maze_iscircle(x,y);
+    for (i in mazes) {
+      v = "maze_circle";
+      if (temp != -1 && temp != i && onoff) v = "maze_circle_fade";
+      document.getElementById('maze_pos_'+mazes[i][0][0]+'_'+mazes[i][0][1]).className = v;
+      document.getElementById('maze_pos_'+mazes[i][1][0]+'_'+mazes[i][1][1]).className = v;
+    }
+  }
+}
+
+function maze_update() {
+  var i,x,temp,temp2,res="";
+  for (i in mazes[0][2]) {
+    for (x in mazes[0][2][i]) {
+      document.getElementById('maze_pos_'+x+'_'+i).className = "";
+      document.getElementById('maze_pos_'+x+'_'+i).style.boxShadow = "none";
+      document.getElementById('maze_pos_'+x+'_'+i+'_in').className = "";
+      document.getElementById('maze_pos_'+x+'_'+i+'_in').style.boxShadow = "none";
+    }
+  }
+  if (maze_selected == -1) {
+    for (i in mazes[0][2]) {
+      for (x in mazes[0][2][i]) {
+        if (maze_iscircle(x,i) != -1) document.getElementById('maze_pos_'+x+'_'+i).className = "maze_circle";
+      }
+    }
+  }
+  else if (maze_selected != -1) {
+    for (i in mazes[maze_selected][2]) {
+      for (x in mazes[maze_selected][2][i]) {
+        temp = document.getElementById('maze_pos_'+x+'_'+i);
+        if ((mazes[maze_selected][0][0] == x && mazes[maze_selected][0][1] == i) || (mazes[maze_selected][1][0] == x && mazes[maze_selected][1][1] == i)) temp.className = "maze_circle";
+        temp.className += " mazeborder_"+mazes[maze_selected][2][i][x];
+        temp2 = "";
+        if (i == 0) temp2 += "0 -1px 0 #C5CACE,";
+        if (i == 5) temp2 += "0 1px 0 #A5AAAE,";
+        if (x == 0) temp2 += "-1px 0 0 #C5CACE,";
+        if (x == 5) temp2 += "1px 0 0 #A5AAAE,";
+        temp.style.boxShadow = temp2.substr(0,temp2.length-1);
+        document.getElementById('maze_pos_'+x+'_'+i+'_in').style.boxShadow = "none";
+      }
+    }
+    if (maze_startloc[0] != -1) {
+      document.getElementById('maze_pos_'+maze_startloc[0]+'_'+maze_startloc[1]+'_in').className = "maze_player";
+    }
+    if (maze_endloc[0] != -1) {
+      document.getElementById('maze_pos_'+maze_endloc[0]+'_'+maze_endloc[1]+'_in').className = "maze_goal";
+    }
+    temp = maze_solve(maze_startloc[0],maze_startloc[1],maze_endloc[0],maze_endloc[1],maze_selected);
+    if (temp) {
+      temp2 = new Array(maze_startloc[0],maze_startloc[1]);
+      x = ' style="cursor:pointer;" onclick="if (!this.cL) { this.style.color=\'#CCCCCC\';this.cL=true; } else { this.style.color=\'#000000\';this.cL=false; }"';
+      res = '<span class="b">Direcciones:</span><br>&nbsp; &#149; ';
+      for (i in temp) {
+        document.getElementById('maze_pos_'+temp2[0]+'_'+temp2[1]+'_in').style.boxShadow = (maze_startloc[0] == temp2[0] && maze_startloc[1] == temp2[1]) ? maze_bs[temp[i]].replace(/ -3px /g," -4px "): maze_bs[temp[i]];
+        if (temp[i] == 0) {
+          res += '<span'+x+'>Arriba</span>, &nbsp;';
+          temp2[1]--;
+        }
+        else if (temp[i] == 1) {
+          res += '<span'+x+'>Derecha</span>, &nbsp;';
+          temp2[0]++;
+        }
+        else if (temp[i] == 2) {
+          res += '<span'+x+'>Abajo</span>, &nbsp;';
+          temp2[1]++;
+        }
+        else {
+          res += '<span'+x+'>Izquierda</span>, &nbsp;';
+          temp2[0]--;
+        }
+      }
+      res = res.substr(0,res.length-8);
+    }
+  }
+  if (res == "" && maze_selected == -1) res = 'Elige un círculo que aparezca en el laberinto.';
+  else if (maze_selected != -1 && maze_startloc[0] == -1) res = 'Elija la ubicación de inicio.';
+  else if (maze_selected != -1 && maze_endloc[0] == -1) res = 'Elige la meta.';
+  if (maze_selected > -1 && res.indexOf('Directions') == -1) res = '<div class="center">'+res+'<br><div class="memory_button" style="display:inline-block;width:80px;" onclick="maze_goback();" title="Go back a step">&#9474;&#9668;&#9668;</div></div>';
+  document.getElementById('maze_results').innerHTML = res;
+}
+
+
+
+
+
+
+
+
+
+
+function password_reset() {
+  for (i=0;i<5;i++) {
+    document.getElementById('password_inp_'+i).value = '';
+  }
+  password_update();
+}
+
+function password_check(a) {
+  if (typeof(a) == "undefined") a = 0;
+  var i,x,v,temp;
+  for (i=0;i<5;i++) {
+    x = document.getElementById('password_inp_'+i);
+    temp = String(x.value).replace(/[^a-zA-Z]/g,"");
+    if (temp != x.value) x.value = temp;
+  }
+  if (event.type == "keyup" && (event.which == 13 || event.which == 40)) {
+    if (v = document.getElementById('password_inp_'+(a+1))) v.focus();
+  }
+  else if (event.type == "keyup" && event.which == 38) {
+    if (v = document.getElementById('password_inp_'+(a-1))) v.focus();
+  }
+  password_update();
+}
+
+function password_update() {
+  var i,x,z,temp,temp2,res = "",temp3 = new Array(),temp4 = true;
+  for (i in passwords) {
+    temp = true;
+    for (x=0;x<5;x++) {
+      temp2 = String(document.getElementById('password_inp_'+x).value).toLowerCase();
+      if (temp2 != "" && temp2.indexOf(passwords[i].charAt(x)) == -1) {
+        temp = false;
+        break;
+      }
+    }
+    if (temp) temp3.push(passwords[i].toUpperCase());
+  }
+  for (i=0;i<5;i++) if (document.getElementById('password_inp_'+i).value == "") temp4 = false;
+  if (temp3.length == passwords.length) res = "Ingrese las letras que aparecen en cada columna.";
+  else if (temp4 && temp3.length > 1) res = '<span class="b">Posible error</span><br><br>Verifique todas las letras que ingresó para asegurarse de que sean correctas.';
+  else if (temp3.length > 7) res = '<span class="b">Demasiados resultados.</span><br><br>Rellena más columnas para reducirlas.';
+  else if (temp3.length == 1) res = '<span class="b">La contraseña es:</span><br><span class="password_list">'+temp3[0]+'</span>';
+  else if (temp3.length == 0) res = "No hay contraseñas que coincidan con las letras especificadas.";
+  else {
+    res = '<span class="b">Coinciden:</span><br><span class="password_list">'+temp3.join("<br>")+'</span>';
+  }
+  document.getElementById('password_results').innerHTML = res;
+}
+
+
+
+
+
+
+
+
+
+
+function needy_reset() {
+  knob_selected = "000000000000";
+  needy_update();
+}
+
+function needy_light(a) {
+  var i = knob_selected.split("");
+  if (typeof(a) != "undefined" && typeof(i[a]) != "undefined") {
+    i[a] = (i[a] == "1") ? "0": "1";
+    knob_selected = i.join("");
+  }
+  needy_update();
+}
+
+function needy_mode(a) {
+  if (typeof(a) != "undefined" && !isNaN(a)) {
+    a = Math.floor(Math.abs(a));
+    if (a < 0) a = 0;
+    if (a > 2) a = 2;
+    knob_matchmode = a;
+  }
+  saveoptions();
+  needy_update();
+}
+
+function needy_update() {
+  var i,x,z,temp,temp2,res='';
+  for (i=0;i<3;i++) {
+    document.getElementById('op_knobmatch_'+i).className = (knob_matchmode == i) ? "optionbox_selected": "optionbox";
+  }
+  for (i=0;i<knob_selected.length;i++) {
+    document.getElementById('needy_led_'+i).className = (knob_selected.charAt(i) == 1) ? "needy_led_on": "needy_led_off";
+    document.getElementById('needy_led_'+i).style.opacity = (knob_modes[knob_matchmode].indexOf(i) != -1) ? "1": "0.25";
+  }
+  temp = new Array(0,0,0,0);
+  for (i in knob_config) {
+    for (x in knob_config[i]) {
+      temp2 = 1;
+      for (z in knob_modes[knob_matchmode]) {
+        if (knob_selected.charAt(knob_modes[knob_matchmode][z]) != knob_config[i][x].charAt(knob_modes[knob_matchmode][z])) temp2 = 0;
+      }
+      temp[i] += temp2;
+    }
+  }
+  document.getElementById('needy_knob_inner').style.transform = 'rotate(0deg)';
+  document.getElementById('needy_knob_inner').className = 'needy_knob_inner_off';
+  res = '<span class="error">El patrón de LED no coincide con ninguna dirección.</span>';
+  if (knob_selected == "000000000000") res = 'Ingrese el patrón de LED como se muestra en el módulo.';
+  if (temp[0] > 0 && (temp[1]+temp[2]+temp[3]) == 0) {
+    res = '<span class="b">Action:</span><br> &nbsp; &#149; Gire la perilla a la posición <span class="b">ARRIBA</span>.';
+    document.getElementById('needy_knob_inner').className = '';
+  }
+  else if (temp[1] > 0 && (temp[0]+temp[2]+temp[3]) == 0) {
+    res = '<span class="b">Action:</span><br> &nbsp; &#149; Gire la perilla a la posición <span class="b">DERECHA</span>.';
+    document.getElementById('needy_knob_inner').style.transform = 'rotate(90deg)';
+    document.getElementById('needy_knob_inner').className = '';
+  }
+  else if (temp[2] > 0 && (temp[1]+temp[0]+temp[3]) == 0) {
+    res = '<span class="b">Action:</span><br> &nbsp; &#149; Gire la perilla a la posición <span class="b">ABAJO</span>.';
+    document.getElementById('needy_knob_inner').style.transform = 'rotate(180deg)';
+    document.getElementById('needy_knob_inner').className = '';
+  }
+  else if (temp[3] > 0 && (temp[1]+temp[2]+temp[0]) == 0) {
+    res = '<span class="b">Action:</span><br> &nbsp; &#149; Gire la perilla a la posición <span class="b">IZQUIERDA</span>.';
+    document.getElementById('needy_knob_inner').style.transform = 'rotate(-90deg)';
+    document.getElementById('needy_knob_inner').className = '';
+  }
+  document.getElementById('needy_results').innerHTML = res;
+}
+
+
+
+
+
+
+
+
+
+
+document.onselectstart = new Function("if (String(event.target.tagName).toLowerCase() != 'input') return false;");
+document.ondragstart = new Function("return false;");
+document.mx = 0;
+document.my = 0;
+function gxy(e) {
+  document.mx = (document.all) ? (document.body.scrollLeft + event.clientX) : e.pageX;
+  document.my = (document.all) ? (document.body.scrollTop + event.clientY) : e.pageY;
+  if (document.getElementById('_ppd')) {
+    document.getElementById('_ppd').style.left = (document.mx+16)+"px";
+    document.getElementById('_ppd').style.top = document.my+"px";
+  }
+}
+document.onmousemove = gxy;
+
+</script>
+</head>
+<body onload="setup();" onresize="closepopups();">
+
+
+
+
+
+<div id="main_center">
+
+
+
+
+
+<div class="module" style="width:calc(100% - 6px);">
+<div class="intro">
+Manual de <a href="https://store.steampowered.com/app/341800/" target="_blank">Keep Talking and Nobody Explodes</a> interactivo.<br>
+ por <a href="https://github.com/GrappePie" target="_blank">GrappePie</a>. &nbsp;Diseñado desde el <a href="https://www.bombmanual.com/es/web/index.html" target="_blank">manual de desactivación de bombas</a>.
+</div>
+<table width="100%" cellpadding=1 cellspacing=2>
+<tr>
+<td align="right">Batterias:</td><td>
+<div class="optionbox" id="op_bat_u" onclick="updateoptions('batteries',-1);" title="Se desconoce el recuento de baterías de la bomba.">?</div>
+<div class="optionbox" id="op_bat_0" onclick="updateoptions('batteries',0);" title="La bomba no tiene baterías">0</div>
+<div class="optionbox" id="op_bat_1" onclick="updateoptions('batteries',1);" title="La bomba tiene una batería">1</div>
+<div class="optionbox" id="op_bat_2" onclick="updateoptions('batteries',2);" title="La bomba tiene dos baterías">2</div>
+<div class="optionbox" id="op_bat_3" onclick="updateoptions('batteries',3);" title="La bomba tiene tres o más baterías.">3+</div>
+</td>
+<td align="right">El # de serie es:</td><td>
+<div class="optionbox" id="op_odd_u" onclick="updateoptions('odd',-1);" title="Se desconoce el número de serie de la bomba.">?</div>
+<div class="optionbox" style="width:40px;" id="op_odd_1" onclick="updateoptions('odd',1);" title="El número de serie del último dígito de la bomba es impar.">IMPAR</div>
+<div class="optionbox" style="width:40px;" id="op_odd_0" onclick="updateoptions('odd',0);" title="El número de serie del último dígito de la bomba es par">PAR</div>
+</td>
+<td align="right">FRK:</td><td>
+<div class="optionbox" id="op_litfrk_u" onclick="updateoptions('litfrk',-1);" title="Se desconoce un indicador FRK encendido">?</div>
+<div class="optionbox" id="op_litfrk_1" onclick="updateoptions('litfrk',1);" title="Existe un indicador FRK encendido en la bomba">S</div>
+<div class="optionbox" id="op_litfrk_0" onclick="updateoptions('litfrk',0);" title="No existe ningún indicador FRK encendido en la bomba">N</div>
+</td>
+<td align="right">Errores:</td><td>
+<div class="optionbox" id="op_strike_0" onclick="updateoptions('strikes',0);" title="La bomba tiene cero errores">0</div>
+<div class="optionbox" id="op_strike_1" onclick="updateoptions('strikes',1);" title="La bomba tiene un error">1</div>
+<div class="optionbox" id="op_strike_2" onclick="updateoptions('strikes',2);" title="La bomba tiene dos errores">2</div>
+</td>
+<td>
+<div class="chart_button" onclick="show_all_charts(1);" style="transform:rotate(180deg);display:block;margin:0;" title="Cerrar todos los gráficos de datos"></div>
+</td>
+<td>
+<div class="minimize" onclick="show_all(1);" style="display:block;margin:0;" title="Ocultar todos los módulos"></div>
+</td>
+</tr>
+<tr>
+<td align="right">Puerto paralelo:</td><td>
+<div class="optionbox" id="op_par_u" onclick="updateoptions('parallel',-1);" title="Se desconoce el estado del puerto paralelo de la bomba.">?</div>
+<div class="optionbox" id="op_par_1" onclick="updateoptions('parallel',1);" title="La bomba tiene un puerto paralelo">S</div>
+<div class="optionbox" id="op_par_0" onclick="updateoptions('parallel',0);" title="La bomba no tiene puerto paralelo">N</div>
+</td>
+<td align="right">Serial tiene vocal:</td><td>
+<div class="optionbox" id="op_vowel_u" onclick="updateoptions('vowel',-1);" title="Se desconoce el número de serie de la bomba.">?</div>
+<div class="optionbox" id="op_vowel_1" onclick="updateoptions('vowel',1);" title="El número de serie de la bomba contiene una vocales.">S</div>
+<div class="optionbox" id="op_vowel_0" onclick="updateoptions('vowel',0);" title="El número de serie de la bomba no contiene una vocales.">N</div>
+</td>
+<td align="right">CAR:</td><td>
+<div class="optionbox" id="op_litcar_u" onclick="updateoptions('litcar',-1);" title="Se desconoce un indicador de CAR encendido">?</div>
+<div class="optionbox" id="op_litcar_1" onclick="updateoptions('litcar',1);" title="Existe un indicador de CAR encendido en la bomba">S</div>
+<div class="optionbox" id="op_litcar_0" onclick="updateoptions('litcar',0);" title="No existe ningún indicador de CAR encendido en la bomba">N</div>
+</td><td colspan=2>
+<input type="button" value="Restablecer bomba" onclick="setup();">
+</td>
+<td>
+<div class="chart_button" onclick="show_all_charts(0);" style="display:block;margin:0;" title="Abra todos los gráficos de datos en módulos activos"></div>
+</td>
+<td>
+<div class="minimize" onclick="show_all(0);" style="transform:rotateX(0deg);display:block;margin:0;" title="Mostrar todos los módulos"></div>
+</td>
+</tr>
+</table>
+</div>
+<br style="clear:both;">
+
+
+
+
+
+
+
+
+
+
+<div class="module_hide" style="width:240px;" id="module_wires">
+<div class="header" ondblclick="showhide_module(this.parentNode.id);">
+<div class="reset" onclick="wires_reset();chart_close('wires');" title="Restablecer este módulo"></div>
+Cables
+<div class="minimize" onclick="showhide_module('module_wires');" title="Mostrar / Ocultar este módulo"></div>
+</div>
+
+<div id="wires_main" class="showcontent">
+
+Colores de los cables, de arriba a abajo:<br>
+<div class="center">
+<script>
+
+for (i in wirecolors) {
+  document.write('<div class="colorbox" style="background-color:'+wirecolors[i][1]+';" title="'+wirecolors[i][0]+'" onclick="addwire('+i+');" oncontextmenu="removewire((wires.length-1));return false;"></div>');
+}
+
+</script>
+</div>
+
+<table cellpadding=1 cellspacing=2 style="margin-bottom:10px;"><tr>
+<td align="right">El # de serie es:</td><td>
+<div class="optionbox" id="op_oddw_u" onclick="updateoptions('odd',-1);" title="The bomb's serial number is unknown">?</div>
+<div class="optionbox" style="width:40px;" id="op_oddw_1" onclick="updateoptions('odd',1);" title="El número de serie del último dígito de la bomba es impar.">IMPAR</div>
+<div class="optionbox" style="width:40px;" id="op_oddw_0" onclick="updateoptions('odd',0);" title="El número de serie del último dígito de la bomba es par">PAR</div>
+</td></tr>
+</table>
+<span class="b">Seleccionado:</span> <span id="wire_results">0</span>
+<span id="wire_action"></span>
+
+</div>
+<div id="chart_wires" class="hidecontent">
+
+<table class="generic">
+<tr><th>3 Cables</th></tr>
+<tr><td>
+<ol>
+<li>¿Sin cables rojos? Corta el <span class="b">segundo cable</span>.
+<li>2 Azul, 1 Rojo? Corta el <span class="b">segundo cable azul</span>.
+<li>Corta el <span class="b">último cable</span>.
+</ol>
+</td></tr>
+<tr><th>4 Cables</th></tr>
+<tr><td>
+<ol>
+<li>¿2 o más cables rojos? ¿Serie impar? Corta el <span class="b">último cable rojo</span>.
+<li>¿No rojo? ¿El último cable es amarillo? Corta el <span class="b">primer cable</span>.
+<li>¿Solo 1 cable azul? Corta el <span class="b">primer cable</span>.
+<li>¿Hay más de 1 amarillo? Corta el <span class="b">último cable</span>.
+<li>Corta el <span class="b">segundo cable</span>.
+</ol>
+</td></tr>
+<tr><th>5 Cables</th></tr>
+<tr><td>
+<ol>
+<li>¿Último cable negro? ¿Serie impar? Corta el <span class="b">cuarto cable</span>.
+<li>¿Solo 1 cable rojo, más de 1 amarillo? Corta el <span class="b">primer cable</span>.
+<li>¿Sin cables negros? Corta el <span class="b">segundo cable</span>.
+<li>Corta el <span class="b">first wire</span>.
+</ol>
+</td></tr>
+<tr><th>6 Cables</th></tr>
+<tr><td>
+<ol>
+<li>¿No amarillo? ¿Serie impar? Corta el <span class="b">tercer cable</span>.
+<li>¿Solo 1 amarillo, más de 1 blanco? Corta el <span class="b">cuarto cable</span>.
+<li>¿Sin cables rojos? Corta el <span class="b">last wire</span>.
+<li>Cut the <span class="b">fourth wire</span>.
+</ol>
+</td></tr>
+</table>
+
+</div>
+<div class="chart_button" onclick="chart_toggle('wires',chartsizes['wires']);" title="Alternar la tabla de datos de este módulo"></div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="module_hide" style="width:240px;" id="module_button">
+<div class="header" ondblclick="showhide_module(this.parentNode.id);">
+<div class="reset" onclick="button_reset();chart_close('button');" title="Restablecer este módulo"></div>
+El botón
+<div class="minimize" onclick="showhide_module('module_button');" title="Mostrar / Ocultar este módulo"></div>
+</div>
+
+<div id="button_main" class="showcontent">
+
+<div style="width:120px;float:right;text-align:center;">
+<script>
+
+for (i in buttonlabels) {
+  document.write('<div class="buttonbox" title="'+buttonlabels[i]+'" onclick="button_set(\'label\','+i+');">'+buttonlabels[i]+'</div>');
+}
+
+</script>
+</div>
+<div id="bigbutton" onclick="button_reset();" title="Click to reset the button"></div>
+<div class="center" style="clear:both;">
+<script>
+
+for (i in buttoncolors) {
+  document.write('<div class="colorbox" style="background-color:'+buttoncolors[i][1]+';" title="'+buttoncolors[i][0]+'" onclick="button_set(\'color\','+i+');"></div>');
+}
+
+</script>
+</div>
+<table cellpadding=1 cellspacing=2>
+<tr>
+<td align="right">Baterias:</td><td>
+<div class="optionbox" id="op_batb_u" onclick="updateoptions('batteries',-1);" title="Se desconoce el # de baterías de la bomba.">?</div>
+<div class="optionbox" id="op_batb_0" onclick="updateoptions('batteries',0);" title="La bomba no tiene baterías">0</div>
+<div class="optionbox" id="op_batb_1" onclick="updateoptions('batteries',1);" title="La bomba tiene una batería">1</div>
+<div class="optionbox" id="op_batb_2" onclick="updateoptions('batteries',2);" title="La bomba tiene dos baterías">2</div>
+<div class="optionbox" id="op_batb_3" onclick="updateoptions('batteries',3);" title="La bomba tiene tres o más baterías.">3+</div>
+</td></tr>
+<tr><td align="right">FRK:</td><td>
+<div class="optionbox" id="op_litfrkb_u" onclick="updateoptions('litfrk',-1);" title="Se desconoce un indicador de FRK encendido">?</div>
+<div class="optionbox" id="op_litfrkb_1" onclick="updateoptions('litfrk',1);" title="existe un indicador de FRK encendido en la bomba">S</div>
+<div class="optionbox" id="op_litfrkb_0" onclick="updateoptions('litfrk',0);" title="No existe ningún indicador de FRK encendido en la bomba">N</div>
+</td></tr>
+<tr><td align="right">CAR:</td><td>
+<div class="optionbox" id="op_litcarb_u" onclick="updateoptions('litcar',-1);" title="Se desconoce un indicador de CAR encendido">?</div>
+<div class="optionbox" id="op_litcarb_1" onclick="updateoptions('litcar',1);" title="existe un indicador de CAR encendido en la bomba">S</div>
+<div class="optionbox" id="op_litcarb_0" onclick="updateoptions('litcar',0);" title="No existe ningún indicador de CAR encendido en la bomba">N</div>
+</td></tr>
+</table>
+<span id="button_results"></span>
+
+</div>
+<div id="chart_button" class="hidecontent">
+
+<table class="generic">
+<tr><th>Direcciones</th></tr>
+<tr><td>
+<ol>
+<li><div class="minibutton" style="background-color:#5555FF;" title="Azul"></div> <div class="buttonbox" style="cursor:default;">ABORTAR</div>: <span class="b">Presione y mantenga.</span>
+<li>Cualquier color, <div class="buttonbox" style="cursor:default;">DETONAR</div>, dos o más baterías: <span class="b">Presione y suelte.</span>
+<li><div class="minibutton" style="background-color:#EEEEEE;" title="White"></div> & [CAR]: <span class="b">Presione y mantenga.</span>
+<li>Tres o más baterías & [FRK]: <span class="b">Presione y suelte.</span>
+<li><div class="minibutton" style="background-color:#FFFF00;" title="Amarillo"></div> <span class="b">Presione y mantenga.</span>
+<li><div class="minibutton" style="background-color:#FF0000;" title="Rojo"></div> <div class="buttonbox" style="cursor:default;">HOLD</div>: <span class="b">Presione y suelte.</span>
+<li>Ninguno de los anteriores: <span class="b">Presione y mantenga.</span>
+</ol>
+</td></tr>
+<tr><th>Presione y mantenga</th></tr>
+<tr><td>
+<script>
+
+for (i in buttoncolors) {
+  document.write('<div class="buttonres" style="background:'+buttoncolors[i][1]+';" title="'+buttoncolors[i][0]+'"></div> Release on '+buttoncolors[i][2]+'.<br>');
+}
+
+</script>
+</td></tr>
+</table>
+
+</div>
+<div class="chart_button" onclick="chart_toggle('button',chartsizes['button']);" title="Alternar la tabla de datos de este módulo"></div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="module_hide" style="width:488px;" id="module_symbol">
+<div class="header" ondblclick="showhide_module(this.parentNode.id);">
+<div class="reset" onclick="symbol_reset();chart_close('symbol');" title="Restablecer este módulo"></div>
+Simbolos
+<div class="minimize" onclick="showhide_module('module_symbol');" title="Mostrar / Ocultar este módulo"></div>
+</div>
+
+<div id="symbol_main" class="showcontent">
+
+<div class="center">
+<span class="b" id="symbol_results"></span><br>
+<script>
+
+for (i in symbols_selected) {
+  document.write('<div class="symbolbox" id="symbol_pos_'+i+'" onclick="symbol_remove('+i+');" title=""></div>');
+}
+
+</script>
+</div>
+<div class="center" style="width:440px;margin:auto">
+Elije los 4 símbolos que se muestran en el teclado:<br>
+<script>
+
+for (i in symbols) {
+  document.write('<div class="symbolbox" id="symbol_sel_'+i+'" onclick="symbol_add('+i+');" oncontextmenu="symbol_add('+i+');return false;" style="background-image:url(\''+symbols[i][1]+'\');" title="'+symbols[i][0]+'"></div>');
+}
+
+</script>
+</div>
+
+</div>
+
+<div id="chart_symbol" class="hidecontent">
+<div class="center">
+<script>
+
+for (i in symbol_columns) {
+  document.write('<table class="symbol">');
+  for (x in symbol_columns[i]) {
+    document.write('<tr><td><img src="'+symbols[symbol_columns[i][x]][1]+'" title="'+symbols[symbol_columns[i][x]][0]+'"></td></tr>');
+  }
+  document.write('</table>');
+}
+
+</script>
+</div>
+</div>
+<div class="chart_button" onclick="chart_toggle('symbol',chartsizes['symbol']);" title="Alternar la tabla de datos de este módulo"></div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="module_hide" style="width:240px;" id="module_simon">
+<div class="header" ondblclick="showhide_module(this.parentNode.id);">
+<div class="reset" onclick="simon_reset();chart_close('simon');" title="Restablecer este módulo"></div>
+Simon Dice
+<div class="minimize" onclick="showhide_module('module_simon');" title="Mostrar / Ocultar este módulo"></div>
+</div>
+
+<div id="simon_main" class="showcontent">
+
+<table cellpadding=1 cellspacing=2><tr>
+<td align="right">El Serial tiene vocales:</td><td>
+<div class="optionbox" id="op_vowelss_u" onclick="updateoptions('vowel',-1);" title="Se desconoce el número de serie de la bomba.">?</div>
+<div class="optionbox" id="op_vowelss_1" onclick="updateoptions('vowel',1);" title="El número de serie de la bomba contiene una vocal.">S</div>
+<div class="optionbox" id="op_vowelss_0" onclick="updateoptions('vowel',0);" title="El número de serie de la bomba no contiene una vocal.">N</div>
+</td></tr><tr>
+<td align="right">Errores:</td><td>
+<div class="optionbox" id="op_strikess_0" onclick="updateoptions('strikes',0);" title="La bomba tiene cero errores">0</div>
+<div class="optionbox" id="op_strikess_1" onclick="updateoptions('strikes',1);" title="La bomba tiene un error">1</div>
+<div class="optionbox" id="op_strikess_2" onclick="updateoptions('strikes',2);" title="La bomba tiene dos errores">2</div>
+</td></tr></table>
+<div class="center">
+<div class="simonbox_outer">
+<script>
+
+for (i in simoncolors) {
+  document.write('<div class="simonbox" style="background-color:'+simoncolors[i][1]+';" onclick="simon_add('+i+');" oncontextmenu="simon_remove((simon_selected.length-1));return false;">&nbsp;</div>');
+  if (((i-1)%2) == 0 && i < (simoncolors.length-1)) document.write("<br>");
+}
+
+</script>
+</div>
+</div>
+<span id="simon_results"></span>
+
+</div>
+<div id="chart_simon" class="hidecontent">
+
+<table class="generic gt_center">
+<tr><th colspan=5>El número de serie contiene una vocal</th></tr>
+<tr>
+<td>&nbsp;</td>
+<td><div class="simonbox_small" style="background-color:#FF0000;cursor:default;" title="Rojo"></div>Rojo</td>
+<td><div class="simonbox_small" style="background-color:#5555FF;cursor:default;" title="Azul"></div>Azul</td>
+<td><div class="simonbox_small" style="background-color:#00BB00;cursor:default;" title="Verde"></div>Verde</td>
+<td><div class="simonbox_small" style="background-color:#FFFF00;cursor:default;" title="Amarillo"></div>Amarillo</td>
+</tr>
+<tr>
+<td style="text-align:right !important;font-weight:bold;">Sin errores:</td>
+<td class="simon_press" style="background-color:#5555FF;">Azul</td>
+<td class="simon_press" style="background-color:#FF0000;">Rojo</td>
+<td class="simon_press" style="background-color:#FFFF00;">Amarillo</td>
+<td class="simon_press" style="background-color:#00BB00;">Verde</td>
+</tr>
+<tr>
+<td style="text-align:right !important;font-weight:bold;">1 Error:</td>
+<td class="simon_press" style="background-color:#FFFF00;">Amarillo</td>
+<td class="simon_press" style="background-color:#00BB00;">Verde</td>
+<td class="simon_press" style="background-color:#5555FF;">Azul</td>
+<td class="simon_press" style="background-color:#FF0000;">Rojo</td>
+</tr>
+<tr>
+<td style="text-align:right !important;font-weight:bold;">2 Errores:</td>
+<td class="simon_press" style="background-color:#00BB00;">Verde</td>
+<td class="simon_press" style="background-color:#FF0000;">Rojo</td>
+<td class="simon_press" style="background-color:#FFFF00;">Amarillo</td>
+<td class="simon_press" style="background-color:#5555FF;">Azul</td>
+</tr>
+</table>
+<br>
+<table class="generic gt_center">
+<tr><th colspan=5>El número de serie no contiene una vocal</th></tr>
+<tr>
+<td>&nbsp;</td>
+<td><div class="simonbox_small" style="background-color:#FF0000;cursor:default;" title="Rojo"></div>Rojo</td>
+<td><div class="simonbox_small" style="background-color:#5555FF;cursor:default;" title="Azul"></div>Azul</td>
+<td><div class="simonbox_small" style="background-color:#00BB00;cursor:default;" title="Verde"></div>Verde</td>
+<td><div class="simonbox_small" style="background-color:#FFFF00;cursor:default;" title="Amarillo"></div>Amarillo</td>
+</tr>
+<tr>
+<td style="text-align:right !important;font-weight:bold;">Sin errores:</td>
+<td class="simon_press" style="background-color:#5555FF;">Azul</td>
+<td class="simon_press" style="background-color:#FFFF00;">Amarillo</td>
+<td class="simon_press" style="background-color:#00BB00;">Verde</td>
+<td class="simon_press" style="background-color:#FF0000;">Rojo</td>
+</tr>
+<tr>
+<td style="text-align:right !important;font-weight:bold;">1 Error:</td>
+<td class="simon_press" style="background-color:#FF0000;">Rojo</td>
+<td class="simon_press" style="background-color:#5555FF;">Azul</td>
+<td class="simon_press" style="background-color:#FFFF00;">Amarillo</td>
+<td class="simon_press" style="background-color:#00BB00;">Verde</td>
+</tr>
+<tr>
+<td style="text-align:right !important;font-weight:bold;">2 Errores:</td>
+<td class="simon_press" style="background-color:#FFFF00;">Amarillo</td>
+<td class="simon_press" style="background-color:#00BB00;">Verde</td>
+<td class="simon_press" style="background-color:#5555FF;">Azul</td>
+<td class="simon_press" style="background-color:#FF0000;">Rojo</td>
+</tr>
+</table>
+
+</div>
+<div class="chart_button" onclick="chart_toggle('simon',chartsizes['simon']);" title="Alternar la tabla de datos de este módulo"></div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="module_hide" style="width:488px;" id="module_who">
+<div class="header" ondblclick="showhide_module(this.parentNode.id);">
+<div class="reset" onclick="who_reset();chart_close('who');" title="Restablecer este módulo"></div>
+Quién va Primero
+<div class="minimize" onclick="showhide_module('module_who');" title="Mostrar / Ocultar este módulo"></div>
+</div>
+
+<div id="who_main" class="showcontent">
+
+<div class="center" style="margin:8px auto 16px auto;">
+<div class="check"><input type="checkbox" id="who_changemode" onclick="who_mode = (this.checked) ? 1 : 0;saveoptions();who_update();"><label for="who_changemode"></label></div><label for="who_changemode" title="Cambia el método de entrada de este módulo para usar una lista alfabética vertical de palabras que pueden ser más fáciles de leer."> Use una lista en lugar de botones</label>
+</div>
+<table class="who">
+<tr><th colspan=2 id="who_label" onclick="who_reset();" title="Click to reset"></th></tr>
+<tr><td id="who_which_0">&nbsp;</td><td id="who_which_1">&nbsp;</td></tr>
+<tr><td id="who_which_2">&nbsp;</td><td id="who_which_3">&nbsp;</td></tr>
+<tr><td id="who_which_4">&nbsp;</td><td id="who_which_5">&nbsp;</td></tr>
+</table>
+<div class="center" style="display:none;" id="who_label_span">
+Qué etiqueta aparece en la parte superior?<br><br>
+<script>
+
+for (i in wholabels) {
+  document.write('<div class="who_button" onclick="who_select(\'label\',\''+i+'\');">'+wholabels[i][0]+'</div>');
+}
+
+</script>
+</div>
+<div class="center" style="display:none;" id="who_label_span_v">
+Qué etiqueta aparece en la parte superior<br>
+<select onchange="who_select('label',this.value);this.selectedIndex=0;">
+<option value="-1" selected>-- Elija la etiqueta
+<script>
+
+for (i in wholabels) {
+  document.write('<option value="'+i+'">'+wholabels[i][0]);
+}
+
+</script>
+</select>
+</div>
+<div class="center" style="display:none;" id="who_word_span">
+¿Qué palabra aparece en la posición <span class="b" id="who_word_position"></span>?<br><br>
+<script>
+
+for (i in whowords) {
+  document.write('<div class="who_button" onclick="who_select(\'word\',\''+i+'\');">'+whowords[i][0]+'</div>');
+}
+
+</script>
+</div>
+<div class="center" style="display:none;" id="who_word_span_v">
+  ¿Qué palabra aparece en la posición <br><span class="b" id="who_word_position_v"></span>?<br>
+<select id="who_word_select" onchange="who_select('word',this.value);this.selectedIndex=0;">
+<option value="-1" selected>-- Elige la palabra
+<script>
+
+for (i in whowords) {
+  document.write('<option value="'+i+'">'+whowords[i][0]);
+}
+
+</script>
+</select>
+</div>
+<span id="who_results"></span>
+
+</div>
+<div id="chart_who" class="hidecontent">
+
+<div class="center">
+<script>
+
+for (i in wholabels) {
+  document.write('<div style="display:inline-block;"><table class="generic gt_who"><tr><th colspan=2>'+wholabels[i][0]+'</th></tr><tr>');
+  for (x=0;x<6;x++) {
+    if (x != 0 && (x%2) == 0) document.write('</tr><tr>');
+    document.write('<td style="height:16px;">');
+    if (x == wholabels[i][1]) document.write('<div class="who_pos_small"></div>');
+    else document.write('&nbsp;');
+    document.write('</td>');
+  }
+  document.write('</tr></table></div>');
+}
+
+</script>
+</div>
+
+<table class="generic">
+<script>
+
+rot = "#FFFFFF";
+for (i in whowords) {
+  temp = "";
+  temp2 = whowords[i][1].split(", ");
+  for (x in temp2) {
+    if (temp != "") temp += ",&nbsp; ";
+    temp += temp2[x];
+    if (temp2[x] == whowords[i][0]) break;
+  }
+  document.write('<tr style="background:'+rot+';"><td style="padding:1px;font-weight:bold;font-size:12px;text-align:center;">'+whowords[i][0]+':</td><td style="padding:1px;font-size:12px;">'+temp+'</td></tr>');
+  rot = (rot == "#FFFFFF") ? "#DDDDDD": "#FFFFFF";
+}
+
+</script>
+</table>
+
+</div>
+<div class="chart_button" onclick="chart_toggle('who',chartsizes['who']);" title="Alternar la tabla de datos de este módulo"></div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="module_hide" style="width:240px;" id="module_memory">
+<div class="header" ondblclick="showhide_module(this.parentNode.id);">
+<div class="reset" onclick="memory_reset();chart_close('memory');" title="Restablecer este módulo"></div>
+Memoria
+<div class="minimize" onclick="showhide_module('module_memory');" title="Mostrar / Ocultar este módulo"></div>
+</div>
+
+<div id="memory_main" class="showcontent">
+
+Entrada: 
+<div class="who_button" style="width:32px;margin:0;" onclick="memory_quick(1,false);" oncontextmenu="memory_quick(1,true);return false;" title="Agregue un 1 a la primera entrada vacía / Haga clic con el botón derecho para eliminar la última entrada">1</div>
+<div class="who_button" style="width:32px;margin:0;" onclick="memory_quick(2,false);" oncontextmenu="memory_quick(2,true);return false;" title="Agregue un 2 a la primera entrada vacía / Haga clic con el botón derecho para eliminar la última entrada">2</div>
+<div class="who_button" style="width:32px;margin:0;" onclick="memory_quick(3,false);" oncontextmenu="memory_quick(3,true);return false;" title="Agregue un 3 a la primera entrada vacía / Haga clic con el botón derecho para eliminar la última entrada">3</div>
+<div class="who_button" style="width:32px;margin:0;" onclick="memory_quick(4,false);" oncontextmenu="memory_quick(4,true);return false;" title="Agregue un 4 a la primera entrada vacía / Haga clic con el botón derecho para eliminar la última entrada">4</div>
+<table class="memory">
+<tr>
+<td><div id="memory_inp_display"><input type="text" maxlength="1" value="" id="memory_inp_stage" onkeyup="memory_checknum(this);" onblur="memory_checknum(this);" onfocus="this.select();"></div></td>
+<td>
+<div id="memory_inp_stage_4" onclick="memory_goback();" title="Haga clic para retroceder un escenario"></div>
+<div id="memory_inp_stage_3" onclick="memory_goback();" title="Haga clic para retroceder un escenario"></div>
+<div id="memory_inp_stage_2" onclick="memory_goback();" title="Haga clic para retroceder un escenario"></div>
+<div id="memory_inp_stage_1" onclick="memory_goback();" title="Haga clic para retroceder un escenario"></div>
+<div id="memory_inp_stage_0" onclick="memory_goback();" title="Haga clic para retroceder un escenario"></div>
+</td>
+</tr><tr>
+<td>
+<div id="memory_inp_numbers"><input type="text" maxlength="1" value="" id="memory_inp_number_0" onkeyup="memory_checknum(this);" onblur="memory_checknum(this);" onfocus="this.select();"><input type="text" maxlength="1" value="" id="memory_inp_number_1" onkeyup="memory_checknum(this);" onblur="memory_checknum(this);" onfocus="this.select();"><input type="text" maxlength="1" value="" id="memory_inp_number_2" onkeyup="memory_checknum(this);" onblur="memory_checknum(this);" onfocus="this.select();"><input type="text" maxlength="1" value="" id="memory_inp_number_3" onkeyup="memory_checknum(this);" onblur="memory_checknum(this);" onfocus="this.select();"></div>
+</td>
+<td><div class="memory_button" onclick="memory_next();" oncontextmenu="memory_goback();return false;" title="Haga clic para ir a la siguiente etapa / Haga clic con el botón derecho para retroceder una etapa">&#9658;&#9658;&#9474;</div></td>
+</tr>
+</table>
+<span id="memory_results"></span>
+
+</div>
+<div id="chart_memory" class="hidecontent">
+
+<table class="generic">
+<script>
+
+for (i in memory_press) {
+  document.write('<tr><th colspan=2>Etapa '+(Number(i)+1)+'</th></tr>');
+  for (x in memory_press[i]) {
+    if (memory_press[i][x][1] == "p") {
+      temp = (memory_press[i][x][0] != -1) ? "Misma posición que en el escenario "+(memory_press[i][x][0]+1): "Botón en posición "+(memory_press[i][x][2]+1);
+    }
+    else {
+      temp = (memory_press[i][x][0] != -1) ? "Misma etiqueta que en Etapa "+(memory_press[i][x][0]+1): "Botón etiquetado "+(memory_press[i][x][2]+1);
+    }
+
+    document.write('<tr><td style="width:30px;text-align:center;font-weight:bold;">'+(Number(x)+1)+'</td><td>'+temp+'</td></tr>');
+  }
+}
+
+</script>
+</table>
+
+</div>
+<div class="chart_button" onclick="chart_toggle('memory',chartsizes['memory']);" title="Alternar la tabla de datos de este módulo"></div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="module_hide" style="width:240px;" id="module_morse">
+<div class="header" ondblclick="showhide_module(this.parentNode.id);">
+<div class="reset" onclick="morse_reset();chart_close('morse');" title="Restablecer este módulo"></div>
+Código Morse
+<div class="minimize" onclick="showhide_module('module_morse');" title="Mostrar / Ocultar este módulo"></div>
+</div>
+
+<div id="morse_main" class="showcontent">
+
+<div class="center">
+<div class="morse_dot" onclick="morse_pulse('0');" oncontextmenu="morse_unpulse();return false;"></div><div class="morse_dash" onclick="morse_pulse('1');" oncontextmenu="morse_unpulse();return false;"></div>
+
+<table style="margin:4px auto;text-align:center;"><tr><td>
+<div id="morse_current" onclick="morse_clear();" title="Click to clear code"></div>
+<div class="morse_current_add" onclick="morse_add();" title="Agregar esta letra a la búsqueda">AGREGAR</div>
+</td></tr>
+</table>
+
+<table class="morse_c"><tr>
+<td onclick="morse_addconsecutive(0);" id="morse_cons_0" title="Establecer la primera y segunda letras para que sean consecutivas">&nbsp;</td>
+<td onclick="morse_addconsecutive(1);" id="morse_cons_1" title="Establecer la segunda y tercera letras para que sean consecutivas">&nbsp;</td>
+<td onclick="morse_addconsecutive(2);" id="morse_cons_2" title="Establecer la tercera y cuarta letras para que sean consecutivas">&nbsp;</td>
+<td onclick="morse_addconsecutive(3);" id="morse_cons_3" title="Establecer la cuarta y quinta letras para que sean consecutivas">&nbsp;</td>
+<td onclick="morse_addconsecutive(4);" id="morse_cons_4" title="Establecer las letras quinta y sexta para ser consecutivas">&nbsp;</td>
+</tr></table>
+<table class="morse">
+<tr>
+<td onclick="morse_remove(0);" id="morse_current_0" title="Haga clic para eliminar esta letra"></td>
+<td onclick="morse_remove(1);" id="morse_current_1" title="Haga clic para eliminar esta letra"></td>
+<td onclick="morse_remove(2);" id="morse_current_2" title="Haga clic para eliminar esta letra"></td>
+<td onclick="morse_remove(3);" id="morse_current_3" title="Haga clic para eliminar esta letra"></td>
+<td onclick="morse_remove(4);" id="morse_current_4" title="Haga clic para eliminar esta letra"></td>
+<td onclick="morse_remove(5);" id="morse_current_5" title="Haga clic para eliminar esta letra"></td>
+</tr><tr>
+<td onclick="morse_addstart(0);" id="morse_currents_0" title="Haga clic si la palabra comienza con esta letra"></td>
+<td onclick="morse_addstart(1);" id="morse_currents_1" title="Haga clic si la palabra comienza con esta letra"></td>
+<td onclick="morse_addstart(2);" id="morse_currents_2" title="Haga clic si la palabra comienza con esta letra"></td>
+<td onclick="morse_addstart(3);" id="morse_currents_3" title="Haga clic si la palabra comienza con esta letra"></td>
+<td onclick="morse_addstart(4);" id="morse_currents_4" title="Haga clic si la palabra comienza con esta letra"></td>
+<td onclick="morse_addstart(5);" id="morse_currents_5" title="Haga clic si la palabra comienza con esta letra"></td>
+</tr>
+</table>
+<span id="morse_results"></span>
+</div>
+
+</div>
+<div id="chart_morse" class="hidecontent">
+
+<div style="float:left;width:calc(35% - 2px);">
+<table class="generic">
+<tr><th style="text-align:center;">Letra de</th><th style="text-align:center;">código morse</th></tr>
+<script>
+
+morse_codes = new Array();
+for (i in morse_code) morse_codes.push(morse_code[i]);
+morse_codes.sort();
+
+for (i in morse_codes) {
+  temp = ' style="opacity:0.2;" title="Not Used"';
+  for (x in morse_frequencies) {
+    if (x.indexOf(morse_codes[i]) != -1) {
+      temp = "";
+      break;
+    }
+  }
+  document.write('<tr'+temp+'><td style="text-align:center;">'+String(morse_fromchar(morse_codes[i])).replace(/1/g,'<div class="morse_dash_small" style="cursor:default;"></div>').replace(/0/g,'<div class="morse_dot_small" style="cursor:default;"></div>')+'</td><td style="text-align:center;">'+morse_codes[i].toUpperCase()+'</td></tr>');
+}
+
+</script>
+</table>
+</div>
+<div style="float:right;width:calc(65% - 2px);">
+<table class="generic">
+<tr><th style="text-align:center;">Frecuencia</th><th style="text-align:center;">de palabras</th></tr>
+<script>
+
+for (i in morse_frequencies) {
+  temp = "";
+  for (x=0;x<i.length;x++) {
+    if (temp != "") temp += "/";
+    temp += morse_fromchar(i.charAt(x));
+  }
+  temp = temp.replace(/1/g,'<div class="morse_dash_small" style="cursor:default;"></div>').replace(/0/g,'<div class="morse_dot_small" style="cursor:default;"></div>');
+  document.write('<tr><td style="text-align:center;">'+temp+'<br><div class="who_button_i" style="cursor:default;">'+i.toUpperCase()+'</div></td><td style="text-align:center;"><div class="morse_freq">'+morse_frequencies[i]+'</div></td></tr>');
+}
+
+</script>
+</table>
+</div>
+
+</div>
+<div class="chart_button" onclick="chart_toggle('morse',chartsizes['morse']);" title="Alternar la tabla de datos de este módulo"></div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="module_hide" style="width:240px;" id="module_cw">
+
+<div class="header" ondblclick="showhide_module(this.parentNode.id);">
+<div class="reset" onclick="cw_reset();chart_close('cw');" title="Restablecer este módulo"></div>
+Cables complicados
+<div class="minimize" onclick="showhide_module('module_cw');" title="Mostrar / Ocultar este módulo"></div>
+</div>
+
+<div id="cw_main" class="showcontent">
+<div class="cw_display" id="cw_display"></div>
+
+<div class="check"><input type="checkbox" id="cw_led" onclick="cw_update();"><label for="cw_led"></label></div><label for="cw_led"> LED</label><br>
+<div class="check"><input type="checkbox" id="cw_red" onclick="cw_update();"><label for="cw_red"></label></div><label for="cw_red" class="red"> Rojo</label><br>
+<div class="check"><input type="checkbox" id="cw_blue" onclick="cw_update();"><label for="cw_blue"></label></div><label for="cw_blue" class="blue"> Azul</label><br>
+<div class="check"><input type="checkbox" id="cw_star" onclick="cw_update();"><label for="cw_star"></label></div><label for="cw_star"> Posee &#9733;</label><br>
+<br>
+<table width="100%" cellpadding=1 cellspacing=2>
+<tr>
+<td align="right">Baterías:</td><td>
+<div class="optionbox" id="op_batcw_u" onclick="updateoptions('batteries',-1);" title="Se desconoce el # de baterías de la bomba.">?</div>
+<div class="optionbox" id="op_batcw_0" onclick="updateoptions('batteries',0);" title="La bomba no tiene baterías">0</div>
+<div class="optionbox" id="op_batcw_1" onclick="updateoptions('batteries',1);" title="La bomba tiene una batería">1</div>
+<div class="optionbox" id="op_batcw_2" onclick="updateoptions('batteries',2);" title="La bomba tiene dos baterías">2</div>
+<div class="optionbox" id="op_batcw_3" onclick="updateoptions('batteries',3);" title="La bomba tiene tres o más baterías.">3+</div>
+</td></tr>
+<tr><td align="right">Puertos paralelos:</td><td>
+<div class="optionbox" id="op_parcw_u" onclick="updateoptions('parallel',-1);" title="Se desconoce el estado del puerto paralelo de la bomba.">?</div>
+<div class="optionbox" id="op_parcw_1" onclick="updateoptions('parallel',1);" title="La bomba tiene un puerto paralelo">S</div>
+<div class="optionbox" id="op_parcw_0" onclick="updateoptions('parallel',0);" title="La bomba no tiene puerto paralelo">N</div>
+</td></tr>
+<tr><td align="right">El # de serie es:</td><td>
+<div class="optionbox" id="op_oddcw_u" onclick="updateoptions('odd',-1);" title="The bomb's serial number is unknown">?</div>
+<div class="optionbox" style="width:40px;" id="op_oddcw_1" onclick="updateoptions('odd',1);" title="El número de serie del último dígito de la bomba es impar.">IMPAR</div>
+<div class="optionbox" style="width:40px;" id="op_oddcw_0" onclick="updateoptions('odd',0);" title="El número de serie del último dígito de la bomba es par">PAR</div>
+</td></tr>
+</table>
+<br>
+<span class="b">Action:</span><br><span id="cw_results"></span>
+</div>
+<div id="chart_cw" class="hidecontent">
+
+<table width="100%" cellpadding=1 cellspacing=2>
+<tr>
+<td align="right">Baterías:</td><td>
+<div class="optionbox" id="op_batcwc_u" onclick="updateoptions('batteries',-1);" title="Se desconoce el # de baterías de la bomba.">?</div>
+<div class="optionbox" id="op_batcwc_0" onclick="updateoptions('batteries',0);" title="La bomba no tiene baterías">0</div>
+<div class="optionbox" id="op_batcwc_1" onclick="updateoptions('batteries',1);" title="La bomba tiene una batería">1</div>
+<div class="optionbox" id="op_batcwc_2" onclick="updateoptions('batteries',2);" title="La bomba tiene dos baterías">2</div>
+<div class="optionbox" id="op_batcwc_3" onclick="updateoptions('batteries',3);" title="La bomba tiene tres o más baterías.">3+</div>
+</td></tr>
+<tr><td align="right">Puertos paralelos:</td><td>
+<div class="optionbox" id="op_parcwc_u" onclick="updateoptions('parallel',-1);" title="Se desconoce el estado del puerto paralelo de la bomba.">?</div>
+<div class="optionbox" id="op_parcwc_1" onclick="updateoptions('parallel',1);" title="La bomba tiene un puerto paralelo">S</div>
+<div class="optionbox" id="op_parcwc_0" onclick="updateoptions('parallel',0);" title="La bomba no tiene puerto paralelo">N</div>
+</td></tr>
+<tr><td align="right">El # de serie es:</td><td>
+<div class="optionbox" id="op_oddcwc_u" onclick="updateoptions('odd',-1);" title="Se desconoce el número de serie de la bomba.">?</div>
+<div class="optionbox" style="width:40px;" id="op_oddcwc_1" onclick="updateoptions('odd',1);" title="El número de serie del último dígito de la bomba es impar.">IMPAR</div>
+<div class="optionbox" style="width:40px;" id="op_oddcwc_0" onclick="updateoptions('odd',0);" title="El número de serie del último dígito de la bomba es par">PAR</div>
+</td></tr>
+</table>
+
+<span id="cw_chart_results"></span>
+
+</div>
+<div class="chart_button" onclick="chart_toggle('cw',chartsizes['cw']);" title="Alternar la tabla de datos de este módulo"></div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="module_hide" style="width:240px;" id="module_sequence">
+<div class="header" ondblclick="showhide_module(this.parentNode.id);">
+<div class="reset" onclick="sequence_reset();chart_close('sequence');" title="Restablecer este módulo"></div>
+Secuencia de cables
+<div class="minimize" onclick="showhide_module('module_sequence');" title="Mostrar / Ocultar este módulo"></div>
+</div>
+
+<div id="sequence_main" class="showcontent">
+
+<div class="center">
+<div class="colorbox" style="background-color:#FF0000;" onclick="sequence_add(0);" oncontextmenu="sequence_goback(0);return false;" title="Agregar cable rojo / clic derecho para retroceder un cable rojo"></div>
+<div class="colorbox" style="background-color:#5555FF;" onclick="sequence_add(1);" oncontextmenu="sequence_goback(1);return false;" title="Agregue cable azul / haga clic con el botón derecho para retroceder un cable azul"></div>
+<div class="colorbox" style="background-color:#333333;" onclick="sequence_add(2);" oncontextmenu="sequence_goback(2);return false;" title="Agregue cable negro / haga clic con el botón derecho para retroceder un cable negro"></div>
+</div>
+<table class="sequence">
+<tr>
+<td id="sequence_wirecount_0" class="sequence_wirecount_0" onclick="sequence_goback(0);" title="Retrocede un cable rojo">&nbsp;</td>
+<td id="sequence_wirecount_1" class="sequence_wirecount_1" onclick="sequence_goback(1);" title="Retrocede un cable azul">&nbsp;</td>
+<td id="sequence_wirecount_2" class="sequence_wirecount_2" onclick="sequence_goback(2);" title="Regresa un cable negro">&nbsp;</td>
+</tr>
+<tr>
+<td id="sequence_wireres_0" style="background-color:#FF0000;">&nbsp;</td>
+<td id="sequence_wireres_1" style="background-color:#5555FF;">&nbsp;</td>
+<td id="sequence_wireres_2" style="background-color:#333333;">&nbsp;</td>
+</tr>
+</table>
+Corta el cable si va a una letra que tiene un indicador encendido arriba.
+
+</div>
+<div id="chart_sequence" class="hidecontent">
+
+<div class="center">
+<table class="generic" style="width:100%;">
+<tr><th style="text-align:center;cursor:default;width:25%;">Cable #</th><th class="sequence_wirecount_0" style="text-align:center;cursor:default;width:25%;">Rojo</th><th class="sequence_wirecount_1" style="text-align:center;cursor:default;width:25%;">Azul</th><th class="sequence_wirecount_2" style="text-align:center;cursor:default;width:25%;">Negro</th></tr>
+<script>
+
+t = ["First","Second","Third","Fourth","Fifth","Sixth","Seventh","Eighth","Ninth"];
+for (i in wire_sequences) {
+  temp = ["","",""];
+  for (x in wire_sequences[i]) {
+    for (z in wire_sequences[i][x]) {
+      if (wire_sequences[i][x][z] == 1) {
+        if (temp[x] != "") temp[x] += ", ";
+        temp[x] += String.fromCharCode(65+Number(z));
+      }
+    }
+  }
+  for (x in temp) temp[x] = temp[x].replace("A, B, C","Any").replace(/,/," or ");
+  document.write('<tr><td style="text-align:center;background:#DDDDDD;font-weight:bold;">'+t[i]+'</td><td style="text-align:center;background:#FFEEEE;">'+temp[0]+'</td><td style="text-align:center;background:#EEEEFF;">'+temp[1]+'</td><td style="text-align:center;background:#EEEEEE;">'+temp[2]+'</td></tr>');
+}
+
+</script>
+</table>
+</div>
+
+</div>
+<div class="chart_button" onclick="chart_toggle('sequence',chartsizes['sequence']);" title="Alternar la tabla de datos de este módulo"></div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="module_hide" style="width:240px;" id="module_maze">
+<div class="header" ondblclick="showhide_module(this.parentNode.id);">
+<div class="reset" onclick="maze_reset();chart_close('maze');" title="Restablecer este módulo"></div>
+Laberinto
+<div class="minimize" onclick="showhide_module('module_maze');" title="Mostrar / Ocultar este módulo"></div>
+</div>
+
+<div id="maze_main" class="showcontent">
+
+<div class="center">
+<div class="check"><input type="checkbox" id="maze_changexy" onclick="maze_displaymode = (this.checked) ? 1 : 0;saveoptions();"><label for="maze_changexy"></label></div><label for="maze_changexy" title="Cambia las coordenadas X / Y que se muestran cuando se coloca el cursor sobre para comenzar en la esquina inferior izquierda en lugar de la esquina superior izquierda"> Usar coordenadas gráficas</label>
+</div>
+<span id="maze_table_span"></span>
+<script>
+
+document.getElementById('maze_table_span').innerHTML = maze_drawtable();
+
+</script>
+<span id="maze_results"></span>
+
+</div>
+<div id="chart_maze" class="hidecontent">
+
+<table style="width:100%;text-align:center;"><tr>
+<script>
+
+for (i in mazes) {
+  if (i != 0 && (i%3) == 0) document.write('</tr><tr>');
+  document.write('<td><table class="maze" cellpadding=0 cellspacing=0 style="margin:16px;"><tr>');
+  for (x in mazes[i][2]) {
+    if (x != 0) document.write('</tr><tr>');
+    for (z in mazes[i][2][x]) {
+      temp = ((mazes[i][0][0] == z && mazes[i][0][1] == x) || (mazes[i][1][0] == z && mazes[i][1][1] == x)) ? 'maze_circle': '';
+      temp += " mazeborder_"+mazes[i][2][x][z];
+      temp2 = "";
+      if (x == 0) temp2 += "0 -1px 0 #C5CACE,";
+      if (x == 5) temp2 += "0 1px 0 #A5AAAE,";
+      if (z == 0) temp2 += "-1px 0 0 #C5CACE,";
+      if (z == 5) temp2 += "1px 0 0 #A5AAAE,";
+      temp2 = temp2.substr(0,temp2.length-1);
+      if (temp2 != "") temp2 = "box-shadow:"+temp2+";";
+      document.write('<td class="'+temp+'" style="cursor:default;'+temp2+'"><div style="cursor:default;"></div></td>');
+    }
+  }
+  document.write('</tr></table></td>');
+}
+
+</script>
+</tr></table>
+
+</div>
+<div class="chart_button" onclick="chart_toggle('maze',chartsizes['maze']);" title="Alternar la tabla de datos de este módulo"></div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="module_hide" style="width:240px;" id="module_password">
+<div class="header" ondblclick="showhide_module(this.parentNode.id);">
+<div class="reset" onclick="password_reset();chart_close('password');" title="Restablecer este módulo"></div>
+Contraseña
+<div class="minimize" onclick="showhide_module('module_password');" title="Mostrar / Ocultar este módulo"></div>
+</div>
+
+<div id="password_main" class="showcontent">
+
+<table class="password" cellspacing=0 cellpadding=0><tr>
+<th>Letras</th><th style="width:132px;">Resultados</th>
+</tr><tr>
+<td>
+<script>
+
+for (i=0;i<passwords[0].length;i++) {
+  document.write('<input type="text" id="password_inp_'+i+'" onkeyup="password_check('+i+');" onblur="password_check('+i+');" onfocus="this.select();" ondblclick="this.value=\'\';password_update();" maxlength=6 placeholder="'+(i+1)+'"><br>');
+}
+
+</script>
+</td>
+<td><span id="password_results"></span></td>
+</tr>
+</table>
+
+</div>
+<div id="chart_password" class="hidecontent">
+
+<div class="center" style="margin-bottom:12px;">
+<script>
+
+x = "";
+for (i in passwords) {
+  if (x.indexOf(passwords[i].charAt(0)) == -1) x = x+passwords[i].charAt(0);
+}
+res = new Array();
+for (i=97;i<=122;i++) {
+  if (x.indexOf(String.fromCharCode(i)) == -1) res.push(String.fromCharCode(i));
+}
+res = String(res.join(", ").toUpperCase()).replace(/,([^,]*)$/," or$1");
+
+document.write('No hay palabras que empiecen con un<br><span class="b">'+res+'</span>.');
+
+</script>
+</div>
+
+<table style="width:100%;" cellpadding=0 cellspacing=0>
+<script>
+
+rot = ["password_rot1","password_rot1"];
+temp = [passwords[0].charAt(0),passwords[(Math.ceil(passwords.length/2)-1)].charAt(0)];
+temp2 = [["#999999","#999999","#999999","#999999"],["#999999","#999999","#999999","#999999"]];
+for (i=0;i<Math.ceil(passwords.length/2);i++) {
+  x = (Math.ceil(passwords.length/2)+i);
+  temp2[0][0] = (i == 0) ? "#999999": "transparent";
+  temp2[0][2] = (i == (Math.ceil(passwords.length/2)-1)) ? "#999999": "transparent";
+  temp2[1][0] = (i == 0) ? "#999999": "transparent";
+  temp2[1][2] = (x == (passwords.length-1)) ? "#999999": "transparent";
+  if (passwords[i].charAt(0) != temp[0]) {
+    temp2[0][0] = "#999999";
+    rot[0] = (rot[0] == "password_rot1") ? "password_rot2": "password_rot1";
+    temp[0] = passwords[i].charAt(0);
+  }
+  if (typeof(passwords[x]) != "undefined" && passwords[x].charAt(0) != temp[1]) {
+    temp2[1][0] = "#999999";
+    rot[1] = (rot[1] == "password_rot1") ? "password_rot2": "password_rot1";
+    temp[1] = passwords[x].charAt(0);
+  }
+  
+  document.write('<tr><td class="'+rot[0]+'" style="border-color:'+temp2[0].join(' ')+';">'+passwords[i].toUpperCase()+'</td>');
+  if (x < passwords.length) document.write('<td class="'+rot[1]+'" style="border-color:'+temp2[1].join(' ')+';">'+passwords[x].toUpperCase()+'</td>');
+  document.write('</tr>');
+}
+
+</script>
+</table>
+
+</div>
+<div class="chart_button" onclick="chart_toggle('password',chartsizes['password']);" title="Alternar la tabla de datos de este módulo"></div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="module_hide" style="width:240px;" id="module_needy">
+<div class="header" ondblclick="showhide_module(this.parentNode.id);">
+<div class="reset" onclick="needy_reset();chart_close('needy');" title="Restablecer este módulo"></div>
+Caso de Perillas
+<div class="minimize" onclick="showhide_module('module_needy');" title="Mostrar / Ocultar este módulo"></div>
+</div>
+
+<div id="needy_main" class="showcontent">
+
+<table width="100%" cellpadding=1 cellspacing=2>
+<tr><td align="right">Modo Emparejado:</td><td>
+<div class="optionbox" style="width:42px;" id="op_knobmatch_1" onclick="needy_mode(1);" title="Haga coincidir los LED utilizando solo el lado izquierdo">IZQUIERDA</div>
+<div class="optionbox" style="width:42px;" id="op_knobmatch_0" onclick="needy_mode(0);" title="Combina solo una cantidad mínima de LED">MIN</div>
+<div class="optionbox" style="width:42px;" id="op_knobmatch_2" onclick="needy_mode(2);" title="Haga coincidir los LED utilizando solo el lado derecho">DERECHA</div>
+</td></tr>
+</table>
+
+<table id="needy_knob" cellpadding=0 cellspacing=0><tr>
+<td colspan=3><div class="needy_up">ARRIBA</div></td>
+</tr><tr>
+<td><div class="needy_left">&#9658;</div></td><td class="needy_knob_inner"><div id="needy_knob_inner" onclick="needy_reset();" title="Click to reset"></div></td><td><div class="needy_right">&#9668;</div></td>
+</tr><tr>
+<td colspan=3><div class="needy_down">&#9650;</div></td>
+</tr></table>
+
+<div class="needy_led_pos0">
+<div class="needy_led_off" id="needy_led_0" onclick="needy_light(0);" style="position:absolute;left:0;"></div>
+<div class="needy_led_off" id="needy_led_5" onclick="needy_light(5);" style="position:absolute;right:0;"></div>
+</div>
+<div class="needy_led_pos1">
+<div class="needy_led_off" id="needy_led_6" onclick="needy_light(6);" style="position:absolute;left:0;"></div>
+<div class="needy_led_off" id="needy_led_11" onclick="needy_light(11);" style="position:absolute;right:0;"></div>
+</div>
+<div class="needy_led_pos2">
+<div class="needy_led_off" id="needy_led_1" onclick="needy_light(1);" style="position:absolute;left:0;"></div>
+<div class="needy_led_off" id="needy_led_4" onclick="needy_light(4);" style="position:absolute;right:0;"></div>
+</div>
+<div class="needy_led_pos3">
+<div class="needy_led_off" id="needy_led_7" onclick="needy_light(7);" style="position:absolute;left:0;"></div>
+<div class="needy_led_off" id="needy_led_2" onclick="needy_light(2);" style="position:absolute;left:45px;"></div>
+<div class="needy_led_off" id="needy_led_3" onclick="needy_light(3);" style="position:absolute;right:45px;"></div>
+<div class="needy_led_off" id="needy_led_10" onclick="needy_light(10);" style="position:absolute;right:0;"></div>
+</div>
+<div class="needy_led_pos4">
+<div class="needy_led_off" id="needy_led_8" onclick="needy_light(8);" style="position:absolute;left:0;"></div>
+<div class="needy_led_off" id="needy_led_9" onclick="needy_light(9);" style="position:absolute;right:0;"></div>
+</div>
+<span id="needy_results"></span>
+
+</div>
+<div id="chart_needy" class="hidecontent">
+
+<span class="b">Ventilación de gas:</span><br>
+<table class="generic" style="width:360px;margin:4px auto 12px auto;">
+<tr><td>
+Click <div class="who_button" style="width:32px;cursor:default;">S</div> si la pantalla dice "<span class="b">Ventilar Gas?</span>"<br>
+Click <div class="who_button" style="width:32px;cursor:default;">N</div> si la pantalla dice "<span class="b">Detonar bomba?</span>"
+</td></tr>
+</table>
+
+<span class="b">Descarga del condensador:</span><br>
+<table class="generic" style="width:360px;margin:4px auto 12px auto;">
+<tr><td>
+  Haga clic y mantenga presionada la palanca para liberar la descarga.<br>
+<span class="b">No dejes que el temporizador llegue a 0.</span>
+</td></tr>
+</table>
+
+<span class="b">Mando:</span><br>
+<table class="generic" style="width:360px;margin:auto;">
+<script>
+
+temp = ["Arriba", "Derecha", "Abajo", "Izquierda"];
+for (i in knob_config) {
+  document.write('<tr><th colspan=2 style="text-align:center;">'+temp[i]+'</th></tr><tr>');
+  for (x in knob_config[i]) {
+    document.write('<td style="padding:4px;"><table style="margin:auto;" cellpadding=0 cellspacing=0><tr>'+String(knob_config[i][x].substr(0,3)+'<td style="width:8px;border:none;">&nbsp;</td>'+knob_config[i][x].substr(3,3)).replace(/1/g,'<td><div class="needy_led_on" style="cursor:default;"></div></td>').replace(/0/g,'<td><div class="needy_led_off" style="cursor:default;"></div></td>')+'</tr><tr>'+String(knob_config[i][x].substr(6,3)+'<td style="width:8px;border:none;">&nbsp;</td>'+knob_config[i][x].substr(9)).replace(/1/g,'<td><div class="needy_led_on" style="cursor:default;"></div></td>').replace(/0/g,'<td><div class="needy_led_off" style="cursor:default;"></div></td>')+'</tr></table></td>');
+  }
+  document.write('</tr>');
+}
+
+</script>
+</table>
+
+</div>
+<div class="chart_button" onclick="chart_toggle('needy',chartsizes['needy']);" title="Alternar la tabla de datos de este módulo"></div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div id="main_footer">
+Este pagina está diseñada para que lo utilicen personas que estén familiarizadas con el funcionamiento del juego.
+No se recomienda su uso por personas nuevas en el juego.
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+</body>
+</html>
